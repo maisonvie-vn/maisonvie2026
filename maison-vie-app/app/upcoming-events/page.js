@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../lib/supabase";
+import { COUNTRY_CODES } from "../../lib/countryCodes";
 
 const EVENTS = [
   {
@@ -381,15 +382,13 @@ export default function UpcomingEventsPage() {
                         name="countryCode"
                         value={regForm.countryCode}
                         onChange={handleRegInput}
-                        className="bg-black border-r border-white/10 text-stone-200 px-3 py-3 focus:outline-none cursor-pointer text-sm font-sans"
+                        className="bg-black border-r border-white/10 text-stone-200 px-3 py-3 focus:outline-none cursor-pointer text-sm font-sans max-w-[120px]"
                       >
-                        <option value="+84">🇻🇳 +84</option>
-                        <option value="+33">🇫🇷 +33</option>
-                        <option value="+81">🇯🇵 +81</option>
-                        <option value="+82">🇰🇷 +82</option>
-                        <option value="+852">🇭🇰 +852</option>
-                        <option value="+1">🇺🇸 +1</option>
-                        <option value="+44">🇬🇧 +44</option>
+                        {COUNTRY_CODES.map((c, idx) => (
+                          <option key={idx} value={c.code} className="bg-dark-500">
+                            {c.flag} {c.code}
+                          </option>
+                        ))}
                       </select>
                       <input 
                         type="tel" 

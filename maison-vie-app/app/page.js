@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { supabase } from "../lib/supabase";
+import { COUNTRY_CODES } from "../lib/countryCodes";
 
 // 🌐 MULTI-LANGUAGE DICTIONARY (VI, EN, FR, JA, KO, HK)
 const I18N = {
@@ -377,6 +378,7 @@ const ALLERGEN_CODES = [
   { code: "SOYA", i18nKey: "allergenSoya" },
   { code: "SULPHITES", i18nKey: "allergenSulphites" }
 ];
+
 
 const normalizePhone = (code, phone) => {
   let cleaned = phone.replace(/\D/g, "");
@@ -839,15 +841,13 @@ export default function Home() {
                         name="countryCode"
                         value={formData.countryCode}
                         onChange={handleInputChange}
-                        className="bg-black border-r border-white/10 text-stone-200 px-3 py-3 focus:outline-none cursor-pointer text-sm font-sans"
+                        className="bg-black border-r border-white/10 text-stone-200 px-3 py-3 focus:outline-none cursor-pointer text-sm font-sans max-w-[120px]"
                       >
-                        <option value="+84">🇻🇳 +84</option>
-                        <option value="+33">🇫🇷 +33</option>
-                        <option value="+81">🇯🇵 +81</option>
-                        <option value="+82">🇰🇷 +82</option>
-                        <option value="+852">🇭🇰 +852</option>
-                        <option value="+1">🇺🇸 +1</option>
-                        <option value="+44">🇬🇧 +44</option>
+                        {COUNTRY_CODES.map((c, idx) => (
+                          <option key={idx} value={c.code} className="bg-dark-500">
+                            {c.flag} {c.code}
+                          </option>
+                        ))}
                       </select>
                       <input 
                         type="tel" 
@@ -904,7 +904,7 @@ export default function Home() {
                       onClick={() => setTimeDropdownOpen(!timeDropdownOpen)}
                       className="w-full flex items-center justify-between bg-black/40 border border-gold-500/40 text-stone-200 px-4 py-3 focus:outline-none focus:border-gold-500 hover:border-gold-500/80 transition-premium text-sm text-left font-luxury cursor-pointer"
                     >
-                      <span>
+                      <span className={formData.time ? "text-lg font-semibold text-gold-400 font-luxury" : "text-sm text-stone-500 font-luxury"}>
                         {formData.time || (lang === "vi" ? "Chọn giờ đón tiếp" : "Select a time")}
                       </span>
                       <span className="text-[10px] text-gold-500 ml-2 transition-transform duration-300" style={{ transform: timeDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
@@ -944,7 +944,7 @@ export default function Home() {
                                   setFormData((prev) => ({ ...prev, time: slot }));
                                   setTimeDropdownOpen(false);
                                 }}
-                                className={`w-full text-left px-8 py-2.5 text-sm hover:text-base hover:text-gold-300 transition-premium font-luxury ${
+                                className={`w-full text-left px-8 py-3.5 text-lg hover:text-xl hover:text-gold-300 transition-premium font-luxury ${
                                   formData.time === slot
                                     ? "bg-gold-500/20 text-gold-400 font-bold"
                                     : "text-stone-300 hover:bg-white/5"
@@ -968,7 +968,7 @@ export default function Home() {
                                   setFormData((prev) => ({ ...prev, time: slot }));
                                   setTimeDropdownOpen(false);
                                 }}
-                                className={`w-full text-left px-8 py-2.5 text-sm hover:text-base hover:text-gold-300 transition-premium font-luxury ${
+                                className={`w-full text-left px-8 py-3.5 text-lg hover:text-xl hover:text-gold-300 transition-premium font-luxury ${
                                   formData.time === slot
                                     ? "bg-gold-500/20 text-gold-400 font-bold"
                                     : "text-stone-300 hover:bg-white/5"
