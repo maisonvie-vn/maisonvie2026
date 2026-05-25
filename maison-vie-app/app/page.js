@@ -364,6 +364,7 @@ export default function Home() {
   const [lang, setLang] = useState("vi");
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [allergensOpen, setAllergensOpen] = useState(false);
+  const [timeDropdownOpen, setTimeDropdownOpen] = useState(false);
   
   // 🌐 AUTOMATIC LANGUAGE DETECTION
   useEffect(() => {
@@ -590,7 +591,7 @@ export default function Home() {
                 className="flex items-center space-x-2 text-[12px] font-semibold text-stone-300 uppercase tracking-widest px-3 py-2 rounded border border-white/10 hover:border-gold-500/30 transition-premium"
               >
                 <span>🌐 {lang}</span>
-                <span className="text-[8px] text-stone-500">▼</span>
+                <span className="text-[8px] text-gold-500">▼</span>
               </button>
 
               {langDropdownOpen && (
@@ -850,16 +851,90 @@ export default function Home() {
                     />
                   </div>
 
-                  <div className="flex flex-col text-left">
+                  <div className="flex flex-col text-left relative">
                     <label className="text-[11px] uppercase tracking-widest text-stone-400 mb-2 font-semibold">{t.labelTime} *</label>
-                    <input 
-                      type="time" 
-                      name="time"
-                      required
-                      value={formData.time}
-                      onChange={handleInputChange}
-                      className="bg-black/40 border border-white/10 text-stone-200 px-4 py-3 focus:outline-none focus:border-gold-500 transition-premium text-sm"
-                    />
+                    <button
+                      type="button"
+                      onClick={() => setTimeDropdownOpen(!timeDropdownOpen)}
+                      className="w-full flex items-center justify-between bg-black/40 border border-gold-500/40 text-stone-200 px-4 py-3 focus:outline-none focus:border-gold-500 hover:border-gold-500/80 transition-premium text-sm text-left font-luxury cursor-pointer"
+                    >
+                      <span>
+                        {formData.time || (lang === "vi" ? "Chọn giờ đón tiếp" : "Select a time")}
+                      </span>
+                      <span className="text-[10px] text-gold-500 ml-2 transition-transform duration-300" style={{ transform: timeDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                        ▼
+                      </span>
+                    </button>
+
+                    {timeDropdownOpen && (
+                      <>
+                        <div 
+                          className="fixed inset-0 z-40" 
+                          onClick={() => setTimeDropdownOpen(false)}
+                        />
+                        <div className="absolute left-0 right-0 mt-1 top-full z-50 bg-[#0b0c10] max-h-64 overflow-y-auto border border-gold-500 shadow-2xl rounded animate-fade-in font-sans">
+                          {/* Option for title/placeholder */}
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setFormData((prev) => ({ ...prev, time: "" }));
+                              setTimeDropdownOpen(false);
+                            }}
+                            className="w-full text-left px-6 py-3 text-stone-500 text-sm hover:bg-white/5 border-b border-white/5 font-luxury"
+                          >
+                            {lang === "vi" ? "Chọn giờ đón tiếp" : "Select a time"}
+                          </button>
+
+                          {/* Lunch Section */}
+                          <div className="px-6 py-2.5 text-gold-500 text-xs font-bold bg-black/60 font-luxury uppercase tracking-wider">
+                            {lang === "vi" ? "Lunch (10:00 – 14:00)" : "Lunch (10:00–14:00)"}
+                          </div>
+                          <div className="flex flex-col">
+                            {["10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00"].map((slot) => (
+                              <button
+                                key={slot}
+                                type="button"
+                                onClick={() => {
+                                  setFormData((prev) => ({ ...prev, time: slot }));
+                                  setTimeDropdownOpen(false);
+                                }}
+                                className={`w-full text-left px-8 py-2.5 text-sm transition-premium font-luxury ${
+                                  formData.time === slot
+                                    ? "bg-gold-500/20 text-gold-400 font-bold"
+                                    : "text-stone-300 hover:bg-white/5"
+                                }`}
+                              >
+                                {slot}
+                              </button>
+                            ))}
+                          </div>
+
+                          {/* Dinner Section */}
+                          <div className="px-6 py-2.5 text-gold-500 text-xs font-bold bg-black/60 font-luxury uppercase tracking-wider mt-1">
+                            {lang === "vi" ? "Dinner (17:00 – 22:00)" : "Dinner (17:00–22:00)"}
+                          </div>
+                          <div className="flex flex-col">
+                            {["17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00"].map((slot) => (
+                              <button
+                                key={slot}
+                                type="button"
+                                onClick={() => {
+                                  setFormData((prev) => ({ ...prev, time: slot }));
+                                  setTimeDropdownOpen(false);
+                                }}
+                                className={`w-full text-left px-8 py-2.5 text-sm transition-premium font-luxury ${
+                                  formData.time === slot
+                                    ? "bg-gold-500/20 text-gold-400 font-bold"
+                                    : "text-stone-300 hover:bg-white/5"
+                                }`}
+                              >
+                                {slot}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
 
                 </div>
@@ -886,7 +961,7 @@ export default function Home() {
                             })
                             .join(", ")}
                     </span>
-                    <span className="text-[10px] text-stone-500 ml-2 transition-transform duration-300" style={{ transform: allergensOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                    <span className="text-[10px] text-gold-500 ml-2 transition-transform duration-300" style={{ transform: allergensOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
                       ▼
                     </span>
                   </button>
