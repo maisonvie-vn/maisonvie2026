@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { supabase } from "../lib/supabase";
 
-// 🌐 MULTI-LANGUAGE DICTIONARY (VI, EN, FR, JA, KO)
+// 🌐 MULTI-LANGUAGE DICTIONARY (VI, EN, FR, JA, KO, HK)
 const I18N = {
   vi: {
     navHome: "Trang Chủ",
@@ -58,7 +58,9 @@ const I18N = {
     allergenPeanuts: "Đậu phộng",
     allergenSesame: "Mè",
     allergenSoya: "Đậu nành",
-    allergenSulphites: "Sulphites (Trong rượu)"
+    allergenSulphites: "Sulphites (Trong rượu)",
+    allergenSelect: "Chọn chất dị ứng nếu có",
+    allergenNone: "Không có chất dị ứng"
   },
   en: {
     navHome: "Home",
@@ -112,7 +114,9 @@ const I18N = {
     allergenPeanuts: "Peanuts",
     allergenSesame: "Sesame",
     allergenSoya: "Soya",
-    allergenSulphites: "Sulphites"
+    allergenSulphites: "Sulphites",
+    allergenSelect: "Select allergens if any",
+    allergenNone: "No allergens"
   },
   fr: {
     navHome: "Accueil",
@@ -127,7 +131,7 @@ const I18N = {
     btnMenu: "Découvrir la Carte",
     btnReserve: "Réserver une Table",
     chefTitle: "L'Excellence du Chef Joël",
-    chefDesc: "Le Chef Exécutif Joël apporte plus de 25 ans de savoir-faire acquis dans des restaurants étoilés à Paris. Sa cuisine est un mariage respectueux entre les grandes techniques françaises et les saveurs délicates des herbes vietnamiennes.",
+    chefDesc: "Le Chef Exécutif Joël apporte plus de 25 ans de savoir-faire acquis dans des restaurants étoilés à Paris. Sa cuisine émane d'un mariage respectueux entre les grandes techniques françaises et les saveurs délicates des herbes vietnamiennes.",
     galleryTitle: "Espaces Néoclassiques",
     gallerySubtitle: "L'élégance intemporelle de l'architecture française",
     roomFacade: "Façade de la villa Maison Vie",
@@ -166,7 +170,9 @@ const I18N = {
     allergenPeanuts: "Arachides",
     allergenSesame: "Graines de sésame",
     allergenSoya: "Soja",
-    allergenSulphites: "Sulfites"
+    allergenSulphites: "Sulfites",
+    allergenSelect: "Sélectionner les allergènes",
+    allergenNone: "Aucun allergène"
   },
   ja: {
     navHome: "ホーム",
@@ -220,7 +226,9 @@ const I18N = {
     allergenPeanuts: "落花生",
     allergenSesame: "ごま",
     allergenSoya: "大豆",
-    allergenSulphites: "亜硫酸塩"
+    allergenSulphites: "亜硫酸塩",
+    allergenSelect: "アレルギーを選択",
+    allergenNone: "アレルギーなし"
   },
   ko: {
     navHome: "홈",
@@ -274,7 +282,65 @@ const I18N = {
     allergenPeanuts: "땅콩",
     allergenSesame: "참깨",
     allergenSoya: "대두",
-    allergenSulphites: "이산화황"
+    allergenSulphites: "이산화황",
+    allergenSelect: "알레르기 선택",
+    allergenNone: "알레르기 없음"
+  },
+  hk: {
+    navHome: "主頁",
+    navMenu: "精選菜單",
+    navWine: "特藏酒窖",
+    navChef: "行政總廚",
+    navAmbiance: "優雅空間",
+    navBooking: "尊貴訂座",
+    heroTitle: "Maison Vie",
+    heroSubtitle: "Cuisine Française Classique · Terroir Vietnamien",
+    heroDesc: "經典法國烹飪工藝與精選越南本土食材的完美融合。河內法式精緻餐飲的黃金標準。",
+    btnMenu: "探索菜單",
+    btnReserve: "立即訂座",
+    chefTitle: "總廚 Joel 的廚藝美學",
+    chefDesc: "行政總廚 Joel 擁有超過25年在巴黎頂級法式餐廳工作的豐富經驗。他的烹飪哲學是以精湛的法國傳統廚藝，完美喚醒越南本土香草與食材的獨特風味。",
+    galleryTitle: "法式新古典空間",
+    gallerySubtitle: "處處流露著永恆與高貴的法式別墅風情",
+    roomFacade: "Maison Vie 別墅外觀",
+    roomDining: "主用餐大堂",
+    roomVip1: "貴賓專區 1 (Salon Privé)",
+    roomVip2: "貴賓專區 2 (Le Jardin)",
+    roomKitchen: "L'Art Culinaire 開放式廚房",
+    bookingTitle: "尊貴席位訂座申請",
+    bookingSubtitle: "非凡的餐飲體驗，始於無微不至的貼心準備",
+    labelName: "貴賓姓名",
+    labelPhone: "聯絡電話",
+    labelEmail: "電子郵件",
+    labelGuests: "貴賓人數",
+    labelDate: "用餐日期",
+    labelTime: "抵達時間",
+    labelAllergens: "需要避開的過敏原 (如有)",
+    labelNotes: "特別要求 (如：VIP房佈置、鮮花、特定賬單等)",
+    btnSubmit: "提交訂座申請",
+    submitting: "正在傳送...",
+    successTitle: "申請已成功受理",
+    successMsg: "Maison Vie 已收到您的訂座申請，正為您規劃最佳的席位安排。我們的接待專員將盡快透過電話或電郵與您聯絡以作確認。",
+    errTitle: "發生錯誤",
+    errMsg: "無法提交申請。請檢查您的網絡，或直接致電熱線：0989 091 383 聯絡我們。",
+    footerHours: "營業時間",
+    footerContact: "聯絡我們",
+    footerAddress: "河內市二征夫人郡 Tang Bat Ho 街 28 號",
+    allergenCelery: "芹菜",
+    allergenGluten: "麩質",
+    allergenCrustaceans: "甲殼類動物 (蝦、蟹)",
+    allergenEggs: "雞蛋",
+    allergenFish: "魚類",
+    allergenMilk: "奶類及乳製品",
+    allergenMolluscs: "軟體動物 (貝類)",
+    allergenMustard: "芥末",
+    allergenNuts: "堅果",
+    allergenPeanuts: "花生",
+    allergenSesame: "芝麻",
+    allergenSoya: "大豆",
+    allergenSulphites: "亞硫酸鹽",
+    allergenSelect: "選擇過敏原 (如有)",
+    allergenNone: "無過敏原"
   }
 };
 
@@ -297,7 +363,69 @@ const ALLERGEN_CODES = [
 export default function Home() {
   const [lang, setLang] = useState("vi");
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [allergensOpen, setAllergensOpen] = useState(false);
   
+  // 🌐 AUTOMATIC LANGUAGE DETECTION
+  useEffect(() => {
+    // 1. Check URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const urlLang = params.get("lang");
+    if (urlLang && I18N[urlLang]) {
+      setLang(urlLang);
+      localStorage.setItem("maison_vie_lang", urlLang);
+      return;
+    }
+
+    // 2. Check localStorage
+    const storedLang = localStorage.getItem("maison_vie_lang");
+    if (storedLang && I18N[storedLang]) {
+      setLang(storedLang);
+      return;
+    }
+
+    // 3. Detect using Timezone
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (tz) {
+        if (tz.includes("Tokyo") || tz.includes("Osaka") || tz.includes("Sapporo")) {
+          setLang("ja");
+          return;
+        }
+        if (tz.includes("Seoul") || tz.includes("Pyongyang")) {
+          setLang("ko");
+          return;
+        }
+        if (tz.includes("Paris") || tz.includes("Brussels") || tz.includes("Luxembourg") || tz.includes("Monaco") || tz.includes("Geneva") || tz.includes("Zurich")) {
+          setLang("fr");
+          return;
+        }
+        if (tz.includes("Hong_Kong") || tz.includes("Macau")) {
+          setLang("hk");
+          return;
+        }
+        if (tz.includes("Ho_Chi_Minh") || tz.includes("Saigon") || tz.includes("Hanoi")) {
+          setLang("vi");
+          return;
+        }
+      }
+    } catch (e) {
+      console.error("Timezone-based language detection error:", e);
+    }
+
+    // 4. Fallback to navigator languages
+    const navigatorLang = navigator.language || (navigator.languages && navigator.languages[0]);
+    if (navigatorLang) {
+      const primaryLang = navigatorLang.split("-")[0].toLowerCase();
+      if (I18N[primaryLang]) {
+        setLang(primaryLang);
+      } else if (navigatorLang.toLowerCase().includes("hk") || navigatorLang.toLowerCase().includes("tw")) {
+        setLang("hk");
+      } else {
+        setLang("en"); // Default fallback
+      }
+    }
+  }, []);
+
   // Form State
   const [formData, setFormData] = useState({
     name: "",
@@ -466,12 +594,13 @@ export default function Home() {
               </button>
 
               {langDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-32 glassmorphism rounded shadow-2xl border border-white/10 overflow-hidden animate-fade-in">
+                <div className="absolute right-0 mt-2 w-36 glassmorphism rounded shadow-2xl border border-white/10 overflow-hidden animate-fade-in">
                   {Object.keys(I18N).map((l) => (
                     <button
                       key={l}
                       onClick={() => {
                         setLang(l);
+                        localStorage.setItem("maison_vie_lang", l);
                         setLangDropdownOpen(false);
                       }}
                       className={`w-full text-left px-4 py-2.5 text-[12px] uppercase tracking-wider transition-premium block ${
@@ -481,7 +610,8 @@ export default function Home() {
                       {l === "vi" ? "Tiếng Việt" : 
                        l === "en" ? "English" : 
                        l === "fr" ? "Français" : 
-                       l === "ja" ? "日本語" : "한국어"}
+                       l === "ja" ? "日本語" : 
+                       l === "ko" ? "한국어" : "繁體中文 (香港)"}
                     </button>
                   ))}
                 </div>
@@ -734,28 +864,68 @@ export default function Home() {
 
                 </div>
 
-                {/* 14 Allergens EU Selector */}
-                <div className="flex flex-col text-left">
-                  <label className="text-[11px] uppercase tracking-widest text-stone-400 mb-3 font-semibold">{t.labelAllergens}</label>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 max-h-48 overflow-y-auto pr-2 border border-white/5 p-3 bg-black/20 rounded">
-                    {ALLERGEN_CODES.map((item) => {
-                      const isActive = formData.allergens.includes(item.code);
-                      return (
-                        <button
-                          key={item.code}
-                          type="button"
-                          onClick={() => handleAllergenToggle(item.code)}
-                          className={`text-xs text-left px-3 py-2 border transition-premium rounded block ${
-                            isActive 
-                              ? "bg-gold-500/10 border-gold-500/50 text-gold-400 font-semibold" 
-                              : "bg-black/20 border-white/5 text-stone-400 hover:border-white/20"
-                          }`}
-                        >
-                          {t[item.i18nKey] || item.code}
-                        </button>
-                      );
-                    })}
-                  </div>
+                {/* 14 Allergens EU Selector Dropdown */}
+                <div className="flex flex-col text-left relative">
+                  <label className="text-[11px] uppercase tracking-widest text-stone-400 mb-2 font-semibold">
+                    {t.labelAllergens}
+                  </label>
+                  
+                  {/* Select button looking trigger */}
+                  <button
+                    type="button"
+                    onClick={() => setAllergensOpen(!allergensOpen)}
+                    className="w-full flex items-center justify-between bg-black/40 border border-white/10 text-stone-200 px-4 py-3 focus:outline-none focus:border-gold-500 hover:border-white/20 transition-premium text-sm text-left"
+                  >
+                    <span className="truncate">
+                      {formData.allergens.length === 0
+                        ? t.allergenNone
+                        : formData.allergens
+                            .map((code) => {
+                              const found = ALLERGEN_CODES.find((a) => a.code === code);
+                              return found ? t[found.i18nKey] : code;
+                            })
+                            .join(", ")}
+                    </span>
+                    <span className="text-[10px] text-stone-500 ml-2 transition-transform duration-300" style={{ transform: allergensOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                      ▼
+                    </span>
+                  </button>
+
+                  {/* Dropdown panel */}
+                  {allergensOpen && (
+                    <>
+                      {/* Invisible backdrop to close the dropdown when clicking outside */}
+                      <div 
+                        className="fixed inset-0 z-40" 
+                        onClick={() => setAllergensOpen(false)}
+                      />
+                      
+                      <div className="absolute left-0 right-0 mt-1 top-full z-50 glassmorphism max-h-64 overflow-y-auto p-4 border border-gold-500/20 shadow-2xl rounded animate-fade-in grid grid-cols-2 gap-2">
+                        {ALLERGEN_CODES.map((item) => {
+                          const isActive = formData.allergens.includes(item.code);
+                          return (
+                            <button
+                              key={item.code}
+                              type="button"
+                              onClick={() => handleAllergenToggle(item.code)}
+                              className={`text-[11px] text-left px-3 py-2 border transition-premium rounded flex items-center space-x-2 ${
+                                isActive 
+                                  ? "bg-gold-500/10 border-gold-500/40 text-gold-400 font-semibold" 
+                                  : "bg-black/40 border-white/5 text-stone-400 hover:border-white/20"
+                              }`}
+                            >
+                              <span className={`w-3.5 h-3.5 border rounded flex items-center justify-center text-[9px] ${
+                                isActive ? "border-gold-500 bg-gold-500 text-dark-500" : "border-white/20"
+                              }`}>
+                                {isActive && "✓"}
+                              </span>
+                              <span className="truncate">{t[item.i18nKey] || item.code}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 {/* Special Notes (Notes) */}

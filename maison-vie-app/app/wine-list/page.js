@@ -100,6 +100,25 @@ const I18N = {
     btnBack: "홈으로 돌아가기",
     loading: "와인 목록을 불러오는 중...",
     empty: "이 카테고리에 제공되는 와인이 없습니다."
+  },
+  hk: {
+    wineTitle: "尊貴酒窖",
+    wineSubtitle: "甄選世界頂級名莊的限量年份臻釀",
+    filterAll: "全部佳釀",
+    filterFrance: "法國名莊",
+    filterItaly: "意大利名莊",
+    filterNewWorld: "新世界產區",
+    labelGrape: "葡萄品種",
+    labelRegion: "產區",
+    labelCountry: "生產國",
+    labelVintage: "年份",
+    labelVolume: "容量",
+    priceDineIn: "堂食",
+    priceTakeaway: "外賣",
+    btnReserve: "立即預訂席位",
+    btnBack: "返回主頁",
+    loading: "正在載入酒單...",
+    empty: "此類別目前暫無佳釀提供。"
   }
 };
 

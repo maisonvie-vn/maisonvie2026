@@ -84,6 +84,22 @@ const I18N = {
     btnBack: "홈으로 돌아가기",
     loading: "메뉴를 불러오는 중...",
     empty: "이 카테고리에 제공되는 요리가 없습니다."
+  },
+  hk: {
+    menuTitle: "精選美食菜單",
+    menuSubtitle: "法國廚藝與越南本土食材的精妙交融",
+    categoryAll: "全部",
+    categoryAppetizer: "精緻前菜",
+    categorySoup: "經典湯品",
+    categoryMain: "主菜系列",
+    categoryDessert: "完美甜點",
+    priceDineIn: "堂食",
+    priceTakeaway: "外賣",
+    allergensTitle: "所含過敏原資訊:",
+    btnReserve: "立即預訂席位",
+    btnBack: "返回主頁",
+    loading: "正在載入菜單...",
+    empty: "此類別目前暫無菜單提供。"
   }
 };
 
