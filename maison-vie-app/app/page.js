@@ -9,6 +9,7 @@ const I18N = {
   vi: {
     navHome: "Trang Chủ",
     navMenu: "Thực Đơn",
+    navWine: "Hầm Rượu",
     navChef: "Bếp Trưởng",
     navAmbiance: "Không Gian",
     navBooking: "Đặt Bàn Ngay",
@@ -62,6 +63,7 @@ const I18N = {
   en: {
     navHome: "Home",
     navMenu: "Menu",
+    navWine: "Wine List",
     navChef: "Executive Chef",
     navAmbiance: "Ambiance",
     navBooking: "Book Now",
@@ -115,6 +117,7 @@ const I18N = {
   fr: {
     navHome: "Accueil",
     navMenu: "Carte",
+    navWine: "Carte des Vins",
     navChef: "Chef de Cuisine",
     navAmbiance: "Ambiance",
     navBooking: "Réserver",
@@ -168,6 +171,7 @@ const I18N = {
   ja: {
     navHome: "ホーム",
     navMenu: "メニュー",
+    navWine: "ワインリスト",
     navChef: "総料理長",
     navAmbiance: "空間",
     navBooking: "オンライン予約",
@@ -221,6 +225,7 @@ const I18N = {
   ko: {
     navHome: "홈",
     navMenu: "메뉴",
+    navWine: "와인 목록",
     navChef: "총주방장",
     navAmbiance: "공간",
     navBooking: "예약하기",
@@ -409,7 +414,8 @@ export default function Home() {
           {/* Nav items */}
           <nav className="hidden md:flex items-center space-x-10 text-[13px] uppercase tracking-widest font-semibold text-stone-300">
             <a href="#" className="hover:text-gold-500 transition-premium">{t.navHome}</a>
-            <a href="#menu" className="hover:text-gold-500 transition-premium">{t.navMenu}</a>
+            <a href={`/menu?lang=${lang}`} className="hover:text-gold-500 transition-premium">{t.navMenu}</a>
+            <a href={`/wine-list?lang=${lang}`} className="hover:text-gold-500 transition-premium">{t.navWine}</a>
             <a href="#chef" className="hover:text-gold-500 transition-premium">{t.navChef}</a>
             <a href="#ambiance" className="hover:text-gold-500 transition-premium">{t.navAmbiance}</a>
           </nav>
@@ -488,7 +494,7 @@ export default function Home() {
               {t.btnReserve}
             </a>
             <a 
-              href="#menu"
+              href={`/menu?lang=${lang}`}
               className="text-[13px] uppercase tracking-widest font-semibold border border-gold-500/30 text-gold-300 px-8 py-4.5 hover:bg-gold-500/10 transition-premium"
             >
               {t.btnMenu}
