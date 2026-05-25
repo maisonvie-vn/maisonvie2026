@@ -67,12 +67,52 @@ export default function CrmDashboard() {
 
   const handleUpdateStatus = async (id, newStatus) => {
     try {
+      // 1. Fetch reservation detail to get email and language details
+      const { data: resData, error: fetchErr } = await supabase
+        .from("reservations")
+        .select("*")
+        .eq("id", id)
+        .single();
+      
+      if (fetchErr) throw fetchErr;
+
+      // 2. Update status in database
       const { error } = await supabase
         .from("reservations")
         .update({ status: newStatus })
         .eq("id", id);
 
       if (error) throw error;
+
+      // 3. Dispatch confirmed or cancelled email if guest email exists
+      if (resData && resData.guest_email) {
+        try {
+          const emailSubject = newStatus === "confirmed"
+            ? (resData.language === "vi" ? "Maison Vie - Xác nhận Đặt bàn Thành công" : "Maison Vie - Reservation Confirmed")
+            : (resData.language === "vi" ? "Maison Vie - Thông báo Thay đổi Đặt bàn" : "Maison Vie - Table Reservation Update");
+
+          await fetch("/api/send-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              to: resData.guest_email,
+              subject: emailSubject,
+              type: `booking_${newStatus}`,
+              lang: resData.language || "vi",
+              data: {
+                guestName: resData.guest_name,
+                guestPhone: resData.guest_phone,
+                guestCount: resData.guest_count,
+                bookingDate: resData.booking_date,
+                bookingTime: resData.booking_time,
+                notes: resData.notes
+              }
+            })
+          });
+        } catch (mailErr) {
+          console.error("Failed to send status update email:", mailErr);
+        }
+      }
       
       // Refresh list
       fetchTodayBookings();

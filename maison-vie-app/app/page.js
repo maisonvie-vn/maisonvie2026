@@ -381,6 +381,32 @@ export default function Home() {
 
       if (resError) throw resError;
 
+      // Send pending email if customer email is provided
+      if (formData.email) {
+        try {
+          await fetch("/api/send-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              to: formData.email,
+              subject: lang === "vi" ? "Maison Vie - Yêu cầu đặt bàn đang được sắp xếp" : "Maison Vie - Table reservation request in progress",
+              type: "booking_pending",
+              lang: lang,
+              data: {
+                guestName: formData.name,
+                guestPhone: formData.phone,
+                guestCount: formData.guests,
+                bookingDate: formData.date,
+                bookingTime: formData.time,
+                notes: formData.notes
+              }
+            })
+          });
+        } catch (mailErr) {
+          console.error("Failed to send booking pending email:", mailErr);
+        }
+      }
+
       setStatus("success");
       setFormData({
         name: "",
