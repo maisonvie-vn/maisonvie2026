@@ -378,6 +378,14 @@ const ALLERGEN_CODES = [
   { code: "SULPHITES", i18nKey: "allergenSulphites" }
 ];
 
+const normalizePhone = (code, phone) => {
+  let cleaned = phone.replace(/\D/g, "");
+  if (cleaned.startsWith("0")) {
+    cleaned = cleaned.substring(1);
+  }
+  return code + cleaned;
+};
+
 export default function Home() {
   const [lang, setLang] = useState("vi");
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
@@ -445,10 +453,10 @@ export default function Home() {
     }
   }, []);
 
-  // Form State
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
+    countryCode: "+84",
     email: "",
     guests: 2,
     date: "",
@@ -483,10 +491,12 @@ export default function Home() {
       // 1. Check or Insert Customer (Consent date recorded as per Decree 13)
       let customerId = null;
       
+      const fullPhone = normalizePhone(formData.countryCode, formData.phone);
+
       const { data: customerData, error: custFindError } = await supabase
         .from("customers")
         .select("id")
-        .eq("phone", formData.phone)
+        .eq("phone", fullPhone)
         .maybeSingle();
 
       if (custFindError) throw custFindError;
@@ -498,7 +508,7 @@ export default function Home() {
           .from("customers")
           .insert({
             full_name: formData.name,
-            phone: formData.phone,
+            phone: fullPhone,
             email: formData.email || null,
             vip_level: 1,
             consent_at: new Date().toISOString()
@@ -516,7 +526,7 @@ export default function Home() {
         .insert({
           customer_id: customerId,
           guest_name: formData.name,
-          guest_phone: formData.phone,
+          guest_phone: fullPhone,
           guest_email: formData.email || null,
           guest_count: parseInt(formData.guests),
           booking_date: formData.date,
@@ -541,7 +551,7 @@ export default function Home() {
               lang: lang,
               data: {
                 guestName: formData.name,
-                guestPhone: formData.phone,
+                guestPhone: fullPhone,
                 guestCount: formData.guests,
                 bookingDate: formData.date,
                 bookingTime: formData.time,
@@ -558,6 +568,7 @@ export default function Home() {
       setFormData({
         name: "",
         phone: "",
+        countryCode: "+84",
         email: "",
         guests: 2,
         date: "",
@@ -823,14 +834,31 @@ export default function Home() {
 
                   <div className="flex flex-col text-left">
                     <label className="text-[11px] uppercase tracking-widest text-stone-400 mb-2 font-semibold">{t.labelPhone} *</label>
-                    <input 
-                      type="tel" 
-                      name="phone"
-                      required
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="bg-black/40 border border-white/10 text-stone-200 px-4 py-3 focus:outline-none focus:border-gold-500 transition-premium text-sm"
-                    />
+                    <div className="flex bg-black/40 border border-white/10 focus-within:border-gold-500 transition-premium rounded overflow-hidden">
+                      <select
+                        name="countryCode"
+                        value={formData.countryCode}
+                        onChange={handleInputChange}
+                        className="bg-black border-r border-white/10 text-stone-200 px-3 py-3 focus:outline-none cursor-pointer text-sm font-sans"
+                      >
+                        <option value="+84">🇻🇳 +84</option>
+                        <option value="+33">🇫🇷 +33</option>
+                        <option value="+81">🇯🇵 +81</option>
+                        <option value="+82">🇰🇷 +82</option>
+                        <option value="+852">🇭🇰 +852</option>
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+44">🇬🇧 +44</option>
+                      </select>
+                      <input 
+                        type="tel" 
+                        name="phone"
+                        required
+                        placeholder="989 091 383"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        className="bg-transparent text-stone-200 px-4 py-3 focus:outline-none flex-1 text-sm font-sans w-full"
+                      />
+                    </div>
                   </div>
 
                   <div className="flex flex-col text-left">

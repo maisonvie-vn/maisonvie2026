@@ -94,11 +94,19 @@ const SIGNATURE_DISHES = [
   },
 ];
 
+const normalizePhone = (code, phone) => {
+  let cleaned = phone.replace(/\D/g, "");
+  if (cleaned.startsWith("0")) {
+    cleaned = cleaned.substring(1);
+  }
+  return code + cleaned;
+};
+
 export default function OffersPage() {
   const router = useRouter();
   const [activeOffer, setActiveOffer] = useState(null);
   const [bookingForm, setBookingForm] = useState({
-    name: "", phone: "", email: "", guests: 2, date: "", time: "19:00", notes: ""
+    name: "", phone: "", countryCode: "+84", email: "", guests: 2, date: "", time: "19:00", notes: ""
   });
   const [submitStatus, setSubmitStatus] = useState("idle");
   const [timeDropdownOpen, setTimeDropdownOpen] = useState(false);
@@ -120,10 +128,12 @@ export default function OffersPage() {
     e.preventDefault();
     setSubmitStatus("loading");
     try {
+      const fullPhone = normalizePhone(bookingForm.countryCode, bookingForm.phone);
+
       const { data: customerData } = await supabase
         .from("customers")
         .select("id")
-        .eq("phone", bookingForm.phone)
+        .eq("phone", fullPhone)
         .maybeSingle();
 
       let customerId = customerData?.id;
@@ -133,7 +143,7 @@ export default function OffersPage() {
           .from("customers")
           .insert({
             full_name: bookingForm.name,
-            phone: bookingForm.phone,
+            phone: fullPhone,
             email: bookingForm.email || null,
             vip_level: 1,
             consent_at: new Date().toISOString(),
@@ -146,7 +156,7 @@ export default function OffersPage() {
       await supabase.from("reservations").insert({
         customer_id: customerId,
         guest_name: bookingForm.name,
-        guest_phone: bookingForm.phone,
+        guest_phone: fullPhone,
         guest_email: bookingForm.email || null,
         guest_count: parseInt(bookingForm.guests),
         booking_date: bookingForm.date,
@@ -165,13 +175,13 @@ export default function OffersPage() {
             subject: "Maison Vie - Xác nhận yêu cầu đặt bàn ưu đãi",
             type: "booking_pending",
             lang: "vi",
-            data: { ...bookingForm },
+            data: { ...bookingForm, phone: fullPhone },
           }),
         });
       }
 
       setSubmitStatus("success");
-      setBookingForm({ name: "", phone: "", email: "", guests: 2, date: "", time: "19:00", notes: "" });
+      setBookingForm({ name: "", phone: "", countryCode: "+84", email: "", guests: 2, date: "", time: "19:00", notes: "" });
     } catch (err) {
       console.error(err);
       setSubmitStatus("error");
@@ -392,8 +402,31 @@ export default function OffersPage() {
                   </div>
                   <div className="flex flex-col">
                     <label className="text-[10px] uppercase tracking-widest text-stone-400 mb-2 font-semibold">Số Điện Thoại *</label>
-                    <input type="tel" name="phone" required value={bookingForm.phone} onChange={handleInput}
-                      className="bg-black/40 border border-white/10 text-stone-200 px-4 py-3 focus:outline-none focus:border-gold-500 transition-premium text-sm" />
+                    <div className="flex bg-black/40 border border-white/10 focus-within:border-gold-500 transition-premium rounded overflow-hidden">
+                      <select
+                        name="countryCode"
+                        value={bookingForm.countryCode}
+                        onChange={handleInput}
+                        className="bg-black border-r border-white/10 text-stone-200 px-3 py-3 focus:outline-none cursor-pointer text-sm font-sans"
+                      >
+                        <option value="+84">🇻🇳 +84</option>
+                        <option value="+33">🇫🇷 +33</option>
+                        <option value="+81">🇯🇵 +81</option>
+                        <option value="+82">🇰🇷 +82</option>
+                        <option value="+852">🇭🇰 +852</option>
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+44">🇬🇧 +44</option>
+                      </select>
+                      <input 
+                        type="tel" 
+                        name="phone"
+                        required
+                        placeholder="989 091 383"
+                        value={bookingForm.phone}
+                        onChange={handleInput}
+                        className="bg-transparent text-stone-200 px-4 py-3 focus:outline-none flex-1 text-sm font-sans w-full"
+                      />
+                    </div>
                   </div>
                   <div className="flex flex-col">
                     <label className="text-[10px] uppercase tracking-widest text-stone-400 mb-2 font-semibold">Email</label>

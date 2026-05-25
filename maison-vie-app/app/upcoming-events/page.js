@@ -66,10 +66,18 @@ const GALLERY_MOMENTS = [
   { src: "https://i.postimg.cc/qR7hsD8d/Bep.webp", label: "Gian bếp mở", span: "" },
 ];
 
+const normalizePhone = (code, phone) => {
+  let cleaned = phone.replace(/\D/g, "");
+  if (cleaned.startsWith("0")) {
+    cleaned = cleaned.substring(1);
+  }
+  return code + cleaned;
+};
+
 export default function UpcomingEventsPage() {
   const router = useRouter();
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const [regForm, setRegForm] = useState({ name: "", phone: "", email: "", guests: 2, notes: "" });
+  const [regForm, setRegForm] = useState({ name: "", phone: "", countryCode: "+84", email: "", guests: 2, notes: "" });
   const [regStatus, setRegStatus] = useState("idle");
   const [notifyEmail, setNotifyEmail] = useState("");
   const [notifyStatus, setNotifyStatus] = useState("idle");
@@ -92,10 +100,12 @@ export default function UpcomingEventsPage() {
     setRegStatus("loading");
     try {
       const event = EVENTS.find((ev) => ev.id === selectedEvent);
+      const fullPhone = normalizePhone(regForm.countryCode, regForm.phone);
+
       const { data: customerData } = await supabase
         .from("customers")
         .select("id")
-        .eq("phone", regForm.phone)
+        .eq("phone", fullPhone)
         .maybeSingle();
 
       let customerId = customerData?.id;
@@ -104,7 +114,7 @@ export default function UpcomingEventsPage() {
           .from("customers")
           .insert({
             full_name: regForm.name,
-            phone: regForm.phone,
+            phone: fullPhone,
             email: regForm.email || null,
             vip_level: 1,
             consent_at: new Date().toISOString(),
@@ -117,7 +127,7 @@ export default function UpcomingEventsPage() {
       await supabase.from("reservations").insert({
         customer_id: customerId,
         guest_name: regForm.name,
-        guest_phone: regForm.phone,
+        guest_phone: fullPhone,
         guest_email: regForm.email || null,
         guest_count: parseInt(regForm.guests),
         booking_date: event?.date?.split("/").reverse().join("-") || new Date().toISOString().split("T")[0],
@@ -136,13 +146,13 @@ export default function UpcomingEventsPage() {
             subject: `Maison Vie - Xác nhận đăng ký: ${event?.title}`,
             type: "booking_pending",
             lang: "vi",
-            data: { guestName: regForm.name, guestPhone: regForm.phone, guestCount: regForm.guests, bookingDate: event?.date, bookingTime: "19:00" },
+            data: { guestName: regForm.name, guestPhone: fullPhone, guestCount: regForm.guests, bookingDate: event?.date, bookingTime: "19:00" },
           }),
         });
       }
 
       setRegStatus("success");
-      setRegForm({ name: "", phone: "", email: "", guests: 2, notes: "" });
+      setRegForm({ name: "", phone: "", countryCode: "+84", email: "", guests: 2, notes: "" });
     } catch (err) {
       console.error(err);
       setRegStatus("error");
@@ -366,8 +376,31 @@ export default function UpcomingEventsPage() {
                   </div>
                   <div className="flex flex-col">
                     <label className="text-[10px] uppercase tracking-widest text-stone-400 mb-2 font-semibold">Số Điện Thoại *</label>
-                    <input type="tel" name="phone" required value={regForm.phone} onChange={handleRegInput}
-                      className="bg-black/40 border border-white/10 text-stone-200 px-4 py-3 focus:outline-none focus:border-gold-500 transition-premium text-sm" />
+                    <div className="flex bg-black/40 border border-white/10 focus-within:border-gold-500 transition-premium rounded overflow-hidden">
+                      <select
+                        name="countryCode"
+                        value={regForm.countryCode}
+                        onChange={handleRegInput}
+                        className="bg-black border-r border-white/10 text-stone-200 px-3 py-3 focus:outline-none cursor-pointer text-sm font-sans"
+                      >
+                        <option value="+84">🇻🇳 +84</option>
+                        <option value="+33">🇫🇷 +33</option>
+                        <option value="+81">🇯🇵 +81</option>
+                        <option value="+82">🇰🇷 +82</option>
+                        <option value="+852">🇭🇰 +852</option>
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+44">🇬🇧 +44</option>
+                      </select>
+                      <input 
+                        type="tel" 
+                        name="phone"
+                        required
+                        placeholder="989 091 383"
+                        value={regForm.phone}
+                        onChange={handleRegInput}
+                        className="bg-transparent text-stone-200 px-4 py-3 focus:outline-none flex-1 text-sm font-sans w-full"
+                      />
+                    </div>
                   </div>
                   <div className="flex flex-col">
                     <label className="text-[10px] uppercase tracking-widest text-stone-400 mb-2 font-semibold">Email</label>
