@@ -790,6 +790,10 @@ export default function Home() {
 
         <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-600 font-light">
           <p>© 2026 Maison Vie. All rights reserved.</p>
+          <div className="flex space-x-6 my-4 sm:my-0">
+            <a href={`/blog?lang=${lang}`} className="hover:text-gold-500 transition-premium">Journal (Blog)</a>
+            <a href={`/careers?lang=${lang}`} className="hover:text-gold-500 transition-premium">Careers (Tuyển Dụng)</a>
+          </div>
           <p>Michelin Culinary Standard · Decree 13 Personal Data Privacy Secure</p>
         </div>
       </footer>
