@@ -441,13 +441,16 @@ export default function Home() {
           </div>
 
           {/* Nav items */}
-          <nav className="hidden md:flex items-center space-x-10 text-[13px] uppercase tracking-widest font-semibold text-stone-300">
+          <nav className="hidden md:flex items-center space-x-8 text-[12px] uppercase tracking-widest font-semibold text-stone-300">
             <a href="#" className="hover:text-gold-500 transition-premium">{t.navHome}</a>
             <a href={`/menu?lang=${lang}`} className="hover:text-gold-500 transition-premium">{t.navMenu}</a>
             <a href={`/wine-list?lang=${lang}`} className="hover:text-gold-500 transition-premium">{t.navWine}</a>
+            <a href="/offers" className="hover:text-gold-500 transition-premium">Ưu Đãi</a>
+            <a href="/upcoming-events" className="hover:text-gold-500 transition-premium">Sự Kiện</a>
+            <a href="/partners" className="hover:text-gold-500 transition-premium">Đối Tác</a>
             <a href="#chef" className="hover:text-gold-500 transition-premium">{t.navChef}</a>
-            <a href="#ambiance" className="hover:text-gold-500 transition-premium">{t.navAmbiance}</a>
           </nav>
+
 
           {/* Lang Selector & Booking CTA */}
           <div className="flex items-center space-x-6">
