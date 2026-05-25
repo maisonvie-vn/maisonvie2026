@@ -86,7 +86,7 @@ export default function CrmTables() {
     
     if (conflictAllergen) {
       // Flashes the red strobe alert warning in real time
-      setStrobeMessage(`CẢNH BÁO BẢO VỆ DỊ ỨNG: Không thể order món "${dishName}" cho "${table.name}"! Món này chứa chất dị ứng "${conflictAllergen}" đang bị CẤM đối với thực khách của bàn này theo SOP Michelin.`);
+      setStrobeMessage(`CẢNH BÁO BẢO VỆ DỊ ỨNG: Không thể order món "${dishName}" cho "${table.name}"! Món này chứa chất dị ứng "${conflictAllergen}" đang bị CẤM đối với thực khách của bàn này theo Tiêu Chuẩn Vệ Sinh An Toàn Thực Phẩm EU.`);
       setStrobeAlertVisible(true);
       
       // Auto-hide strobe alert after 6 seconds

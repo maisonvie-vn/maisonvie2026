@@ -62,7 +62,7 @@ export default function CrmKds() {
             KDS · Màn Hình Điều Phối Bếp BOH
           </h1>
           <p className="text-stone-400 text-sm font-light mt-1">
-            Điều phối chế biến chuẩn Michelin, Runner Alert gọi phục vụ và Gala Mode gộp lô sản xuất
+            Điều phối chế biến Haute Gastronomie, Runner Alert gọi phục vụ và Gala Mode gộp lô sản xuất
           </p>
         </div>
 

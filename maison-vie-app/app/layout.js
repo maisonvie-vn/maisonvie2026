@@ -16,7 +16,7 @@ const outfit = Outfit({
 
 export const metadata = {
   title: "Maison Vie - Cuisine Française Classique · Terroir Vietnamien",
-  description: "Nhà hàng Pháp cổ điển tinh hoa giữa lòng Hà Nội. Khám phá thực đơn chuẩn Michelin kết hợp hương vị bản địa độc đáo, không gian Tân cổ điển và dịch vụ đẳng cấp.",
+  description: "Nhà hàng Pháp cổ điển tinh hoa giữa lòng Hà Nội. Khám phá thực đơn ẩm thực Pháp thượng hạng kết hợp hương vị bản địa độc đáo, không gian Tân cổ điển và dịch vụ đẳng cấp.",
 };
 
 export default function RootLayout({ children }) {

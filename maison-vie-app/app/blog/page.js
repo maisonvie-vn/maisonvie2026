@@ -7,7 +7,7 @@ import { supabase } from "../../lib/supabase";
 const I18N = {
   vi: {
     blogTitle: "Thư Viện Kiến Thức Ẩm Thực",
-    blogSubtitle: "Khám phá câu chuyện rượu vang, ẩm thực Pháp và triết lý Michelin",
+    blogSubtitle: "Khám phá câu chuyện rượu vang, ẩm thực Pháp và tinh hoa ẩm thực",
     btnRead: "Đọc bài viết",
     btnBack: "Quay lại trang chủ",
     loading: "Đang tải bài viết...",
@@ -15,7 +15,7 @@ const I18N = {
   },
   en: {
     blogTitle: "Culinary Journal",
-    blogSubtitle: "Explore the stories behind fine wines, French cuisine, and Michelin philosophies",
+    blogSubtitle: "Explore the stories behind fine wines, French cuisine, and gastronomic philosophies",
     btnRead: "Read Article",
     btnBack: "Back to Home",
     loading: "Loading articles...",
@@ -23,7 +23,7 @@ const I18N = {
   },
   fr: {
     blogTitle: "Le Journal Gastronomique",
-    blogSubtitle: "Découvrez l'histoire des grands vins, de la cuisine française et de la philosophie Michelin",
+    blogSubtitle: "Découvrez l'histoire des grands vins, de la cuisine française et de la philosophie gastronomique",
     btnRead: "Lire l'Article",
     btnBack: "Retour à l'accueil",
     loading: "Chargement des articles...",
@@ -31,7 +31,7 @@ const I18N = {
   },
   ja: {
     blogTitle: "美食ジャーナル",
-    blogSubtitle: "ワインの知識、フランス料理の歴史、ミシュランの哲学を探求する",
+    blogSubtitle: "ワインの知識, フランス料理の歴史, 美食の哲学を探求する",
     btnRead: "記事を読む",
     btnBack: "ホームに戻る",
     loading: "記事を読み込み中...",
@@ -39,7 +39,7 @@ const I18N = {
   },
   ko: {
     blogTitle: "미식 저널",
-    blogSubtitle: "고급 와인, 프랑스 요리, 미쉐린 요리 철학에 담긴 이야기 탐구",
+    blogSubtitle: "고급 와인, 프랑스 요리, 고급 미식 철학에 담긴 이야기 탐구",
     btnRead: "기사 읽기",
     btnBack: "홈으로 돌아가기",
     loading: "기사를 불러오는 중...",
@@ -88,9 +88,12 @@ function BlogContent() {
       
       {/* HEADER */}
       <header className="sticky top-0 z-50 glassmorphism border-b border-white/5 h-24 flex items-center justify-between px-6">
-        <div className="flex flex-col cursor-pointer" onClick={() => router.push(`/?lang=${lang}`)}>
-          <span className="text-xl font-semibold tracking-wider text-gold-500 font-luxury uppercase">Maison Vie</span>
-          <span className="text-[9px] uppercase tracking-[0.25em] text-stone-400 font-sans -mt-1">Haute Cuisine</span>
+        <div className="flex items-center cursor-pointer" onClick={() => router.push(`/?lang=${lang}`)}>
+          <img 
+            src="https://www.maisonvie.vn/wp-content/uploads/2020/04/logo2-1-e1588240588705.png" 
+            alt="Maison Vie Logo" 
+            className="h-14 w-auto object-contain hover:scale-[1.03] transition-premium" 
+          />
         </div>
 
         <div className="flex items-space-x-4">
@@ -182,7 +185,7 @@ function BlogContent() {
 
       {/* FOOTER */}
       <footer className="bg-black py-8 text-center text-xs text-stone-600 border-t border-white/5">
-        <p>© 2026 Maison Vie. All rights reserved. Michelin Culinary Standard.</p>
+        <p>© 2026 Maison Vie. All rights reserved. French Culinary Excellence.</p>
       </footer>
 
     </div>

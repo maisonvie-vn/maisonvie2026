@@ -142,7 +142,7 @@ export default function CrmTraining() {
           Học Viện Đào Tạo & Thăng Tiến Nhân Sự
         </h1>
         <p className="text-stone-400 text-sm font-light mt-1">
-          Hệ thống đào tạo SOP Michelin và Khảo thí chống gian lận
+          Hệ thống đào tạo SOP Haute Gastronomie Française và Khảo thí chống gian lận
         </p>
       </div>
 
@@ -188,7 +188,7 @@ export default function CrmTraining() {
                 <span className="text-4xl mb-4">🎥</span>
                 <h4 className="text-lg font-light text-stone-200 font-luxury tracking-wide">
                   {activeTab === "Runner" ? "SOP 01: Quy trình KDS và Gọi runners sảnh tiệc" :
-                   activeTab === "Waitstaff" ? "SOP 05: Chào đón Thượng khách & Kéo ghế Michelin" :
+                   activeTab === "Waitstaff" ? "SOP 05: Chào đón Thượng khách & Lễ tân Haute Gastronomie" :
                    "SOP 09: Decanting rượu vang cổ & Sử dụng Coravin khí Argon"}
                 </h4>
                 <p className="text-stone-500 text-xs mt-1 max-w-sm font-light">

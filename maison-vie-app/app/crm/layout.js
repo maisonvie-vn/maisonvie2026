@@ -67,7 +67,7 @@ export default function CrmLayout({ children }) {
         {/* Brand identity footer */}
         <div className="p-6 border-t border-white/5 text-[10px] text-stone-600 font-light text-left">
           <p>Maison Vie OS v2.6.0</p>
-          <p className="mt-1">Michelin Operating Standard</p>
+          <p className="mt-1">Fine Dining Operating Standard</p>
         </div>
       </aside>
 

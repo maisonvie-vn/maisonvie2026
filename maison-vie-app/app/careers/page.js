@@ -7,7 +7,7 @@ import { supabase } from "../../lib/supabase";
 const I18N = {
   vi: {
     careersTitle: "Cơ Hội Nghề Nghiệp Fine Dining",
-    careersSubtitle: "Đồng hành cùng Maison Vie kiến tạo chuẩn mực phục vụ Michelin",
+    careersSubtitle: "Đồng hành cùng Maison Vie kiến tạo chuẩn mực phục vụ thượng lưu",
     btnApply: "Nộp Hồ Sơ Ngay",
     btnBack: "Quay lại trang chủ",
     labelName: "Họ và Tên",
@@ -240,9 +240,12 @@ function CareersContent() {
       
       {/* HEADER */}
       <header className="sticky top-0 z-50 glassmorphism border-b border-white/5 h-24 flex items-center justify-between px-6">
-        <div className="flex flex-col cursor-pointer" onClick={() => router.push(`/?lang=${lang}`)}>
-          <span className="text-xl font-semibold tracking-wider text-gold-500 font-luxury uppercase">Maison Vie</span>
-          <span className="text-[9px] uppercase tracking-[0.25em] text-stone-400 font-sans -mt-1">Haute Cuisine</span>
+        <div className="flex items-center cursor-pointer" onClick={() => router.push(`/?lang=${lang}`)}>
+          <img 
+            src="https://www.maisonvie.vn/wp-content/uploads/2020/04/logo2-1-e1588240588705.png" 
+            alt="Maison Vie Logo" 
+            className="h-14 w-auto object-contain hover:scale-[1.03] transition-premium" 
+          />
         </div>
 
         <div>
@@ -426,7 +429,7 @@ function CareersContent() {
 
       {/* FOOTER */}
       <footer className="bg-black py-8 text-center text-xs text-stone-600 border-t border-white/5">
-        <p>© 2026 Maison Vie. All rights reserved. Michelin Culinary Standard.</p>
+        <p>© 2026 Maison Vie. All rights reserved. French Culinary Excellence.</p>
       </footer>
 
     </div>

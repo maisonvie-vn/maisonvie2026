@@ -19,7 +19,7 @@ const I18N = {
     btnMenu: "Khám Phá Thực Đơn",
     btnReserve: "Đặt Giữ Chỗ",
     chefTitle: "Hương Vị Từ Bếp Trưởng Joel",
-    chefDesc: "Bếp trưởng Joel mang đến hơn 25 năm kinh nghiệm làm việc tại các nhà hàng gắn sao Michelin danh giá tại Paris. Triết lý của ông là sự kết hợp đầy tôn kính giữa kỹ thuật nấu ăn thượng thừa của Pháp và những nốt hương vị độc bản ẩn giấu trong thảo mộc bản địa Việt Nam.",
+    chefDesc: "Bếp trưởng Joel mang đến hơn 25 năm kinh nghiệm làm việc tại các nhà hàng Pháp danh tiếng hàng đầu tại Paris. Triết lý của ông là sự kết hợp đầy tôn kính giữa kỹ thuật nấu ăn thượng thừa của Pháp và những nốt hương vị độc bản ẩn giấu trong thảo mộc bản địa Việt Nam.",
     galleryTitle: "Không Gian Tân Cổ Điển Pháp",
     gallerySubtitle: "Nghệ thuật kiến trúc trường tồn đầy kiêu hãnh",
     roomFacade: "Mặt tiền biệt thự Maison Vie",
@@ -73,7 +73,7 @@ const I18N = {
     btnMenu: "Explore Menu",
     btnReserve: "Make Reservation",
     chefTitle: "Mastery by Chef Joel",
-    chefDesc: "Executive Chef Joel brings over 25 years of experience in Michelin-starred establishments in Paris. His culinary vision represents a respectful marriage of grand French techniques and unique flavor profiles native to Vietnam.",
+    chefDesc: "Executive Chef Joel brings over 25 years of experience in prestigious French culinary establishments in Paris. His culinary vision represents a respectful marriage of grand French techniques and unique flavor profiles native to Vietnam.",
     galleryTitle: "French Neoclassical Spaces",
     gallerySubtitle: "Timeless architectural elegance at every corner",
     roomFacade: "Maison Vie Facade",
@@ -431,10 +431,13 @@ export default function Home() {
       <header className="sticky top-0 z-50 glassmorphism border-b border-white/5 transition-premium">
         <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
           
-          {/* Logo Neoclassical */}
-          <div className="flex flex-col">
-            <span className="text-2xl font-semibold tracking-wider text-gold-500 font-luxury uppercase">Maison Vie</span>
-            <span className="text-[9px] uppercase tracking-[0.25em] text-stone-400 font-sans -mt-1">Haute Cuisine</span>
+          {/* Logo Neoclassical Image */}
+          <div className="flex items-center">
+            <img 
+              src="https://www.maisonvie.vn/wp-content/uploads/2020/04/logo2-1-e1588240588705.png" 
+              alt="Maison Vie Logo" 
+              className="h-14 w-auto object-contain hover:scale-[1.03] transition-premium" 
+            />
           </div>
 
           {/* Nav items */}
@@ -539,7 +542,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-dark-500 via-transparent to-transparent z-10" />
             <div className="absolute inset-0 bg-dark-200 flex flex-col items-center justify-center p-8 text-center">
               <span className="text-gold-500 font-luxury text-4xl mb-4 italic">Chef Joel</span>
-              <span className="text-stone-400 text-xs tracking-[0.2em] uppercase">25+ Ans D'Expérience Michelin</span>
+              <span className="text-stone-400 text-xs tracking-[0.2em] uppercase">25+ Ans D'Expérience Haute Gastronomie</span>
               <div className="w-12 h-[1px] bg-gold-500/30 my-6" />
               <p className="text-stone-500 text-xs font-light max-w-xs leading-relaxed italic">
                 \"La gastronomie est un art qui unit les techniques séculaires aux joyaux de la terre.\"
@@ -820,7 +823,7 @@ export default function Home() {
             <a href={`/blog?lang=${lang}`} className="hover:text-gold-500 transition-premium">Journal (Blog)</a>
             <a href={`/careers?lang=${lang}`} className="hover:text-gold-500 transition-premium">Careers (Tuyển Dụng)</a>
           </div>
-          <p>Michelin Culinary Standard · Decree 13 Personal Data Privacy Secure</p>
+          <p>French Culinary Excellence · Decree 13 Personal Data Privacy Secure</p>
         </div>
       </footer>
 
