@@ -25,6 +25,8 @@ export default function CrmLayout({ children }) {
     { name: "Sơ đồ bàn 2D", path: "/crm/tables", icon: "🍽️" },
     { name: "KDS Bếp", path: "/crm/kds", icon: "🔥" },
     { name: "BDS Quầy Bar", path: "/crm/bds", icon: "🍷" },
+    { name: "POS Thanh toán", path: "/crm/pos", icon: "💳" },
+    { name: "Dự báo AI", path: "/crm/ai", icon: "🤖" },
     { name: "Đào tạo SOP", path: "/crm/training", icon: "📖" }
   ];
 
