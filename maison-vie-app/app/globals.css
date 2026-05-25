@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
+@theme {
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-outfit), sans-serif;
+  
+  --color-gold-50: #FAF8F2;
+  --color-gold-100: #F4ECCF;
+  --color-gold-200: #E6D69D;
+  --color-gold-300: #D8BF6B;
+  --color-gold-400: #CBA942;
+  --color-gold-500: #C5A55A; /* Base Luxury Gold */
+  --color-gold-600: #AB883F;
+  --color-gold-700: #8E6E32;
+  --color-gold-800: #715525;
+  --color-gold-900: #543E19;
+  --color-gold-950: #38270E;
+  
+  --color-dark-50: #2C2C2C;
+  --color-dark-100: #222222;
+  --color-dark-200: #1C1C1C;
+  --color-dark-300: #161616;
+  --color-dark-400: #111111;
+  --color-dark-500: #0B0B0B; /* Deep Black Background */
+  --color-dark-600: #080808;
+  --color-dark-700: #050505;
+  --color-dark-900: #020202;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0B0B0B;
+  --foreground: #F5F5F4;
+  --gold: #C5A55A;
+  --gold-glow: rgba(197, 165, 90, 0.15);
+  --border-gold: rgba(197, 165, 90, 0.2);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
+
+/* Headings utilize the luxury Cormorant Garamond serif font */
+h1, h2, h3, h4, h5, h6, .font-luxury {
+  font-family: var(--font-serif);
+  letter-spacing: 0.03em;
+}
+
+/* Base custom visual tokens */
+.gold-text-gradient {
+  background: linear-gradient(135deg, #FAF8F2 0%, #D8BF6B 50%, #C5A55A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gold-border-glow {
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 0 15px rgba(197, 165, 90, 0.05);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gold-border-glow:hover {
+  border-color: rgba(197, 165, 90, 0.5);
+  box-shadow: 0 0 25px rgba(197, 165, 90, 0.15);
+}
+
+.glassmorphism {
+  background: rgba(17, 17, 17, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Micro-animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.transition-premium {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
