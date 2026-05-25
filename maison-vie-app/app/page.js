@@ -622,8 +622,8 @@ export default function Home() {
                         localStorage.setItem("maison_vie_lang", l);
                         setLangDropdownOpen(false);
                       }}
-                      className={`w-full text-left px-4 py-2.5 text-[12px] uppercase tracking-wider transition-premium block ${
-                        lang === l ? "bg-gold-500/20 text-gold-500 font-bold" : "text-stone-300 hover:bg-white/5"
+                      className={`w-full text-left px-4 py-2.5 text-[12px] hover:text-[14px] uppercase tracking-wider transition-premium block ${
+                        lang === l ? "bg-gold-500/20 text-gold-500 font-bold" : "text-stone-300 hover:bg-white/5 hover:text-stone-100"
                       }`}
                     >
                       {l === "vi" ? "Tiếng Việt" : 
@@ -898,7 +898,7 @@ export default function Home() {
                               setFormData((prev) => ({ ...prev, time: "" }));
                               setTimeDropdownOpen(false);
                             }}
-                            className="w-full text-left px-6 py-3 text-stone-500 text-sm hover:bg-white/5 border-b border-white/5 font-luxury"
+                            className="w-full text-left px-6 py-3 text-stone-500 text-sm hover:text-base hover:text-stone-300 hover:bg-white/5 border-b border-white/5 transition-premium font-luxury"
                           >
                             {lang === "vi" ? "Chọn giờ đón tiếp" : "Select a time"}
                           </button>
@@ -916,7 +916,7 @@ export default function Home() {
                                   setFormData((prev) => ({ ...prev, time: slot }));
                                   setTimeDropdownOpen(false);
                                 }}
-                                className={`w-full text-left px-8 py-2.5 text-sm transition-premium font-luxury ${
+                                className={`w-full text-left px-8 py-2.5 text-sm hover:text-base hover:text-gold-300 transition-premium font-luxury ${
                                   formData.time === slot
                                     ? "bg-gold-500/20 text-gold-400 font-bold"
                                     : "text-stone-300 hover:bg-white/5"
@@ -940,7 +940,7 @@ export default function Home() {
                                   setFormData((prev) => ({ ...prev, time: slot }));
                                   setTimeDropdownOpen(false);
                                 }}
-                                className={`w-full text-left px-8 py-2.5 text-sm transition-premium font-luxury ${
+                                className={`w-full text-left px-8 py-2.5 text-sm hover:text-base hover:text-gold-300 transition-premium font-luxury ${
                                   formData.time === slot
                                     ? "bg-gold-500/20 text-gold-400 font-bold"
                                     : "text-stone-300 hover:bg-white/5"
@@ -1001,10 +1001,10 @@ export default function Home() {
                               key={item.code}
                               type="button"
                               onClick={() => handleAllergenToggle(item.code)}
-                              className={`text-[11px] text-left px-3 py-2 border transition-premium rounded flex items-center space-x-2 ${
+                              className={`text-[11px] hover:text-[13px] text-left px-3 py-2 border transition-premium rounded flex items-center space-x-2 ${
                                 isActive 
                                   ? "bg-gold-500/10 border-gold-500/40 text-gold-400 font-semibold" 
-                                  : "bg-black/40 border-white/5 text-stone-400 hover:border-white/20"
+                                  : "bg-black/40 border-white/5 text-stone-400 hover:border-gold-500/20 hover:text-stone-200"
                               }`}
                             >
                               <span className={`w-3.5 h-3.5 border rounded flex items-center justify-center text-[9px] ${

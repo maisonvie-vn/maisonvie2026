@@ -439,7 +439,7 @@ export default function OffersPage() {
                               setBookingForm((prev) => ({ ...prev, time: "" }));
                               setTimeDropdownOpen(false);
                             }}
-                            className="w-full text-left px-6 py-3 text-stone-500 text-sm hover:bg-white/5 border-b border-white/5 font-luxury"
+                            className="w-full text-left px-6 py-3 text-stone-500 text-sm hover:text-base hover:text-stone-300 hover:bg-white/5 border-b border-white/5 transition-premium font-luxury"
                           >
                             Chọn giờ đón tiếp
                           </button>
@@ -457,7 +457,7 @@ export default function OffersPage() {
                                   setBookingForm((prev) => ({ ...prev, time: slot }));
                                   setTimeDropdownOpen(false);
                                 }}
-                                className={`w-full text-left px-8 py-2.5 text-sm transition-premium font-luxury ${
+                                className={`w-full text-left px-8 py-2.5 text-sm hover:text-base hover:text-gold-300 transition-premium font-luxury ${
                                   bookingForm.time === slot
                                     ? "bg-gold-500/20 text-gold-400 font-bold"
                                     : "text-stone-300 hover:bg-white/5"
@@ -481,7 +481,7 @@ export default function OffersPage() {
                                   setBookingForm((prev) => ({ ...prev, time: slot }));
                                   setTimeDropdownOpen(false);
                                 }}
-                                className={`w-full text-left px-8 py-2.5 text-sm transition-premium font-luxury ${
+                                className={`w-full text-left px-8 py-2.5 text-sm hover:text-base hover:text-gold-300 transition-premium font-luxury ${
                                   bookingForm.time === slot
                                     ? "bg-gold-500/20 text-gold-400 font-bold"
                                     : "text-stone-300 hover:bg-white/5"
