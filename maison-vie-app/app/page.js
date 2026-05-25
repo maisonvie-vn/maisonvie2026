@@ -10,6 +10,9 @@ const I18N = {
     navHome: "Trang Chủ",
     navMenu: "Thực Đơn",
     navWine: "Hầm Rượu",
+    navOffers: "Ưu Đãi",
+    navEvents: "Sự Kiện",
+    navPartners: "Đối Tác",
     navChef: "Bếp Trưởng",
     navAmbiance: "Không Gian",
     navBooking: "Đặt Bàn Ngay",
@@ -66,6 +69,9 @@ const I18N = {
     navHome: "Home",
     navMenu: "Menu",
     navWine: "Wine List",
+    navOffers: "Offers",
+    navEvents: "Events",
+    navPartners: "Partners",
     navChef: "Executive Chef",
     navAmbiance: "Ambiance",
     navBooking: "Book Now",
@@ -122,6 +128,9 @@ const I18N = {
     navHome: "Accueil",
     navMenu: "Carte",
     navWine: "Carte des Vins",
+    navOffers: "Offres",
+    navEvents: "Événements",
+    navPartners: "Partenaires",
     navChef: "Chef de Cuisine",
     navAmbiance: "Ambiance",
     navBooking: "Réserver",
@@ -178,6 +187,9 @@ const I18N = {
     navHome: "ホーム",
     navMenu: "メニュー",
     navWine: "ワインリスト",
+    navOffers: "特別プラン",
+    navEvents: "イベント",
+    navPartners: "パートナー",
     navChef: "総料理長",
     navAmbiance: "空間",
     navBooking: "オンライン予約",
@@ -234,6 +246,9 @@ const I18N = {
     navHome: "홈",
     navMenu: "메뉴",
     navWine: "와인 목록",
+    navOffers: "특별 혜택",
+    navEvents: "이벤트",
+    navPartners: "파트너",
     navChef: "총주방장",
     navAmbiance: "공간",
     navBooking: "예약하기",
@@ -290,6 +305,9 @@ const I18N = {
     navHome: "主頁",
     navMenu: "精選菜單",
     navWine: "特藏酒窖",
+    navOffers: "餐飲優惠",
+    navEvents: "最新活動",
+    navPartners: "合作夥伴",
     navChef: "行政總廚",
     navAmbiance: "優雅空間",
     navBooking: "尊貴訂座",
@@ -574,9 +592,9 @@ export default function Home() {
             <a href="#" className="hover:text-gold-500 transition-premium">{t.navHome}</a>
             <a href={`/menu?lang=${lang}`} className="hover:text-gold-500 transition-premium">{t.navMenu}</a>
             <a href={`/wine-list?lang=${lang}`} className="hover:text-gold-500 transition-premium">{t.navWine}</a>
-            <a href="/offers" className="hover:text-gold-500 transition-premium">Ưu Đãi</a>
-            <a href="/upcoming-events" className="hover:text-gold-500 transition-premium">Sự Kiện</a>
-            <a href="/partners" className="hover:text-gold-500 transition-premium">Đối Tác</a>
+            <a href={`/offers?lang=${lang}`} className="hover:text-gold-500 transition-premium">{t.navOffers}</a>
+            <a href={`/upcoming-events?lang=${lang}`} className="hover:text-gold-500 transition-premium">{t.navEvents}</a>
+            <a href={`/partners?lang=${lang}`} className="hover:text-gold-500 transition-premium">{t.navPartners}</a>
             <a href="#chef" className="hover:text-gold-500 transition-premium">{t.navChef}</a>
           </nav>
 

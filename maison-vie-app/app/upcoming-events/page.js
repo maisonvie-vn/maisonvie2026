@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "../../lib/supabase";
 
@@ -73,6 +73,14 @@ export default function UpcomingEventsPage() {
   const [regStatus, setRegStatus] = useState("idle");
   const [notifyEmail, setNotifyEmail] = useState("");
   const [notifyStatus, setNotifyStatus] = useState("idle");
+  const [lang, setLang] = useState("vi");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const urlLang = new URLSearchParams(window.location.search).get("lang") || "vi";
+      setLang(urlLang);
+    }
+  }, []);
 
   const handleRegInput = (e) => {
     const { name, value } = e.target;
@@ -152,7 +160,7 @@ export default function UpcomingEventsPage() {
 
       {/* HEADER */}
       <header className="sticky top-0 z-50 glassmorphism border-b border-white/5 h-24 flex items-center justify-between px-6">
-        <div className="flex items-center cursor-pointer" onClick={() => router.push("/")}>
+        <div className="flex items-center cursor-pointer" onClick={() => router.push(lang ? `/?lang=${lang}` : "/")}>
           <img
             src="https://www.maisonvie.vn/wp-content/uploads/2020/04/logo2-1-e1588240588705.png"
             alt="Maison Vie Logo"
@@ -160,11 +168,11 @@ export default function UpcomingEventsPage() {
           />
         </div>
         <nav className="hidden md:flex items-center space-x-8 text-[12px] uppercase tracking-widest font-semibold text-stone-400">
-          <a href="/" className="hover:text-gold-500 transition-premium">Trang Chủ</a>
-          <a href="/menu" className="hover:text-gold-500 transition-premium">Thực Đơn</a>
-          <a href="/wine-list" className="hover:text-gold-500 transition-premium">Hầm Rượu</a>
+          <a href={lang ? `/?lang=${lang}` : "/"} className="hover:text-gold-500 transition-premium">Trang Chủ</a>
+          <a href={lang ? `/menu?lang=${lang}` : "/menu"} className="hover:text-gold-500 transition-premium">Thực Đơn</a>
+          <a href={lang ? `/wine-list?lang=${lang}` : "/wine-list"} className="hover:text-gold-500 transition-premium">Hầm Rượu</a>
           <span className="text-gold-500 border-b border-gold-500 pb-0.5">Sự Kiện</span>
-          <a href="/offers" className="hover:text-gold-500 transition-premium">Ưu Đãi</a>
+          <a href={lang ? `/offers?lang=${lang}` : "/offers"} className="hover:text-gold-500 transition-premium">Ưu Đãi</a>
         </nav>
         <a href="#register-section" className="hidden lg:block text-[11px] uppercase tracking-widest font-semibold bg-gold-500 text-dark-500 px-5 py-3 hover:bg-gold-400 transition-premium">
           Đăng Ký Tham Dự
