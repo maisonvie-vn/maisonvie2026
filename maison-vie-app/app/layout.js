@@ -1,4 +1,4 @@
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { Cormorant_Garamond, Montserrat } from "next/font/google";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -8,8 +8,8 @@ const cormorant = Cormorant_Garamond({
   style: ["normal", "italic"],
 });
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin", "vietnamese"],
   weight: ["300", "400", "500", "600", "700"],
 });
@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="vi"
-      className={`${cormorant.variable} ${outfit.variable} h-full antialiased dark`}
+      className={`${cormorant.variable} ${montserrat.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col bg-dark-500 text-stone-200 font-sans">
         {children}

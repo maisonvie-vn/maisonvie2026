@@ -151,7 +151,7 @@ const getEmailHtml = ({ type, lang = "vi", data }) => {
           padding: 0;
           background-color: #0B0B0B;
           color: #E5E5E5;
-          font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
           -webkit-font-smoothing: antialiased;
         }
         .container {
