@@ -732,12 +732,20 @@ function HomeContent() {
                 </div>
                 <h3 className="text-2xl font-light text-gold-500 font-luxury mb-4">{t.successTitle}</h3>
                 <p className="text-stone-300 leading-relaxed max-w-md mx-auto">{t.successMsg}</p>
-                <button 
-                  onClick={() => setStatus("idle")}
-                  className="mt-8 text-[12px] uppercase tracking-widest font-semibold border border-gold-500/30 text-gold-300 px-6 py-3 hover:bg-gold-500/10 transition-premium"
-                >
-                  Đặt tiếp bàn khác
-                </button>
+                <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <button
+                    onClick={() => setStatus("idle")}
+                    className="text-[12px] uppercase tracking-widest font-semibold border border-gold-500/30 text-gold-300 px-6 py-3 hover:bg-gold-500/10 transition-premium"
+                  >
+                    Đặt Thêm Bàn Khác
+                  </button>
+                  <a
+                    href="https://mv.maisonvie.vn"
+                    className="text-[12px] uppercase tracking-widest font-semibold bg-gold-500/10 border border-gold-500/40 text-gold-400 px-6 py-3 hover:bg-gold-500/20 transition-premium"
+                  >
+                    ← Về Trang Chủ
+                  </a>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8">
