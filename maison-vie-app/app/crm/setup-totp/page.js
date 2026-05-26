@@ -29,6 +29,22 @@ function SetupTotpContent() {
   }, []);
 
   const enrollTotp = async () => {
+    // 1. Kiểm tra factor TOTP đã tồn tại chưa
+    const { data: factorsData } = await supabase.auth.mfa.listFactors();
+    const existingTotp = factorsData?.totp?.[0];
+
+    if (existingTotp) {
+      if (existingTotp.status === "verified") {
+        // Factor đã verified → chuyển thẳng sang màn hình verify
+        router.replace(`/crm/verify?redirect=${encodeURIComponent(redirect)}`);
+        return;
+      } else {
+        // Factor chưa verified (unverified) → xóa để đăng ký lại
+        await supabase.auth.mfa.unenroll({ factorId: existingTotp.id });
+      }
+    }
+
+    // 2. Enroll factor mới
     const { data, error } = await supabase.auth.mfa.enroll({
       factorType: "totp",
       friendlyName: "Maison Vie CRM",
