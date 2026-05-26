@@ -25,27 +25,27 @@ function VerifyContent() {
   const initChallenge = async () => {
     try {
       // Lấy danh sách factors đã đăng ký
-      const { data: factors } = await supabase.auth.mfa.listFactors();
+      const { data: factors, error: factorsError } = await supabase.auth.mfa.listFactors();
+      if (factorsError) throw factorsError;
       
       const totpFactor = factors?.totp?.[0];
-      const emailFactor = factors?.email?.[0];
-      const activeFactor = method === "totp" ? totpFactor : (emailFactor || totpFactor);
 
-      if (!activeFactor) {
+      if (!totpFactor) {
         setErrorMsg("Chưa thiết lập xác thực 2 lớp. Liên hệ Admin.");
         return;
       }
 
-      setFactorId(activeFactor.id);
+      setFactorId(totpFactor.id);
 
       // Tạo challenge
       const { data: challengeData, error } = await supabase.auth.mfa.challenge({
-        factorId: activeFactor.id,
+        factorId: totpFactor.id,
       });
 
       if (error) throw error;
       setChallengeId(challengeData.id);
     } catch (e) {
+      console.error("MFA verification init error:", e);
       setErrorMsg("Không thể khởi tạo xác thực. Vui lòng đăng nhập lại.");
     }
   };
@@ -111,8 +111,6 @@ function VerifyContent() {
     router.push(redirect);
   };
 
-  const isTotp = method === "totp";
-
   return (
     <div className="min-h-screen bg-[#080808] flex items-center justify-center px-4 relative overflow-hidden">
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:80px_80px]" />
@@ -122,15 +120,13 @@ function VerifyContent() {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-14 h-14 border border-gold-500/20 bg-gold-500/5 mb-6">
-            <span className="text-gold-500 text-2xl">{isTotp ? "🔐" : "📧"}</span>
+            <span className="text-gold-500 text-2xl">🔐</span>
           </div>
           <h1 className="text-2xl font-light tracking-[0.2em] text-stone-100 uppercase font-serif mb-1">
             Xác Thực 2 Lớp
           </h1>
           <p className="text-[10px] uppercase tracking-[0.3em] text-stone-600">
-            {isTotp
-              ? "Nhập mã từ Authenticator App"
-              : "Nhập mã đã gửi về email của bạn"}
+            Nhập mã từ Authenticator App
           </p>
         </div>
 
@@ -138,9 +134,7 @@ function VerifyContent() {
           {/* Instruction */}
           <div className="mb-8 text-center">
             <p className="text-stone-400 text-[13px] leading-relaxed">
-              {isTotp
-                ? "Mở Google Authenticator hoặc Authy và nhập mã 6 số hiện tại."
-                : "Kiểm tra hộp thư email và nhập mã xác thực 6 số."}
+              Mở Google Authenticator hoặc Authy và nhập mã 6 số hiện tại.
             </p>
           </div>
 
