@@ -1,5 +1,8 @@
 "use client";
 
+// Prevent static prerendering — content is fetched live from Supabase.
+export const dynamic = "force-dynamic";
+
 import React, { useState, useEffect, use, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { supabase } from "../../../lib/supabase";
