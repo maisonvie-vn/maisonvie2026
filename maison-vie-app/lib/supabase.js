@@ -8,8 +8,36 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 // returning a no-op stub prevents the build from crashing.
 let supabase;
 
+const cookieStorage = {
+  getItem: (key) => {
+    if (typeof window === "undefined") return null;
+    const match = document.cookie.match(new RegExp('(^| )' + key + '=([^;]+)'));
+    if (match) return decodeURIComponent(match[2]);
+    return localStorage.getItem(key);
+  },
+  setItem: (key, value) => {
+    if (typeof window === "undefined") return;
+    localStorage.setItem(key, value);
+    // Write cookie for server-side middleware (604800s = 7 days)
+    document.cookie = `${key}=${encodeURIComponent(value)}; path=/; max-age=604800; SameSite=Lax; Secure`;
+  },
+  removeItem: (key) => {
+    if (typeof window === "undefined") return;
+    localStorage.removeItem(key);
+    // Remove cookie
+    document.cookie = `${key}=; path=/; max-age=0; SameSite=Lax; Secure`;
+  }
+};
+
 if (supabaseUrl && supabaseAnonKey) {
-  supabase = createClient(supabaseUrl, supabaseAnonKey);
+  supabase = createClient(supabaseUrl, supabaseAnonKey, {
+    auth: {
+      persistSession: true,
+      storage: cookieStorage,
+      detectSessionInUrl: true,
+      flowType: 'pkce'
+    }
+  });
 } else {
   console.warn("Supabase environment variables are missing – using no-op stub.");
   // Minimal stub so imports don't crash during SSG
