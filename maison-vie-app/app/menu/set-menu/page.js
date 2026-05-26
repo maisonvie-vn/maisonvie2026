@@ -1117,14 +1117,14 @@ function SetMenuContent() {
                                         
                                         {/* Allergen details if any */}
                                         {opt.note && (
-                                          <p className="text-stone-500 text-[11px] font-light mt-2 italic">
+                                          <p className="text-stone-500 text-[12.5px] font-light mt-2 italic">
                                             {opt.note[lang] || opt.note.vi}
                                           </p>
                                         )}
 
                                         {/* Wine Pairing */}
                                         {opt.wine && (
-                                          <p className="text-gold-500/80 text-xs italic mt-3 flex items-center gap-1.5 font-serif">
+                                          <p className="text-gold-500/80 text-sm italic mt-3 flex items-center gap-1.5 font-serif">
                                             <span>🍷</span> {opt.wine}
                                           </p>
                                         )}
@@ -1138,7 +1138,7 @@ function SetMenuContent() {
                                             return (
                                               <span
                                                 key={alg}
-                                                className={`text-[8px] tracking-wider uppercase px-2 py-0.5 border rounded ${
+                                                className={`text-[9.5px] tracking-wider uppercase px-2 py-0.5 border rounded ${
                                                   matched
                                                     ? "bg-red-500 border-red-500 text-white font-bold animate-pulse"
                                                     : "bg-black/30 border-white/5 text-stone-500"
@@ -1172,13 +1172,13 @@ function SetMenuContent() {
                                 </p>
                                 
                                 {course.note && (
-                                  <p className="text-stone-500 text-[11px] font-light mt-2 italic font-sans">
+                                  <p className="text-stone-500 text-[12.5px] font-light mt-2 italic font-sans">
                                     {course.note[lang] || course.note.vi}
                                   </p>
                                 )}
 
                                 {course.wine && (
-                                  <p className="text-gold-500/80 text-xs italic mt-3 flex items-center gap-1.5 font-serif">
+                                  <p className="text-gold-500/80 text-sm italic mt-3 flex items-center gap-1.5 font-serif">
                                     <span>🍷</span> {course.wine}
                                   </p>
                                 )}
@@ -1191,7 +1191,7 @@ function SetMenuContent() {
                                     return (
                                       <span
                                         key={alg}
-                                        className={`text-[8px] tracking-wider uppercase px-2 py-0.5 border rounded ${
+                                        className={`text-[9.5px] tracking-wider uppercase px-2 py-0.5 border rounded ${
                                           matched
                                             ? "bg-red-500 border-red-500 text-white font-bold animate-pulse"
                                             : "bg-black/30 border-white/5 text-stone-500"
