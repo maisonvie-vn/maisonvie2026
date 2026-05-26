@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useRouter } from "next/navigation";
+import Header from "@/components/Header";
 
 const PARTNERS_TRAVEL = [
   {
@@ -104,7 +105,7 @@ const PARTNER_BENEFITS = [
   },
 ];
 
-export default function PartnersPage() {
+function PartnersContent() {
   const router = useRouter();
   const [form, setForm] = useState({ company: "", name: "", email: "", phone: "", partnerType: "", message: "" });
   const [status, setStatus] = useState("idle");
@@ -177,25 +178,7 @@ export default function PartnersPage() {
     <div className="flex flex-col min-h-screen bg-dark-500 font-sans">
 
       {/* HEADER */}
-      <header className="sticky top-0 z-50 glassmorphism border-b border-white/5 h-24 flex items-center justify-between px-6">
-        <div className="flex items-center cursor-pointer" onClick={() => router.push(lang ? `/?lang=${lang}` : "/")}>
-          <img
-            src="https://www.maisonvie.vn/wp-content/uploads/2020/04/logo2-1-e1588240588705.png"
-            alt="Maison Vie Logo"
-            className="h-14 w-auto object-contain hover:scale-[1.03] transition-premium"
-          />
-        </div>
-        <nav className="hidden md:flex items-center space-x-8 text-[12px] uppercase tracking-widest font-semibold text-stone-400">
-          <a href={lang ? `/?lang=${lang}` : "/"} className="hover:text-gold-500 transition-premium">Trang Chủ</a>
-          <a href={lang ? `/menu?lang=${lang}` : "/menu"} className="hover:text-gold-500 transition-premium">Thực Đơn</a>
-          <a href={lang ? `/upcoming-events?lang=${lang}` : "/upcoming-events"} className="hover:text-gold-500 transition-premium">Sự Kiện</a>
-          <a href={lang ? `/offers?lang=${lang}` : "/offers"} className="hover:text-gold-500 transition-premium">Ưu Đãi</a>
-          <span className="text-gold-500 border-b border-gold-500 pb-0.5">Đối Tác</span>
-        </nav>
-        <a href="#b2b-form" className="hidden lg:block text-[11px] uppercase tracking-widest font-semibold bg-gold-500 text-dark-500 px-5 py-3 hover:bg-gold-400 transition-premium">
-          Trở Thành Đối Tác
-        </a>
-      </header>
+      <Header lang={lang} setLang={setLang} />
 
       {/* HERO */}
       <section className="relative py-28 text-center overflow-hidden">
@@ -402,5 +385,17 @@ export default function PartnersPage() {
       </footer>
 
     </div>
+  );
+}
+
+export default function PartnersPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen bg-dark-500 text-gold-500 tracking-widest text-sm uppercase font-semibold">
+        Loading...
+      </div>
+    }>
+      <PartnersContent />
+    </Suspense>
   );
 }

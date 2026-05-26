@@ -3,18 +3,18 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { supabase } from "../../lib/supabase";
+import Header from "@/components/Header";
 
 const I18N = {
   vi: {
     menuTitle: "Thực Đơn Tinh Hoa",
     menuSubtitle: "Sự thăng hoa của kỹ nghệ Pháp và nguồn nguyên liệu Việt",
     categoryAll: "Tất Cả",
-    categoryAppetizer: "Món Khai Vị",
-    categorySoup: "Súp Kinh Điển",
+    categoryAppetizer: "Khai Vị Lạnh",
+    categorySoup: "Khai Vị Nóng",
     categoryMain: "Món Chính",
     categoryDessert: "Món Tráng Miệng",
-    priceDineIn: "Dùng tại sảnh",
-    priceTakeaway: "Mang về",
+    priceLabel: "Giá",
     allergensTitle: "Cảnh báo chất dị ứng (EU Standard):",
     btnReserve: "Đặt bàn thưởng thức ngay",
     btnBack: "Quay lại trang chủ",
@@ -25,12 +25,11 @@ const I18N = {
     menuTitle: "Signature Menu",
     menuSubtitle: "The sublime marriage of French arts and Vietnamese ingredients",
     categoryAll: "All",
-    categoryAppetizer: "Appetizers",
-    categorySoup: "Soups",
+    categoryAppetizer: "Cold Starters",
+    categorySoup: "Hot Starters",
     categoryMain: "Main Courses",
     categoryDessert: "Desserts",
-    priceDineIn: "Dine-in",
-    priceTakeaway: "Takeaway",
+    priceLabel: "Price",
     allergensTitle: "Contains Allergen(s):",
     btnReserve: "Book a table now",
     btnBack: "Back to Home",
@@ -41,12 +40,11 @@ const I18N = {
     menuTitle: "La Carte Gastronomique",
     menuSubtitle: "L'harmonie entre le savoir-faire français et le terroir vietnamien",
     categoryAll: "Tout",
-    categoryAppetizer: "Entrées",
-    categorySoup: "Soupes",
+    categoryAppetizer: "Entrées Froides",
+    categorySoup: "Entrées Chaudes",
     categoryMain: "Plats Principaux",
     categoryDessert: "Desserts",
-    priceDineIn: "Sur Place",
-    priceTakeaway: "À Emporter",
+    priceLabel: "Tarif",
     allergensTitle: "Allergène(s) présent(s):",
     btnReserve: "Réserver une table",
     btnBack: "Retour à l'accueil",
@@ -57,12 +55,11 @@ const I18N = {
     menuTitle: "美食メニュー",
     menuSubtitle: "フランスの技術とベトナムの厳選食材の融合",
     categoryAll: "すべて",
-    categoryAppetizer: "前菜",
-    categorySoup: "スープ",
+    categoryAppetizer: "冷前菜",
+    categorySoup: "温前菜",
     categoryMain: "メインディッシュ",
     categoryDessert: "デザート",
-    priceDineIn: "店内利用",
-    priceTakeaway: "テイクアウト",
+    priceLabel: "価格",
     allergensTitle: "アレルゲン情報:",
     btnReserve: "今すぐご予約",
     btnBack: "ホームに戻る",
@@ -73,12 +70,11 @@ const I18N = {
     menuTitle: "시그니처 메뉴",
     menuSubtitle: "프랑스의 전통 기술과 베트남 천연 식재료의 조화",
     categoryAll: "전체",
-    categoryAppetizer: "에피타이저",
-    categorySoup: "수프",
+    categoryAppetizer: "냉전식",
+    categorySoup: "온전식",
     categoryMain: "메인 요리",
     categoryDessert: "디저트",
-    priceDineIn: "매장 식사",
-    priceTakeaway: "포장",
+    priceLabel: "가격",
     allergensTitle: "알레르기 유발 물질:",
     btnReserve: "예약하기",
     btnBack: "홈으로 돌아가기",
@@ -89,12 +85,11 @@ const I18N = {
     menuTitle: "精選美食菜單",
     menuSubtitle: "法國廚藝與越南本土食材的精妙交融",
     categoryAll: "全部",
-    categoryAppetizer: "精緻前菜",
-    categorySoup: "經典湯品",
+    categoryAppetizer: "冷前菜",
+    categorySoup: "熱前菜",
     categoryMain: "主菜系列",
     categoryDessert: "完美甜點",
-    priceDineIn: "堂食",
-    priceTakeaway: "外賣",
+    priceLabel: "價格",
     allergensTitle: "所含過敏原資訊:",
     btnReserve: "立即預訂席位",
     btnBack: "返回主頁",
@@ -144,9 +139,8 @@ function MenuContent() {
   }, []);
 
   const formatPrice = (value) => {
-    return new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" })
-      .format(value)
-      .replace("₫", "đ");
+    const k = Math.round(value / 1000);
+    return new Intl.NumberFormat('vi-VN').format(k);
   };
 
   const getTranslatedValue = (jsonbField, fallback = "") => {
@@ -174,24 +168,7 @@ function MenuContent() {
     <div className="flex flex-col min-h-screen bg-dark-500 font-sans">
       
       {/* HEADER / NAVIGATION */}
-      <header className="sticky top-0 z-50 glassmorphism border-b border-white/5 h-24 flex items-center justify-between px-6">
-        <div className="flex items-center cursor-pointer" onClick={() => router.push(`/?lang=${lang}`)}>
-          <img 
-            src="https://www.maisonvie.vn/wp-content/uploads/2020/04/logo2-1-e1588240588705.png" 
-            alt="Maison Vie Logo" 
-            className="h-14 w-auto object-contain hover:scale-[1.03] transition-premium" 
-          />
-        </div>
-
-        <div className="flex items-space-x-4">
-          <button 
-            onClick={() => router.push(`/?lang=${lang}`)}
-            className="text-[12px] uppercase tracking-widest font-semibold border border-white/10 text-stone-300 px-4 py-2.5 hover:border-gold-500/30 transition-premium"
-          >
-            {t.btnBack}
-          </button>
-        </div>
-      </header>
+      <Header lang={lang} />
 
       {/* HERO / INTRO */}
       <section className="relative py-20 text-center bg-gradient-to-b from-dark-400 to-dark-500 border-b border-white/5">
@@ -231,7 +208,6 @@ function MenuContent() {
         </div>
       </section>
 
-      {/* MENU LIST SECTION */}
       <section className="py-20 flex-1">
         <div className="max-w-5xl mx-auto px-6">
           
@@ -242,80 +218,68 @@ function MenuContent() {
           ) : filteredItems.length === 0 ? (
             <div className="text-center py-20 text-stone-500 text-sm italic">
               {t.empty}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 gap-12">
-              {filteredItems.map((item) => (
-                <div 
-                  key={item.id} 
-                  className="glassmorphism p-8 border border-white/5 hover:border-gold-500/20 transition-premium shadow-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-8 relative overflow-hidden"
-                >
-                  
-                  {/* Left: Content */}
-                  <div className="flex-1 text-left">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <h3 className="text-2xl font-light text-stone-100 font-luxury tracking-wide">
-                        {getTranslatedValue(item.name)}
+            </div>          ) : (
+            <div className="divide-y divide-white/5 border border-white/5 rounded-sm">
+              {filteredItems.map((item) => {
+                const frenchName = item.name?.fr;
+                const displayName = getTranslatedValue(item.name);
+                const displayDesc = getTranslatedValue(item.description);
+                const allergenList = item.menu_item_allergens
+                  ?.map(a => getTranslatedValue(a.allergen_categories?.name, a.allergen_categories?.code))
+                  .filter(Boolean) || [];
+
+                return (
+                  <div
+                    key={item.id}
+                    className="group flex items-start justify-between gap-8 px-8 py-6 hover:bg-white/[0.02] transition-colors duration-200"
+                  >
+                    {/* Left: name + description + allergens */}
+                    <div className="flex-1 min-w-0">
+                      {/* French subtitle */}
+                      {frenchName && (
+                        <p className="text-[14px] font-bold text-stone-100 tracking-wider mb-1 font-sans">
+                          {frenchName}
+                          {item.seasonal_flag && (
+                            <span className="not-italic ml-3 text-[8px] uppercase tracking-widest text-gold-400/50 border border-gold-500/15 px-1.5 py-0.5">
+                              Saison
+                            </span>
+                          )}
+                        </p>
+                      )}
+
+                      {/* Main name */}
+                      <h3 className="text-[17px] italic font-light text-stone-100 font-luxury tracking-wide leading-snug mb-2 group-hover:text-gold-200 transition-colors duration-200">
+                        {displayName}
                       </h3>
-                      {item.seasonal_flag && (
-                        <span className="text-[9px] uppercase tracking-widest bg-gold-500/20 text-gold-400 border border-gold-500/30 px-2 py-0.5 font-bold">
-                          Seasonal
-                        </span>
+
+                      {/* Description — single language */}
+                      {displayDesc && (
+                        <p className="text-[14.5px] text-gold-500/70 font-sans font-light leading-relaxed mb-3 max-w-lg">
+                          {displayDesc}
+                        </p>
+                      )}
+
+                      {/* Allergens — inline, discreet */}
+                      {allergenList.length > 0 && (
+                        <p className="text-[13px] text-stone-100 font-sans tracking-wide">
+                          <span className="font-bold text-gold-500">Dị Ứng:</span>{' '}
+                          {allergenList.join(' · ')}
+                        </p>
                       )}
                     </div>
-                    
-                    <p className="text-stone-400 text-sm font-light leading-relaxed mb-4 max-w-2xl">
-                      {getTranslatedValue(item.description)}
-                    </p>
 
-                    {/* Allergens Warn */}
-                    {item.menu_item_allergens && item.menu_item_allergens.length > 0 && (
-                      <div className="flex flex-wrap items-center gap-2 mt-4">
-                        <span className="text-[10px] uppercase tracking-wider text-gold-500 font-semibold">
-                          {t.allergensTitle}
-                        </span>
-                        {item.menu_item_allergens.map((allergenObj, idx) => {
-                          const allergen = allergenObj.allergen_categories;
-                          return (
-                            <span 
-                              key={idx}
-                              className="text-[10px] bg-red-950/20 border border-red-500/20 text-red-400 px-2 py-0.5 rounded"
-                            >
-                              {getTranslatedValue(allergen.name, allergen.code)}
-                            </span>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Right: Pricing */}
-                  <div className="flex flex-col items-end shrink-0 w-full md:w-auto pt-6 md:pt-0 border-t md:border-t-0 md:border-l border-white/5 md:pl-8 text-right gap-3">
-                    <div className="flex flex-col">
-                      <span className="text-2xl font-semibold text-gold-500 font-luxury">
+                    {/* Right: price */}
+                    <div className="shrink-0 text-right pt-1">
+                      <span className="text-[20.5px] font-light text-gold-500 font-luxury tracking-wide tabular-nums">
                         {formatPrice(item.price_dine_in)}
                       </span>
-                      <span className="text-[10px] uppercase tracking-wider text-stone-500">
-                        {t.priceDineIn}
-                      </span>
                     </div>
-
-                    {item.price_takeaway > 0 && (
-                      <div className="flex flex-col opacity-60">
-                        <span className="text-lg font-light text-stone-300">
-                          {formatPrice(item.price_takeaway)}
-                        </span>
-                        <span className="text-[9px] uppercase tracking-wider text-stone-500">
-                          {t.priceTakeaway}
-                        </span>
-                      </div>
-                    )}
                   </div>
-
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
+
 
         </div>
       </section>

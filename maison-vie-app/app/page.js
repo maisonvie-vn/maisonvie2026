@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import { supabase } from "../lib/supabase";
 import { COUNTRY_CODES } from "../lib/countryCodes";
+import Header from "@/components/Header";
 
 // 🌐 MULTI-LANGUAGE DICTIONARY (VI, EN, FR, JA, KO, HK)
 const I18N = {
@@ -388,7 +389,7 @@ const normalizePhone = (code, phone) => {
   return code + cleaned;
 };
 
-export default function Home() {
+function HomeContent() {
   const [lang, setLang] = useState("vi");
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [allergensOpen, setAllergensOpen] = useState(false);
@@ -588,78 +589,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-dark-500 font-sans selection:bg-gold-500 selection:text-dark-500">
       
       {/* 🏛️ HEADER / NAVIGATION */}
-      <header className="sticky top-0 z-50 glassmorphism border-b border-white/5 transition-premium">
-        <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-          
-          {/* Logo Neoclassical Image */}
-          <div className="flex items-center">
-            <img 
-              src="https://www.maisonvie.vn/wp-content/uploads/2020/04/logo2-1-e1588240588705.png" 
-              alt="Maison Vie Logo" 
-              className="h-14 w-auto object-contain hover:scale-[1.03] transition-premium" 
-            />
-          </div>
-
-          {/* Nav items */}
-          <nav className="hidden md:flex items-center space-x-8 text-[12px] uppercase tracking-widest font-semibold text-stone-300">
-            <a href="#" className="hover:text-gold-500 transition-premium">{t.navHome}</a>
-            <a href={`/menu?lang=${lang}`} className="hover:text-gold-500 transition-premium">{t.navMenu}</a>
-            <a href={`/wine-list?lang=${lang}`} className="hover:text-gold-500 transition-premium">{t.navWine}</a>
-            <a href={`/offers?lang=${lang}`} className="hover:text-gold-500 transition-premium">{t.navOffers}</a>
-            <a href={`/upcoming-events?lang=${lang}`} className="hover:text-gold-500 transition-premium">{t.navEvents}</a>
-            <a href={`/partners?lang=${lang}`} className="hover:text-gold-500 transition-premium">{t.navPartners}</a>
-            <a href="#chef" className="hover:text-gold-500 transition-premium">{t.navChef}</a>
-          </nav>
-
-
-          {/* Lang Selector & Booking CTA */}
-          <div className="flex items-center space-x-6">
-            
-            {/* Custom Interactive Language Dropdown */}
-            <div className="relative">
-              <button 
-                onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-                className="flex items-center space-x-2 text-[12px] font-semibold text-stone-300 uppercase tracking-widest px-3 py-2 rounded border border-white/10 hover:border-gold-500/30 transition-premium"
-              >
-                <span>🌐 {lang}</span>
-                <span className="text-[8px] text-gold-500">▼</span>
-              </button>
-
-              {langDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-36 glassmorphism rounded shadow-2xl border border-white/10 overflow-hidden animate-fade-in">
-                  {Object.keys(I18N).map((l) => (
-                    <button
-                      key={l}
-                      onClick={() => {
-                        setLang(l);
-                        localStorage.setItem("maison_vie_lang", l);
-                        setLangDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-4 py-2.5 text-[12px] hover:text-[14px] uppercase tracking-wider transition-premium block ${
-                        lang === l ? "bg-gold-500/20 text-gold-500 font-bold" : "text-stone-300 hover:bg-white/5 hover:text-stone-100"
-                      }`}
-                    >
-                      {l === "vi" ? "Tiếng Việt" : 
-                       l === "en" ? "English" : 
-                       l === "fr" ? "Français" : 
-                       l === "ja" ? "日本語" : 
-                       l === "ko" ? "한국어" : "繁體中文 (香港)"}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Premium CTA Button */}
-            <a 
-              href="#booking" 
-              className="hidden lg:block text-[12px] uppercase tracking-widest font-semibold bg-gold-500 text-dark-500 px-6 py-3.5 hover:bg-gold-400 hover:scale-[1.02] shadow-[0_0_15px_rgba(197,165,90,0.2)] transition-premium"
-            >
-              {t.navBooking}
-            </a>
-          </div>
-        </div>
-      </header>
+      <Header lang={lang} setLang={setLang} />
 
       {/* 🌌 HERO SECTION */}
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-24">
@@ -1122,5 +1052,17 @@ export default function Home() {
       </footer>
 
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen bg-dark-500 text-gold-500 tracking-widest text-sm uppercase font-semibold">
+        Loading...
+      </div>
+    }>
+      <HomeContent />
+    </Suspense>
   );
 }

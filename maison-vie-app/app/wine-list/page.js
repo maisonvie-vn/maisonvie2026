@@ -3,6 +3,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { supabase } from "../../lib/supabase";
+import Header from "@/components/Header";
 
 const I18N = {
   vi: {
@@ -179,24 +180,7 @@ function WineContent() {
     <div className="flex flex-col min-h-screen bg-dark-500 font-sans">
       
       {/* HEADER */}
-      <header className="sticky top-0 z-50 glassmorphism border-b border-white/5 h-24 flex items-center justify-between px-6">
-        <div className="flex items-center cursor-pointer" onClick={() => router.push(`/?lang=${lang}`)}>
-          <img 
-            src="https://www.maisonvie.vn/wp-content/uploads/2020/04/logo2-1-e1588240588705.png" 
-            alt="Maison Vie Logo" 
-            className="h-14 w-auto object-contain hover:scale-[1.03] transition-premium" 
-          />
-        </div>
-
-        <div className="flex items-space-x-4">
-          <button 
-            onClick={() => router.push(`/?lang=${lang}`)}
-            className="text-[12px] uppercase tracking-widest font-semibold border border-white/10 text-stone-300 px-4 py-2.5 hover:border-gold-500/30 transition-premium"
-          >
-            {t.btnBack}
-          </button>
-        </div>
-      </header>
+      <Header lang={lang} />
 
       {/* HERO */}
       <section className="relative py-20 text-center bg-gradient-to-b from-dark-400 to-dark-500 border-b border-white/5">
