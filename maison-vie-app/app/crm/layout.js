@@ -2,23 +2,69 @@
 
 import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
+
+// Role label mapping
+const ROLE_LABELS = {
+  admin:       { label: "Admin",      color: "text-gold-400",    bg: "bg-gold-500/10",    border: "border-gold-500/20" },
+  manager:     { label: "Manager",    color: "text-blue-400",    bg: "bg-blue-500/10",    border: "border-blue-500/20" },
+  accountant:  { label: "Kế Toán",   color: "text-purple-400",  bg: "bg-purple-500/10",  border: "border-purple-500/20" },
+  chef:        { label: "Chef",       color: "text-orange-400",  bg: "bg-orange-500/10",  border: "border-orange-500/20" },
+  runner:      { label: "FOH Runner", color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20" },
+};
+
+// Auth-bypass pages (no sidebar/topbar)
+const AUTH_PAGES = ["/crm/login", "/crm/verify", "/crm/setup-totp", "/crm/unauthorized"];
 
 export default function CrmLayout({ children }) {
   const router = useRouter();
   const pathname = usePathname();
-  
-  // Dynamic role selector for easy operational testing (Admin, Manager, Chef, FOH)
-  const [role, setRole] = useState("Manager");
+
+  const [user, setUser] = useState(null);
+  const [role, setRole] = useState(null);
   const [shift, setShift] = useState("Ca Tối (17:30 - 22:00)");
 
   useEffect(() => {
-    // Store active role and shift in local storage for deep CRM connectivity
-    localStorage.setItem("crm_role", role);
+    // Load user session
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        setUser(user);
+        setRole(user.app_metadata?.role || null);
+      }
+    });
+    // Listen for auth changes
+    const { data: listener } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session?.user) {
+        setUser(session.user);
+        setRole(session.user.app_metadata?.role || null);
+      } else {
+        setUser(null);
+        setRole(null);
+      }
+    });
+    return () => listener.subscription.unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("crm_role", role || "");
     localStorage.setItem("crm_shift", shift);
-    
-    // Dispatch custom event to notify child components of role changes
     window.dispatchEvent(new Event("crm_auth_change"));
   }, [role, shift]);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.push("/crm/login");
+  };
+
+  // Auth pages render without sidebar
+  if (AUTH_PAGES.some(p => pathname.startsWith(p))) {
+    return <>{children}</>;
+  }
 
   const navItems = [
     { name: "Tổng quan OS", path: "/crm", icon: "📊" },
@@ -87,25 +133,28 @@ export default function CrmLayout({ children }) {
             </span>
           </div>
 
-          {/* Active Testing Role Selector */}
+          {/* User Info + Logout */}
           <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2 text-xs">
-              <span className="text-stone-500 font-semibold uppercase tracking-wider">Quyền ca trực:</span>
-              <select
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                className="bg-black/40 border border-white/10 text-gold-400 px-3 py-1.5 focus:outline-none focus:border-gold-500 font-semibold rounded uppercase tracking-wider"
-              >
-                <option value="Admin" className="bg-dark-400 text-stone-200">Admin (Chủ đầu tư)</option>
-                <option value="Manager" className="bg-dark-400 text-stone-200">Manager (Quản lý)</option>
-                <option value="Chef" className="bg-dark-400 text-stone-200">Chef (Bếp Trưởng)</option>
-                <option value="Runner" className="bg-dark-400 text-stone-200">FOH Runner (Phục vụ)</option>
-              </select>
-            </div>
-
-            <div className="w-8 h-8 rounded-full border border-gold-500/30 flex items-center justify-center text-xs text-gold-400 font-bold bg-gold-500/10">
-              {role.charAt(0)}
-            </div>
+            {role && (() => {
+              const r = ROLE_LABELS[role] || ROLE_LABELS.manager;
+              return (
+                <span className={`text-xs font-bold uppercase tracking-wider px-2.5 py-1 border rounded ${r.color} ${r.bg} ${r.border}`}>
+                  {r.label}
+                </span>
+              );
+            })()}
+            {user && (
+              <span className="text-xs text-stone-500 hidden md:inline">
+                {user.email}
+              </span>
+            )}
+            <button
+              onClick={handleLogout}
+              className="text-[10px] uppercase tracking-widest text-stone-600 hover:text-red-400 border border-white/5 hover:border-red-500/20 px-3 py-1.5 transition-all"
+              title="Đăng xuất"
+            >
+              ⏻ Logout
+            </button>
           </div>
 
         </header>
