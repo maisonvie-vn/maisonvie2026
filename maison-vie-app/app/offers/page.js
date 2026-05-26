@@ -362,12 +362,28 @@ function OffersContent() {
                 <p className="text-stone-300 leading-relaxed max-w-md mx-auto text-sm">
                   Maison Vie đã nhận được yêu cầu đặt bàn của bạn. Lễ tân sẽ liên hệ xác nhận chính thức qua email/điện thoại trong ít phút.
                 </p>
-                <button
-                  onClick={() => setSubmitStatus("idle")}
-                  className="mt-8 text-[11px] uppercase tracking-widest font-semibold border border-gold-500/30 text-gold-300 px-6 py-3 hover:bg-gold-500/10 transition-premium"
-                >
-                  Đặt thêm bàn khác
-                </button>
+                <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <a
+                    href="/"
+                    className="text-[11px] uppercase tracking-widest font-semibold border border-gold-500/30 text-gold-300 px-6 py-3 hover:bg-gold-500/10 transition-premium text-center min-w-[165px]"
+                  >
+                    {lang === "en" ? "Go to Homepage" :
+                     lang === "fr" ? "Retour à l'accueil" :
+                     lang === "ja" ? "ホームページに戻る" :
+                     lang === "ko" ? "홈페이지로 돌아가기" :
+                     lang === "hk" ? "返回首頁" : "Về Trang Chủ"}
+                  </a>
+                  <button
+                    onClick={() => setSubmitStatus("idle")}
+                    className="text-[11px] uppercase tracking-widest font-semibold bg-gold-500/10 border border-gold-500/40 text-gold-400 px-6 py-3 hover:bg-gold-500/20 transition-premium text-center min-w-[165px]"
+                  >
+                    {lang === "en" ? "Book Another Table" :
+                     lang === "fr" ? "Réserver une autre table" :
+                     lang === "ja" ? "別のテーブルを予約" :
+                     lang === "ko" ? "다른 테이블 예약" :
+                     lang === "hk" ? "預訂其他桌子" : "Đặt Tiếp Bàn Khác"}
+                  </button>
+                </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
