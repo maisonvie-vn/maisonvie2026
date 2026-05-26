@@ -29,37 +29,47 @@ function SetupTotpContent() {
   }, []);
 
   const enrollTotp = async () => {
-    // 1. Kiểm tra factor TOTP đã tồn tại chưa
-    const { data: factorsData } = await supabase.auth.mfa.listFactors();
-    const existingTotp = factorsData?.totp?.[0];
-
-    if (existingTotp) {
-      if (existingTotp.status === "verified") {
-        // Factor đã verified → chuyển thẳng sang màn hình verify
-        router.replace(`/crm/verify?redirect=${encodeURIComponent(redirect)}`);
-        return;
-      } else {
-        // Factor chưa verified (unverified) → xóa để đăng ký lại
-        await supabase.auth.mfa.unenroll({ factorId: existingTotp.id });
-      }
+    // 1. Lấy user hiện tại
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      router.replace('/crm/login');
+      return;
     }
 
-    // 2. Enroll factor mới
+    // 2. Gọi server-side API để xóa TOTP factor cũ (unverified) bằng service_role
+    try {
+      const res = await fetch('/api/crm/reset-totp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: user.id }),
+      });
+      const result = await res.json();
+
+      if (result.hasVerified) {
+        // Đã có TOTP verified → redirect thẳng sang verify
+        router.replace(`/crm/verify?redirect=${encodeURIComponent(redirect)}`);
+        return;
+      }
+    } catch (e) {
+      console.error('reset-totp API error:', e);
+    }
+
+    // 3. Enroll TOTP mới (factor cũ đã bị xóa server-side)
     const { data, error } = await supabase.auth.mfa.enroll({
-      factorType: "totp",
-      friendlyName: "Maison Vie CRM",
+      factorType: 'totp',
+      friendlyName: 'Maison Vie CRM',
     });
 
     if (error) {
-      setErrorMsg("Không thể thiết lập TOTP: " + error.message);
-      setStep("error");
+      setErrorMsg('Không thể thiết lập TOTP: ' + error.message);
+      setStep('error');
       return;
     }
 
     setFactorId(data.id);
     setQrUri(data.totp.qr_code);
     setSecret(data.totp.secret);
-    setStep("qr");
+    setStep('qr');
   };
 
   const startVerify = async () => {
