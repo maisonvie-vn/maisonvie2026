@@ -1173,7 +1173,7 @@ function WineCard({ wine, t, index }) {
       {/* VINO Club badge */}
       {wine.vino_club_eligible && (
         <div className="absolute top-0 right-0 bg-gold-500/10 border-b border-l border-gold-500/20 px-3 py-1">
-          <span className="text-[8px] uppercase tracking-[0.25em] text-gold-500 font-semibold">{t.vinoClub}</span>
+          <span className="text-[10px] uppercase tracking-[0.25em] text-gold-500 font-semibold">{t.vinoClub}</span>
         </div>
       )}
 
@@ -1183,7 +1183,7 @@ function WineCard({ wine, t, index }) {
         <div className="flex-1 min-w-0">
 
           {/* Appellation line */}
-          <p className="text-[9px] uppercase tracking-[0.3em] text-gold-500/70 font-semibold mb-2 truncate">
+          <p className="text-[11px] uppercase tracking-[0.3em] text-gold-500/70 font-semibold mb-2 truncate">
             {wine.appellation}
           </p>
 
@@ -1194,36 +1194,36 @@ function WineCard({ wine, t, index }) {
 
           {/* Producer — italic, muted */}
           {wine.producer && (
-            <p className="text-xs text-stone-500 italic mb-5">{wine.producer}</p>
+            <p className="text-sm text-stone-500 italic mb-5">{wine.producer}</p>
           )}
 
           {/* Specs grid — 2 × 2 / 2 × 3 */}
           <dl className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-4">
 
             <div>
-              <dt className="text-[9px] uppercase tracking-widest text-stone-600 mb-0.5">{t.labelGrape}</dt>
-              <dd className="text-[12px] text-stone-300 font-medium leading-relaxed">{wine.grape_variety || "—"}</dd>
+              <dt className="text-[11px] uppercase tracking-widest text-stone-600 mb-0.5">{t.labelGrape}</dt>
+              <dd className="text-[14px] text-stone-300 font-medium leading-relaxed">{wine.grape_variety || "—"}</dd>
             </div>
 
             <div>
-              <dt className="text-[9px] uppercase tracking-widest text-stone-600 mb-0.5">{t.labelRegion}</dt>
-              <dd className="text-[12px] text-stone-300 font-medium">{wine.region || "—"}</dd>
+              <dt className="text-[11px] uppercase tracking-widest text-stone-600 mb-0.5">{t.labelRegion}</dt>
+              <dd className="text-[14px] text-stone-300 font-medium">{wine.region || "—"}</dd>
             </div>
 
             <div>
-              <dt className="text-[9px] uppercase tracking-widest text-stone-600 mb-0.5">{t.labelVintage}</dt>
-              <dd className="text-[12px] text-gold-400 font-semibold font-luxury">{wine.vintage || "—"}</dd>
+              <dt className="text-[11px] uppercase tracking-widest text-stone-600 mb-0.5">{t.labelVintage}</dt>
+              <dd className="text-[14px] text-gold-400 font-semibold font-luxury">{wine.vintage || "—"}</dd>
             </div>
 
             <div>
-              <dt className="text-[9px] uppercase tracking-widest text-stone-600 mb-0.5">{t.labelVolume}</dt>
-              <dd className="text-[12px] text-stone-400">{wine.volume || "—"}</dd>
+              <dt className="text-[11px] uppercase tracking-widest text-stone-600 mb-0.5">{t.labelVolume}</dt>
+              <dd className="text-[14px] text-stone-400">{wine.volume || "—"}</dd>
             </div>
 
             {wine.country && (
               <div className="col-span-2">
-                <dt className="text-[9px] uppercase tracking-widest text-stone-600 mb-0.5">Pays / Quốc gia</dt>
-                <dd className="text-[12px] text-stone-400">{wine.country}</dd>
+                <dt className="text-[11px] uppercase tracking-widest text-stone-600 mb-0.5">Pays / Quốc gia</dt>
+                <dd className="text-[14px] text-stone-400">{wine.country}</dd>
               </div>
             )}
 
@@ -1234,7 +1234,7 @@ function WineCard({ wine, t, index }) {
             <div className="mt-5">
               <button
                 onClick={() => setExpanded(!expanded)}
-                className="text-[10px] uppercase tracking-widest text-gold-500/60 hover:text-gold-400 transition-premium flex items-center gap-1.5"
+                className="text-[12px] uppercase tracking-widest text-gold-500/60 hover:text-gold-400 transition-premium flex items-center gap-1.5"
               >
                 <span>{expanded ? "−" : "+"}</span>
                 <span>Note du Sommelier</span>
@@ -1243,13 +1243,13 @@ function WineCard({ wine, t, index }) {
               {expanded && (
                 <div className="mt-4 pl-4 border-l border-gold-500/20 space-y-3 animate-fade-in">
                   {hasNote && (
-                    <p className="text-[12px] text-stone-400 font-light italic leading-relaxed">
+                    <p className="text-[14px] text-stone-400 font-light italic leading-relaxed">
                       {wine.sommelier_note}
                     </p>
                   )}
                   {hasPairing && (
-                    <p className="text-[11px] text-stone-500">
-                      <span className="text-stone-600 uppercase tracking-wider text-[9px] mr-2">{t.labelFoodPairing}:</span>
+                    <p className="text-[13px] text-stone-500">
+                      <span className="text-stone-600 uppercase tracking-wider text-[11px] mr-2">{t.labelFoodPairing}:</span>
                       {wine.food_pairing}
                     </p>
                   )}
@@ -1267,7 +1267,7 @@ function WineCard({ wine, t, index }) {
             <div className="space-y-3 text-right">
               {wine.price_variants.map((v) => (
                 <div key={v.volume}>
-                  <div className="text-[10px] uppercase tracking-widest text-stone-600 mb-0.5">{v.volume}</div>
+                  <div className="text-[12px] uppercase tracking-widest text-stone-600 mb-0.5">{v.volume}</div>
                   <div className="text-base font-light text-stone-500 italic">{t.priceOnRequest}</div>
                 </div>
               ))}
@@ -1275,7 +1275,7 @@ function WineCard({ wine, t, index }) {
           ) : (
             // Standard single-volume
             <div className="text-right">
-              <div className="text-[10px] uppercase tracking-widest text-stone-600 mb-1">{t.labelVolume}</div>
+              <div className="text-[12px] uppercase tracking-widest text-stone-600 mb-1">{t.labelVolume}</div>
               <div className="text-base font-light text-stone-500 italic">{t.priceOnRequest}</div>
             </div>
           )}
