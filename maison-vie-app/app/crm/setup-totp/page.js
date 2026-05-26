@@ -29,47 +29,65 @@ function SetupTotpContent() {
   }, []);
 
   const enrollTotp = async () => {
-    // 1. Lấy user hiện tại
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) {
-      router.replace('/crm/login');
-      return;
-    }
-
-    // 2. Gọi server-side API để xóa TOTP factor cũ (unverified) bằng service_role
     try {
-      const res = await fetch('/api/crm/reset-totp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: user.id }),
-      });
-      const result = await res.json();
+      setErrorMsg("");
+      setStep("loading");
 
-      if (result.hasVerified) {
-        // Đã có TOTP verified → redirect thẳng sang verify
-        router.replace(`/crm/verify?redirect=${encodeURIComponent(redirect)}`);
+      // 1. Lấy user hiện tại
+      const { data: { user }, error: userError } = await supabase.auth.getUser();
+      if (userError) {
+        throw new Error("Không thể lấy thông tin user: " + userError.message);
+      }
+      if (!user) {
+        router.replace('/crm/login');
         return;
       }
+
+      // 2. Gọi server-side API để xóa TOTP factor cũ (unverified) bằng service_role
+      try {
+        const res = await fetch('/api/crm/reset-totp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId: user.id }),
+        });
+        
+        if (!res.ok) {
+          console.warn('reset-totp API returned non-ok status:', res.status);
+        } else {
+          const result = await res.json();
+          if (result.hasVerified) {
+            // Đã có TOTP verified → redirect thẳng sang verify
+            router.replace(`/crm/verify?redirect=${encodeURIComponent(redirect)}`);
+            return;
+          }
+        }
+      } catch (e) {
+        console.error('reset-totp API error:', e);
+      }
+
+      // 3. Enroll TOTP mới (factor cũ đã bị xóa server-side)
+      const { data, error } = await supabase.auth.mfa.enroll({
+        factorType: 'totp',
+        friendlyName: 'Maison Vie CRM',
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      if (!data || !data.totp) {
+        throw new Error("Không nhận được cấu hình TOTP từ Supabase Auth.");
+      }
+
+      setFactorId(data.id);
+      setQrUri(data.totp.qr_code || data.totp.uri || "");
+      setSecret(data.totp.secret || "");
+      setStep('qr');
     } catch (e) {
-      console.error('reset-totp API error:', e);
-    }
-
-    // 3. Enroll TOTP mới (factor cũ đã bị xóa server-side)
-    const { data, error } = await supabase.auth.mfa.enroll({
-      factorType: 'totp',
-      friendlyName: 'Maison Vie CRM',
-    });
-
-    if (error) {
-      setErrorMsg('Không thể thiết lập TOTP: ' + error.message);
+      console.error('MFA Enrollment error:', e);
+      setErrorMsg('Lỗi thiết lập TOTP: ' + e.message);
       setStep('error');
-      return;
     }
-
-    setFactorId(data.id);
-    setQrUri(data.totp.qr_code);
-    setSecret(data.totp.secret);
-    setStep('qr');
   };
 
   const startVerify = async () => {
@@ -128,7 +146,11 @@ function SetupTotpContent() {
 
               <div className="flex justify-center mb-6">
                 <div className="p-4 bg-white inline-block">
-                  <QRCodeSVG value={qrUri} size={180} />
+                  {qrUri && qrUri.startsWith("data:") ? (
+                    <img src={qrUri} alt="QR Code" width={180} height={180} className="mx-auto" />
+                  ) : (
+                    <QRCodeSVG value={qrUri || ""} size={180} />
+                  )}
                 </div>
               </div>
 

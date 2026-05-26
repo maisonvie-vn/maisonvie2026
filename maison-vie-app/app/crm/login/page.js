@@ -42,22 +42,30 @@ function LoginContent() {
 
     // Kiểm tra trạng thái MFA sau khi đăng nhập
     if (data?.session) {
-      const role = data.user?.app_metadata?.role;
+      try {
+        const role = data.user?.app_metadata?.role;
 
-      // Lấy danh sách factors của user
-      const { data: factorsData } = await supabase.auth.mfa.listFactors();
-      const totpFactor = factorsData?.totp?.[0];
+        // Lấy danh sách factors của user
+        const { data: factorsData, error: factorsError } = await supabase.auth.mfa.listFactors();
+        if (factorsError) throw factorsError;
+        
+        const totpFactor = factorsData?.totp?.[0];
 
-      if (totpFactor && totpFactor.status === "verified") {
-        // Đã có TOTP verified → cần nhập mã xác thực
-        router.push(`/crm/verify?redirect=${encodeURIComponent(redirect)}`);
-      } else if (role === "admin") {
-        // Admin chưa có TOTP (hoặc unverified) → setup TOTP
-        // setup-totp page sẽ tự xử lý xóa factor cũ nếu unverified
-        router.push(`/crm/setup-totp?redirect=${encodeURIComponent(redirect)}`);
-      } else {
-        // Nhân sự khác → Email OTP (chuyển đến verify với method=email)
-        router.push(`/crm/verify?redirect=${encodeURIComponent(redirect)}&method=email`);
+        if (totpFactor && totpFactor.status === "verified") {
+          // Đã có TOTP verified → cần nhập mã xác thực
+          router.push(`/crm/verify?redirect=${encodeURIComponent(redirect)}`);
+        } else if (role === "admin") {
+          // Admin chưa có TOTP (hoặc unverified) → setup TOTP
+          // setup-totp page sẽ tự xử lý xóa factor cũ nếu unverified
+          router.push(`/crm/setup-totp?redirect=${encodeURIComponent(redirect)}`);
+        } else {
+          // Nhân sự khác → Email OTP (chuyển đến verify với method=email)
+          router.push(`/crm/verify?redirect=${encodeURIComponent(redirect)}&method=email`);
+        }
+      } catch (e) {
+        console.error("MFA checking error:", e);
+        setStatus("error");
+        setErrorMsg("Lỗi xác thực 2 lớp: " + e.message);
       }
     }
   };
