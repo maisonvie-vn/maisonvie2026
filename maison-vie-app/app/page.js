@@ -783,7 +783,7 @@ function HomeContent() {
                         type="tel" 
                         name="phone"
                         required
-                        placeholder="989 091 383"
+                        placeholder="776 998 899"
                         value={formData.phone}
                         onChange={handleInputChange}
                         className="bg-transparent text-stone-200 px-4 py-3 focus:outline-none flex-1 text-sm font-sans w-full"
