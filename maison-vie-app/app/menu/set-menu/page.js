@@ -104,6 +104,229 @@ const ALLERGEN_CODES = [
   { code: "SULPHITES", name: "Sulphites (Wine)", nameVi: "Sulphites", nameFr: "Sulfites" },
 ];
 
+const DISHES = {
+  carpaccio_thon: {
+    name: {
+      fr: "Carpaccio de Thon de Nha Trang — Yuzu, Kumquat, Sel marin de Bà Rịa",
+      vi: "Carpaccio cá ngừ Nha Trang — yuzu, tắc, muối biển Bà Rịa",
+      en: "Nha Trang tuna carpaccio — yuzu, kumquat, Bà Rịa sea salt"
+    },
+    allergens: ["FISH", "SULPHITES"],
+    note: {
+      vi: "Có chứa nguyên liệu thô",
+      en: "Contains raw ingredients",
+      fr: "Contient des ingrédients crus"
+    },
+    wine: "Pascal Jolivet « Attitude » Sauvignon Blanc · Loire"
+  },
+  tartare_saint_jacques: {
+    name: {
+      fr: "Tartare de Saint-Jacques au Caviar d'Aquitaine",
+      vi: "Tartare sò điệp Hokkaido — caviar Aquitaine",
+      en: "Hokkaido scallop tartare — French Aquitaine caviar"
+    },
+    allergens: ["MOLLUSCS", "FISH", "MILK", "SULPHITES"],
+    note: {
+      vi: "Có chứa nguyên liệu thô",
+      en: "Contains raw ingredients",
+      fr: "Contient des ingrédients crus"
+    },
+    wine: "Champagne Taittinger Brut Réserve · Champagne"
+  },
+  expression_vegetale: {
+    name: {
+      fr: "Expression Végétale de Đà Lạt — Avocat Hass, Émulsion d'Herbes",
+      vi: "Rau củ Đà Lạt theo mùa — bơ Hass — nhũ tương thảo mộc",
+      en: "Đà Lạt seasonal vegetables — Hass avocado — herb emulsion"
+    },
+    allergens: ["MILK"],
+    note: {
+      vi: "Món chay · Có thể chuẩn bị thuần chay · Có thể chuẩn bị không gluten",
+      en: "Vegetarian · Vegan available · Gluten-free available",
+      fr: "Végétarien · Option végane disponible · Option sans gluten disponible"
+    },
+    wine: "M. Chapoutier « Belleruche » Côtes du Rhône Blanc · Rhône"
+  },
+  bisque_crevettes: {
+    name: {
+      fr: "Bisque de Crevettes de Nha Trang — Crème légère au Cognac",
+      vi: "Súp bisque tôm Nha Trang — kem Cognac nhẹ",
+      en: "Nha Trang shrimp bisque — light Cognac cream"
+    },
+    allergens: ["CRUSTACEANS", "MILK", "SULPHITES"],
+    wine: "Concha y Toro « Marqués de Casa Concha » Chardonnay · Limarí"
+  },
+  veloute_champignons: {
+    name: {
+      fr: "Velouté de Champignons de Tam Đảo — Infusion de sous-bois",
+      vi: "Súp nấm rừng Tam Đảo — hương rừng tinh tế",
+      en: "Tam Đảo wild mushroom velouté — forest aromas"
+    },
+    allergens: ["MILK"],
+    note: {
+      vi: "Món chay · Có thể chuẩn bị không gluten",
+      en: "Vegetarian · Gluten-free available",
+      fr: "Végétarien · Option sans gluten disponible"
+    },
+    wine: "Louis Latour Bourgogne Pinot Noir · Bourgogne"
+  },
+  cabillaud_miso: {
+    name: {
+      fr: "Cabillaud Noir Mariné au Miso — Beurre noisette, Légumes verts",
+      vi: "Cá tuyết đen ướp miso — bơ nâu — rau xanh theo mùa",
+      en: "Miso-marinated black cod — brown butter — seasonal greens"
+    },
+    allergens: ["FISH", "SOYA", "MILK", "SULPHITES"],
+    wine: "Louis Latour Pouilly-Fuissé · Mâconnais"
+  },
+  bar_poele: {
+    name: {
+      fr: "Bar du Vietnam Poêlé — Beurre blanc, Note d'agrumes",
+      vi: "Cá vược Việt Nam áp chảo — beurre blanc — điểm chua thanh",
+      en: "Pan-seared Vietnamese seabass — beurre blanc — citrus note"
+    },
+    allergens: ["FISH", "MILK", "SULPHITES"],
+    wine: "Pascal Jolivet « Attitude » Sauvignon Blanc · Loire"
+  },
+  langoustine_rotie: {
+    name: {
+      fr: "Langoustine Rôtie — Beurre noisette, Cuisson précise",
+      vi: "Tôm hùm baby áp chảo — bơ nâu — kiểm soát nhiệt chính xác",
+      en: "Roasted langoustine — brown butter — precise cuisson"
+    },
+    allergens: ["CRUSTACEANS", "MILK", "SULPHITES"],
+    supplement_key: "supp_premium",
+    wine: "Champagne Taittinger Brut Réserve · Champagne"
+  },
+  sorbet_fruits: {
+    name: {
+      fr: "Sorbet de Fruits Vietnamiens de Saison — Herbes fraîches",
+      vi: "Sorbet trái cây Việt Nam theo mùa — thảo mộc tươi",
+      en: "Seasonal Vietnamese fruit sorbet — fresh herbs"
+    },
+    allergens: [],
+    note: {
+      vi: "Thuần chay · Không chứa gluten",
+      en: "Vegan · Gluten-free",
+      fr: "Végane · Sans gluten"
+    },
+    wine: "Pierre Larousse Sparkling Brut · Vin de France"
+  },
+  magret_canard: {
+    name: {
+      fr: "Magret de Canard du Vietnam — Compote de Prunes de Sapa, Jus au Madère",
+      vi: "Lườn vịt Việt Nam — mứt mận Sapa — sốt Madère",
+      en: "Vietnamese duck breast — Sapa plum compote — Madeira jus"
+    },
+    allergens: ["SULPHITES"],
+    note: {
+      vi: "Có thể chuẩn bị không gluten",
+      en: "Gluten-free available",
+      fr: "Option sans gluten disponible"
+    },
+    wine: "Louis Latour Bourgogne Pinot Noir · Bourgogne"
+  },
+  carre_agneau: {
+    name: {
+      fr: "Carré d'Agneau aux Herbes Vietnamiennes — Lentilles du Puy, Céleri-rave",
+      vi: "Sườn cừu nướng vỏ thảo mộc Việt — đậu Le Puy — củ cần tây",
+      en: "Herb-crusted lamb rack — Le Puy lentils — celeriac"
+    },
+    allergens: ["MILK", "SULPHITES"],
+    note: {
+      vi: "Có thể chuẩn bị không gluten",
+      en: "Gluten-free available",
+      fr: "Option sans gluten disponible"
+    },
+    supplement_key: "supp_agneau",
+    wine: "M. Chapoutier « Les Meysonniers » Crozes-Hermitage · Rhône"
+  },
+  wellington_buffle: {
+    name: {
+      fr: "Wellington de Buffle du Vietnam — Duxelles, Jus au poivre Phú Quốc",
+      vi: "Wellington thịt trâu Việt Nam — sốt tiêu Phú Quốc",
+      en: "Vietnamese buffalo Wellington — mushroom duxelles — Phú Quốc pepper jus"
+    },
+    allergens: ["GLUTEN", "MILK", "EGGS", "SULPHITES"],
+    wine: "Château Haut-Rocher Saint-Émilion Grand Cru · Bordeaux"
+  },
+  boeuf_wagyu: {
+    name: {
+      fr: "Bœuf Wagyu MBS 6–7 — Topinambour, Betterave Chioggia",
+      vi: "Bò Wagyu MBS 6–7 — atisô Jerusalem — củ dền Chioggia",
+      en: "Wagyu beef MBS 6–7 — Jerusalem artichoke — Chioggia beetroot"
+    },
+    allergens: ["MILK", "SULPHITES"],
+    note: {
+      vi: "Có thể chuẩn bị không gluten",
+      en: "Gluten-free available",
+      fr: "Option sans gluten disponible"
+    },
+    supplement_key: "supp_wagyu",
+    wine: "Mouton Cadet Réserve Pauillac · Pauillac"
+  },
+  fromages_affinés: {
+    name: {
+      fr: "Sélection de Fromages Français Affinés — Trois choix du jour",
+      vi: "Tuyển chọn phô mai Pháp ủ chín — ba loại trong ngày",
+      en: "Selection of mature French cheeses — three of the day"
+    },
+    allergens: ["MILK", "SULPHITES"],
+    note: {
+      vi: "Có thể chứa: hạt cứng (trang trí)",
+      en: "May contain: tree nuts (garnish)",
+      fr: "Peut contenir : fruits à coque (garniture)"
+    },
+    wine: "Mouton Cadet Sauternes · Sauternes"
+  },
+  souffle_chaud: {
+    name: {
+      fr: "Soufflé Chaud du Moment — Glace Vanille de Phú Quốc",
+      vi: "Soufflé nóng theo mùa — kem vani Phú Quốc",
+      en: "Warm seasonal soufflé — Phú Quốc vanilla ice cream"
+    },
+    allergens: ["GLUTEN", "MILK", "EGGS"],
+    wine: "Mouton Cadet Sauternes 37,5 cl · Sauternes"
+  },
+  chocolat_vietnam: {
+    name: {
+      fr: "Chocolat du Vietnam — Contraste d'Agrumes",
+      vi: "Sô-cô-la Việt Nam — đối vị cam chanh",
+      en: "Vietnamese chocolate — citrus contrast"
+    },
+    allergens: ["MILK", "EGGS"],
+    note: {
+      vi: "Có thể chứa: hạt cứng, đậu nành (sô-cô-la)",
+      en: "May contain: tree nuts, soy (chocolate)",
+      fr: "Peut contenir : fruits à coque, soja (chocolat)"
+    },
+    wine: "Talò Primitivo di Manduria « San Marzano » · Puglia"
+  },
+  creme_brulee: {
+    name: {
+      fr: "Crème Brûlée à la Vanille de Phú Quốc — Caramel croustillant",
+      vi: "Crème brûlée vani Phú Quốc — lớp caramel giòn",
+      en: "Phú Quốc vanilla crème brûlée — crisp caramel"
+    },
+    allergens: ["MILK", "EGGS"],
+    wine: "Mouton Cadet Sauternes · Sauternes"
+  },
+  risotto_truffe: {
+    name: {
+      fr: "Risotto à la Truffe et Champignons de Tam Đảo — Beurre Échiré, Parmesan affiné 24 mois",
+      vi: "Risotto nấm cục và nấm rừng Tam Đảo — bơ Échiré — parmesan ủ 24 tháng",
+      en: "Truffle risotto with Tam Đảo wild mushrooms — Échiré butter — 24-month Parmesan"
+    },
+    allergens: ["MILK", "SULPHITES"],
+    note: {
+      vi: "Món chay · Có thể chuẩn bị không gluten",
+      en: "Vegetarian · Gluten-free available",
+      fr: "Végétarien · Option sans gluten disponible"
+    },
+    wine: "Louis Latour Bourgogne Pinot Noir · Bourgogne"
+  }
+};
+
 const SET_MENUS = [
   {
     id: "degustation",
@@ -139,51 +362,9 @@ const SET_MENUS = [
         },
         has_options: true,
         options: [
-          {
-            option_title: { vi: "Lựa chọn Biển", en: "Ocean Option", fr: "Option Mer" },
-            name: {
-              fr: "Carpaccio de Thon de Nha Trang — Yuzu, Kumquat, Sel marin de Bà Rịa",
-              vi: "Carpaccio cá ngừ Nha Trang — yuzu, tắc, muối biển Bà Rịa",
-              en: "Nha Trang tuna carpaccio — yuzu, kumquat, Bà Rịa sea salt"
-            },
-            allergens: ["FISH", "SULPHITES"],
-            note: {
-              vi: "Có chứa nguyên liệu thô",
-              en: "Contains raw ingredients",
-              fr: "Contient des ingrédients crus"
-            },
-            wine: "Pascal Jolivet « Attitude » Sauvignon Blanc · Loire"
-          },
-          {
-            option_title: { vi: "Lựa chọn Biển Premium", en: "Premium Ocean Option", fr: "Option Mer Premium" },
-            name: {
-              fr: "Tartare de Saint-Jacques au Caviar d'Aquitaine",
-              vi: "Tartare sò điệp Hokkaido — caviar Aquitaine",
-              en: "Hokkaido scallop tartare — French Aquitaine caviar"
-            },
-            allergens: ["MOLLUSCS", "FISH", "MILK", "SULPHITES"],
-            note: {
-              vi: "Có chứa nguyên liệu thô",
-              en: "Contains raw ingredients",
-              fr: "Contient des ingrédients crus"
-            },
-            wine: "Champagne Taittinger Brut Réserve · Champagne"
-          },
-          {
-            option_title: { vi: "Lựa chọn Thực vật", en: "Vegetable Option", fr: "Option Végétale" },
-            name: {
-              fr: "Expression Végétale de Đà Lạt — Avocat Hass, Émulsion d'Herbes",
-              vi: "Rau củ Đà Lạt theo mùa — bơ Hass — nhũ tương thảo mộc",
-              en: "Đà Lạt seasonal vegetables — Hass avocado — herb emulsion"
-            },
-            allergens: ["MILK"],
-            note: {
-              vi: "Món chay · Có thể chuẩn bị thuần chay · Có thể chuẩn bị không gluten",
-              en: "Vegetarian · Vegan available · Gluten-free available",
-              fr: "Végétarien · Option végane disponible · Option sans gluten disponible"
-            },
-            wine: "M. Chapoutier « Belleruche » Côtes du Rhône Blanc · Rhône"
-          }
+          { option_title: { vi: "Lựa chọn Biển", en: "Ocean Option", fr: "Option Mer" }, ...DISHES.carpaccio_thon },
+          { option_title: { vi: "Lựa chọn Biển Premium", en: "Premium Ocean Option", fr: "Option Mer Premium" }, ...DISHES.tartare_saint_jacques },
+          { option_title: { vi: "Lựa chọn Thực vật", en: "Vegetable Option", fr: "Option Végétale" }, ...DISHES.expression_vegetale }
         ]
       },
       {
@@ -195,31 +376,8 @@ const SET_MENUS = [
         },
         has_options: true,
         options: [
-          {
-            option_title: { vi: "Lựa chọn Biển", en: "Ocean Option", fr: "Option Mer" },
-            name: {
-              fr: "Bisque de Crevettes de Nha Trang — Crème légère au Cognac",
-              vi: "Súp bisque tôm Nha Trang — kem Cognac nhẹ",
-              en: "Nha Trang shrimp bisque — light Cognac cream"
-            },
-            allergens: ["CRUSTACEANS", "MILK", "SULPHITES"],
-            wine: "Concha y Toro « Marqués de Casa Concha » Chardonnay · Limarí"
-          },
-          {
-            option_title: { vi: "Lựa chọn Thực vật", en: "Vegetable Option", fr: "Option Végétale" },
-            name: {
-              fr: "Velouté de Champignons de Tam Đảo — Infusion de sous-bois",
-              vi: "Súp nấm rừng Tam Đảo — hương rừng tinh tế",
-              en: "Tam Đảo wild mushroom velouté — forest aromas"
-            },
-            allergens: ["MILK"],
-            note: {
-              vi: "Món chay · Có thể chuẩn bị không gluten",
-              en: "Vegetarian · Gluten-free available",
-              fr: "Végétarien · Option sans gluten disponible"
-            },
-            wine: "Louis Latour Bourgogne Pinot Noir · Bourgogne"
-          }
+          { option_title: { vi: "Lựa chọn Biển", en: "Ocean Option", fr: "Option Mer" }, ...DISHES.bisque_crevettes },
+          { option_title: { vi: "Lựa chọn Thực vật", en: "Vegetable Option", fr: "Option Végétale" }, ...DISHES.veloute_champignons }
         ]
       },
       {
@@ -231,37 +389,9 @@ const SET_MENUS = [
         },
         has_options: true,
         options: [
-          {
-            option_title: { vi: "Lựa chọn Ký thác", en: "Signature Option", fr: "Option Signature" },
-            name: {
-              fr: "Cabillaud Noir Mariné au Miso — Beurre noisette, Légumes verts",
-              vi: "Cá tuyết đen ướp miso — bơ nâu — rau xanh theo mùa",
-              en: "Miso-marinated black cod — brown butter — seasonal greens"
-            },
-            allergens: ["FISH", "SOYA", "MILK", "SULPHITES"],
-            wine: "Louis Latour Pouilly-Fuissé · Mâconnais"
-          },
-          {
-            option_title: { vi: "Lựa chọn Cổ điển", en: "Classic Option", fr: "Option Classique" },
-            name: {
-              fr: "Bar du Vietnam Poêlé — Beurre blanc, Note d'agrumes",
-              vi: "Cá vược Việt Nam áp chảo — beurre blanc — điểm chua thanh",
-              en: "Pan-seared Vietnamese seabass — beurre blanc — citrus note"
-            },
-            allergens: ["FISH", "MILK", "SULPHITES"],
-            wine: "Pascal Jolivet « Attitude » Sauvignon Blanc · Loire"
-          },
-          {
-            option_title: { vi: "Lựa chọn Thượng hạng", en: "Premium Option", fr: "Option Premium" },
-            name: {
-              fr: "Langoustine Rôtie — Beurre noisette, Cuisson précise",
-              vi: "Tôm hùm baby áp chảo — bơ nâu — kiểm soát nhiệt chính xác",
-              en: "Roasted langoustine — brown butter — precise cuisson"
-            },
-            allergens: ["CRUSTACEANS", "MILK", "SULPHITES"],
-            supplement_key: "supp_premium",
-            wine: "Champagne Taittinger Brut Réserve · Champagne"
-          }
+          { option_title: { vi: "Lựa chọn Ký thác", en: "Signature Option", fr: "Option Signature" }, ...DISHES.cabillaud_miso },
+          { option_title: { vi: "Lựa chọn Cổ điển", en: "Classic Option", fr: "Option Classique" }, ...DISHES.bar_poele },
+          { option_title: { vi: "Lựa chọn Thượng hạng", en: "Premium Option", fr: "Option Premium" }, ...DISHES.langoustine_rotie }
         ]
       },
       {
@@ -272,18 +402,7 @@ const SET_MENUS = [
           fr: "Intermezzo"
         },
         has_options: false,
-        name: {
-          fr: "Sorbet de Fruits Vietnamiens de Saison — Herbes fraîches",
-          vi: "Sorbet trái cây Việt Nam theo mùa — thảo mộc tươi",
-          en: "Seasonal Vietnamese fruit sorbet — fresh herbs"
-        },
-        allergens: [],
-        note: {
-          vi: "Thuần chay · Không chứa gluten",
-          en: "Vegan · Gluten-free",
-          fr: "Végane · Sans gluten"
-        },
-        wine: "Pierre Larousse Sparkling Brut · Vin de France"
+        ...DISHES.sorbet_fruits
       },
       {
         number: "V",
@@ -294,63 +413,10 @@ const SET_MENUS = [
         },
         has_options: true,
         options: [
-          {
-            option_title: { vi: "Lựa chọn Gia cầm", en: "Poultry Option", fr: "Option Volaille" },
-            name: {
-              fr: "Magret de Canard du Vietnam — Compote de Prunes de Sapa, Jus au Madère",
-              vi: "Lườn vịt Việt Nam — mứt mận Sapa — sốt Madère",
-              en: "Vietnamese duck breast — Sapa plum compote — Madeira jus"
-            },
-            allergens: ["SULPHITES"],
-            note: {
-              vi: "Có thể chuẩn bị không gluten",
-              en: "Gluten-free available",
-              fr: "Option sans gluten disponible"
-            },
-            wine: "Louis Latour Bourgogne Pinot Noir · Bourgogne"
-          },
-          {
-            option_title: { vi: "Lựa chọn Thịt cừu", en: "Lamb Option", fr: "Option Agneau" },
-            name: {
-              fr: "Carré d'Agneau aux Herbes Vietnamiennes — Lentilles du Puy, Céleri-rave",
-              vi: "Sườn cừu nướng vỏ thảo mộc Việt — đậu Le Puy — củ cần tây",
-              en: "Herb-crusted lamb rack — Le Puy lentils — celeriac"
-            },
-            allergens: ["MILK", "SULPHITES"],
-            note: {
-              vi: "Có thể chuẩn bị không gluten",
-              en: "Gluten-free available",
-              fr: "Option sans gluten disponible"
-            },
-            supplement_key: "supp_agneau",
-            wine: "M. Chapoutier « Les Meysonniers » Crozes-Hermitage · Rhône"
-          },
-          {
-            option_title: { vi: "Lựa chọn Ký thác", en: "Signature Option", fr: "Option Signature" },
-            name: {
-              fr: "Wellington de Buffle du Vietnam — Duxelles, Jus au poivre Phú Quốc",
-              vi: "Wellington thịt trâu Việt Nam — sốt tiêu Phú Quốc",
-              en: "Vietnamese buffalo Wellington — mushroom duxelles — Phú Quốc pepper jus"
-            },
-            allergens: ["GLUTEN", "MILK", "EGGS", "SULPHITES"],
-            wine: "Château Haut-Rocher Saint-Émilion Grand Cru · Bordeaux"
-          },
-          {
-            option_title: { vi: "Lựa chọn Wagyu", en: "Wagyu Option", fr: "Option Wagyu" },
-            name: {
-              fr: "Bœuf Wagyu MBS 6–7 — Topinambour, Betterave Chioggia",
-              vi: "Bò Wagyu MBS 6–7 — atisô Jerusalem — củ dền Chioggia",
-              en: "Wagyu beef MBS 6–7 — Jerusalem artichoke — Chioggia beetroot"
-            },
-            allergens: ["MILK", "SULPHITES"],
-            note: {
-              vi: "Có thể chuẩn bị không gluten",
-              en: "Gluten-free available",
-              fr: "Option sans gluten disponible"
-            },
-            supplement_key: "supp_wagyu",
-            wine: "Mouton Cadet Réserve Pauillac · Pauillac"
-          }
+          { option_title: { vi: "Lựa chọn Gia cầm", en: "Poultry Option", fr: "Option Volaille" }, ...DISHES.magret_canard },
+          { option_title: { vi: "Lựa chọn Thịt cừu", en: "Lamb Option", fr: "Option Agneau" }, ...DISHES.carre_agneau },
+          { option_title: { vi: "Lựa chọn Ký thác", en: "Signature Option", fr: "Option Signature" }, ...DISHES.wellington_buffle },
+          { option_title: { vi: "Lựa chọn Wagyu", en: "Wagyu Option", fr: "Option Wagyu" }, ...DISHES.boeuf_wagyu }
         ]
       },
       {
@@ -361,18 +427,7 @@ const SET_MENUS = [
           fr: "Fromages"
         },
         has_options: false,
-        name: {
-          fr: "Sélection de Fromages Français Affinés — Trois choix du jour",
-          vi: "Tuyển chọn phô mai Pháp ủ chín — ba loại trong ngày",
-          en: "Selection of mature French cheeses — three of the day"
-        },
-        allergens: ["MILK", "SULPHITES"],
-        note: {
-          vi: "Có thể chứa: hạt cứng (trang trí)",
-          en: "May contain: tree nuts (garnish)",
-          fr: "Peut contenir : fruits à coque (garniture)"
-        },
-        wine: "Mouton Cadet Sauternes · Sauternes"
+        ...DISHES.fromages_affinés
       },
       {
         number: "VII",
@@ -383,41 +438,9 @@ const SET_MENUS = [
         },
         has_options: true,
         options: [
-          {
-            option_title: { vi: "Lựa chọn Soufflé", en: "Soufflé Option", fr: "Option Soufflé" },
-            name: {
-              fr: "Soufflé Chaud du Moment — Glace Vanille de Phú Quốc",
-              vi: "Soufflé nóng theo mùa — kem vani Phú Quốc",
-              en: "Warm seasonal soufflé — Phú Quốc vanilla ice cream"
-            },
-            allergens: ["GLUTEN", "MILK", "EGGS"],
-            wine: "Mouton Cadet Sauternes 37,5 cl · Sauternes"
-          },
-          {
-            option_title: { vi: "Lựa chọn Sô-cô-la", en: "Chocolate Option", fr: "Option Chocolat" },
-            name: {
-              fr: "Chocolat du Vietnam — Contraste d'Agrumes",
-              vi: "Sô-cô-la Việt Nam — đối vị cam chanh",
-              en: "Vietnamese chocolate — citrus contrast"
-            },
-            allergens: ["MILK", "EGGS"],
-            note: {
-              vi: "Có thể chứa: hạt cứng, đậu nành (sô-cô-la)",
-              en: "May contain: tree nuts, soy (chocolate)",
-              fr: "Peut contenir : fruits à coque, soja (chocolat)"
-            },
-            wine: "Talò Primitivo di Manduria « San Marzano » · Puglia"
-          },
-          {
-            option_title: { vi: "Lựa chọn Vani", en: "Vanilla Option", fr: "Option Vanille" },
-            name: {
-              fr: "Crème Brûlée à la Vanille de Phú Quốc — Caramel croustillant",
-              vi: "Crème brûlée vani Phú Quốc — lớp caramel giòn",
-              en: "Phú Quốc vanilla crème brûlée — crisp caramel"
-            },
-            allergens: ["MILK", "EGGS"],
-            wine: "Mouton Cadet Sauternes · Sauternes"
-          }
+          { option_title: { vi: "Lựa chọn Soufflé", en: "Soufflé Option", fr: "Option Soufflé" }, ...DISHES.souffle_chaud },
+          { option_title: { vi: "Lựa chọn Sô-cô-la", en: "Chocolate Option", fr: "Option Chocolat" }, ...DISHES.chocolat_vietnam },
+          { option_title: { vi: "Lựa chọn Vani", en: "Vanilla Option", fr: "Option Vanille" }, ...DISHES.creme_brulee }
         ]
       }
     ]
@@ -454,18 +477,8 @@ const SET_MENUS = [
           en: "Cold Starter",
           fr: "Entrée Froide"
         },
-        name: {
-          fr: "Carpaccio de Thon de Nha Trang — Yuzu, Kumquat, Sel marin de Bà Rịa",
-          vi: "Carpaccio cá ngừ Nha Trang — yuzu, tắc, muối biển Bà Rịa",
-          en: "Nha Trang tuna carpaccio — yuzu, kumquat, Bà Rịa sea salt"
-        },
-        allergens: ["FISH", "SULPHITES"],
-        note: {
-          vi: "Có chứa nguyên liệu thô",
-          en: "Contains raw ingredients",
-          fr: "Contient des ingrédients crus"
-        },
-        wine: "Pascal Jolivet « Attitude » Sauvignon Blanc · Loire"
+        has_options: false,
+        ...DISHES.carpaccio_thon
       },
       {
         number: "II",
@@ -474,18 +487,8 @@ const SET_MENUS = [
           en: "Soup",
           fr: "Soupe"
         },
-        name: {
-          fr: "Velouté de Champignons de Tam Đảo — Infusion de sous-bois",
-          vi: "Súp nấm rừng Tam Đảo — hương rừng tinh tế",
-          en: "Tam Đảo wild mushroom velouté — forest aromas"
-        },
-        allergens: ["MILK"],
-        note: {
-          vi: "Món chay · Có thể chuẩn bị không gluten",
-          en: "Vegetarian · Gluten-free available",
-          fr: "Végétarien · Option sans gluten disponible"
-        },
-        wine: "Louis Latour Bourgogne Pinot Noir · Bourgogne"
+        has_options: false,
+        ...DISHES.veloute_champignons
       },
       {
         number: "III",
@@ -494,13 +497,8 @@ const SET_MENUS = [
           en: "Signature Fish",
           fr: "Poisson Signature"
         },
-        name: {
-          fr: "Cabillaud Noir Mariné au Miso — Beurre noisette, Légumes verts",
-          vi: "Cá tuyết đen ướp miso — bơ nâu — rau xanh theo mùa",
-          en: "Miso-marinated black cod — brown butter — seasonal greens"
-        },
-        allergens: ["FISH", "SOYA", "MILK", "SULPHITES"],
-        wine: "Louis Latour Pouilly-Fuissé · Mâconnais"
+        has_options: false,
+        ...DISHES.cabillaud_miso
       },
       {
         number: "IV",
@@ -509,13 +507,8 @@ const SET_MENUS = [
           en: "Signature Meat",
           fr: "Viande Signature"
         },
-        name: {
-          fr: "Wellington de Buffle du Vietnam — Duxelles, Jus au poivre Phú Quốc",
-          vi: "Wellington thịt trâu Việt Nam — sốt tiêu Phú Quốc",
-          en: "Vietnamese buffalo Wellington — mushroom duxelles — Phú Quốc pepper jus"
-        },
-        allergens: ["GLUTEN", "MILK", "EGGS", "SULPHITES"],
-        wine: "Château Haut-Rocher Saint-Émilion Grand Cru · Bordeaux"
+        has_options: false,
+        ...DISHES.wellington_buffle
       },
       {
         number: "V",
@@ -524,18 +517,8 @@ const SET_MENUS = [
           en: "Dessert",
           fr: "Dessert"
         },
-        name: {
-          fr: "Chocolat du Vietnam — Contraste d'Agrumes",
-          vi: "Sô-cô-la Việt Nam — đối vị cam chanh",
-          en: "Vietnamese chocolate — citrus contrast"
-        },
-        allergens: ["MILK", "EGGS"],
-        note: {
-          vi: "Có thể chứa: hạt cứng, đậu nành (sô-cô-la)",
-          en: "May contain: tree nuts, soy (chocolate)",
-          fr: "Peut contenir : fruits à coque, soja (chocolat)"
-        },
-        wine: "Talò Primitivo di Manduria « San Marzano » · Puglia"
+        has_options: false,
+        ...DISHES.chocolat_vietnam
       }
     ]
   },
@@ -559,7 +542,7 @@ const SET_MENUS = [
     price_info: {
       vi: "Từ 1.600.000 đ",
       en: "From 1,600,000 VND",
-      fr: "À partir de 1 600 000 VND"
+      fr: "À partir de 2 400 000 VND"
     },
     color: "from-rose-950/30 border-rose-500/25",
     is_choice_based: false,
@@ -571,18 +554,8 @@ const SET_MENUS = [
           en: "Cold Starter",
           fr: "Entrée Froide"
         },
-        name: {
-          fr: "Expression Végétale de Đà Lạt — Avocat Hass, Émulsion d'Herbes",
-          vi: "Rau củ Đà Lạt theo mùa — bơ Hass — nhũ tương thảo mộc",
-          en: "Đà Lạt seasonal vegetables — Hass avocado — herb emulsion"
-        },
-        allergens: ["MILK"],
-        note: {
-          vi: "Món chay · Có thể chuẩn bị thuần chay · Có thể chuẩn bị không gluten",
-          en: "Vegetarian · Vegan available · Gluten-free available",
-          fr: "Végétarien · Option végane disponible · Option sans gluten disponible"
-        },
-        wine: "M. Chapoutier « Belleruche » Côtes du Rhône Blanc · Rhône"
+        has_options: false,
+        ...DISHES.expression_vegetale
       },
       {
         number: "II",
@@ -591,18 +564,8 @@ const SET_MENUS = [
           en: "Soup",
           fr: "Soupe"
         },
-        name: {
-          fr: "Velouté de Champignons de Tam Đảo — Infusion de sous-bois",
-          vi: "Súp nấm rừng Tam Đảo — hương rừng tinh tế",
-          en: "Tam Đảo wild mushroom velouté — forest aromas"
-        },
-        allergens: ["MILK"],
-        note: {
-          vi: "Món chay · Có thể chuẩn bị không gluten",
-          en: "Vegetarian · Gluten-free available",
-          fr: "Végétarien · Option sans gluten disponible"
-        },
-        wine: "Louis Latour Bourgogne Pinot Noir · Bourgogne"
+        has_options: false,
+        ...DISHES.veloute_champignons
       },
       {
         number: "III",
@@ -611,18 +574,8 @@ const SET_MENUS = [
           en: "Signature Main",
           fr: "Plat Signature"
         },
-        name: {
-          fr: "Risotto à la Truffe et Champignons de Tam Đảo — Beurre Échiré, Parmesan affiné 24 mois",
-          vi: "Risotto nấm cục và nấm rừng Tam Đảo — bơ Échiré — parmesan ủ 24 tháng",
-          en: "Truffle risotto with Tam Đảo wild mushrooms — Échiré butter — 24-month Parmesan"
-        },
-        allergens: ["MILK", "SULPHITES"],
-        note: {
-          vi: "Món chay · Có thể chuẩn bị không gluten",
-          en: "Vegetarian · Gluten-free available",
-          fr: "Végétarien · Option sans gluten disponible"
-        },
-        wine: "Louis Latour Bourgogne Pinot Noir · Bourgogne"
+        has_options: false,
+        ...DISHES.risotto_truffe
       },
       {
         number: "IV",
@@ -631,13 +584,8 @@ const SET_MENUS = [
           en: "Dessert",
           fr: "Dessert"
         },
-        name: {
-          fr: "Soufflé Chaud du Moment — Glace Vanille de Phú Quốc",
-          vi: "Soufflé nóng theo mùa — kem vani Phú Quốc",
-          en: "Warm seasonal soufflé — Phú Quốc vanilla ice cream"
-        },
-        allergens: ["GLUTEN", "MILK", "EGGS"],
-        wine: "Mouton Cadet Sauternes 37,5 cl · Sauternes"
+        has_options: false,
+        ...DISHES.souffle_chaud
       }
     ]
   }
