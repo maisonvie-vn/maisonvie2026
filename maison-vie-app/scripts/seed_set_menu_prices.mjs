@@ -28,6 +28,7 @@ const PRICES_DATA = [
   { id: 'd0000001-e000-4000-b000-000000000013', name: { en: 'vegetarian_services_2', vi: 'Giá chay 2 món', fr: 'Prix végétarien 2 services' }, price: 1600000 },
   { id: 'd0000001-e000-4000-b000-000000000014', name: { en: 'vegetarian_services_3', vi: 'Giá chay 3 món', fr: 'Prix végétarien 3 services' }, price: 2200000 },
   { id: 'd0000001-e000-4000-b000-000000000015', name: { en: 'vegetarian_services_4', vi: 'Giá chay 4 món', fr: 'Prix végétarien 4 services' }, price: 2800000 },
+  { id: 'd0000001-e000-4000-b000-000000000016', name: { en: 'business_lunch_price', vi: 'Giá Menu d\'Affaires', fr: 'Prix Menu d\'Affaires' }, price: 890000 },
 ];
 
 async function seed() {

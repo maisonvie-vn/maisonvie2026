@@ -563,6 +563,93 @@ const DISHES = {
 
 const SET_MENUS = [
   {
+    id: "affaires",
+    title: {
+      vi: "Menu d'Affaires",
+      en: "Menu d'Affaires",
+      fr: "Menu d'Affaires",
+      ja: "ビジネスランチメニュー",
+      ko: "비즈니스 런치 (Menu d'Affaires)",
+      hk: "商務午市套餐"
+    },
+    subtitle: {
+      vi: "Thực đơn trưa từ Thứ 2 đến Thứ 6 · 11:30 – 14:30",
+      en: "Weekday business lunch · Monday to Friday · 11:30 – 14:30",
+      fr: "Déjeuner d'affaires du lundi au vendredi · 11h30 – 14h30",
+      ja: "平日限定ランチコース · 月曜〜金曜 · 11:30 – 14:30",
+      ko: "주중 비즈니스 점심 코스 · 월~금요일 · 11:30 – 14:30",
+      hk: "商務午市套餐 · 星期一至五 · 11:30 – 14:30"
+    },
+    desc: {
+      vi: "Trải nghiệm bữa trưa fine dining với 3 món tự chọn theo mùa. Bao gồm nước khoáng và bánh mì thủ công của nhà hàng.",
+      en: "Experience a fine dining business lunch with 3 courses of your choice from our seasonal menu. Includes mineral water and house-baked bread.",
+      fr: "Savourez un déjeuner d'affaires gastronomique en 3 services au choix issus de notre carte de saison. Eau minérale et pain artisanal maison inclus.",
+      ja: "季節のフランス料理メニューから厳選された3品で、洗練されたビジネスランチをご堪能ください。ミネラルウォーターと自家製ブレッドが含まれています。",
+      ko: "계절별 프렌치 메뉴에서 엄선한 3코스로 품격 있는 비즈니스 점심 식사를 즐겨보세요. 미네랄 워터와 매장에서 직접 구운 수제 빵이 제공됩니다.",
+      hk: "品味由法式時令菜單中精選的 3 道菜商務午宴，套餐已包含礦泉水及自家烘焙的手工麵包。"
+    },
+    price_info: {
+      vi: "890.000 đ",
+      en: "890,000 VND",
+      fr: "890 000 VND",
+      ja: "890,000 VND",
+      ko: "890,000 VND",
+      hk: "890,000 VND"
+    },
+    color: "from-blue-950/20 border-blue-500/15",
+    is_choice_based: true,
+    courses: [
+      {
+        number: "I",
+        type: {
+          vi: "Entrée (Khai vị - Chọn 1)",
+          en: "Starter (Choose 1)",
+          fr: "Entrée (1 au choix)",
+          ja: "前菜 (1品選択)",
+          ko: "전채 요리 (1가지 선택)",
+          hk: "精選前菜 (任選其一)"
+        },
+        has_options: true,
+        options: [
+          { option_title: { vi: "Lựa chọn Biển", en: "Ocean Option", fr: "Option Mer", ja: "海の恵み", ko: "시푸드 선택", hk: "海鮮選擇" }, ...DISHES.carpaccio_thon },
+          { option_title: { vi: "Lựa chọn Thực vật", en: "Vegetable Option", fr: "Option Végétale", ja: "大地の恵み（野菜）", ko: "베지터블 선택", hk: "蔬食選擇" }, ...DISHES.expression_vegetale }
+        ]
+      },
+      {
+        number: "II",
+        type: {
+          vi: "Plat Principal (Món chính - Chọn 1)",
+          en: "Main Course (Choose 1)",
+          fr: "Plat Principal (1 au choix)",
+          ja: "メインディッシュ (1品選択)",
+          ko: "메인 요리 (1가지 선택)",
+          hk: "經典主菜 (任選其一)"
+        },
+        has_options: true,
+        options: [
+          { option_title: { vi: "Cá vược áp chảo", en: "Pan-Seared Seabass", fr: "Bar Poêlé", ja: "スズキのポワレ", ko: "농어 구이", hk: "香煎海鱸魚" }, ...DISHES.bar_poele },
+          { option_title: { vi: "Lườn vịt áp chảo", en: "Duck Breast", fr: "Magret de Canard", ja: "鴨胸肉のロースト", ko: "오리 가슴살 구이", hk: "香煎鴨胸" }, ...DISHES.magret_canard }
+        ]
+      },
+      {
+        number: "III",
+        type: {
+          vi: "Dessert (Tráng miệng - Chọn 1)",
+          en: "Dessert (Choose 1)",
+          fr: "Dessert (1 au choix)",
+          ja: "デザート (1品選択)",
+          ko: "디저트 (1가지 선택)",
+          hk: "完美甜點 (任選其一)"
+        },
+        has_options: true,
+        options: [
+          { option_title: { vi: "Lựa chọn Vani", en: "Vanilla Option", fr: "Option Vanille", ja: "ヴァニラ", ko: "바닐라 선택", hk: "雲霓拿選擇" }, ...DISHES.creme_brulee },
+          { option_title: { vi: "Lựa chọn Sô-cô-la", en: "Chocolate Option", fr: "Option Chocolat", ja: "チョコレート", ko: "초콜릿 선택", hk: "朱古力選擇" }, ...DISHES.chocolat_vietnam }
+        ]
+      }
+    ]
+  },
+  {
     id: "degustation",
     title: {
       vi: "Menu Dégustation",
@@ -910,6 +997,9 @@ const SET_MENUS = [
 ];
 
 const DEFAULT_PRICES = {
+  affaires: {
+    price: 890000
+  },
   degustation: {
     services_3: 2400000,
     services_4: 3000000,
@@ -941,7 +1031,7 @@ function SetMenuContent() {
 
   const [selectedAllergens, setSelectedAllergens] = useState([]);
   const [dbWines, setDbWines] = useState([]);
-  const [selectedMenu, setSelectedMenu] = useState("degustation");
+  const [selectedMenu, setSelectedMenu] = useState("affaires");
   const [prices, setPrices] = useState(DEFAULT_PRICES);
   
   // Booking Form State
@@ -970,7 +1060,9 @@ function SetMenuContent() {
           const newPrices = JSON.parse(JSON.stringify(DEFAULT_PRICES));
           data.forEach(item => {
             const key = item.name?.en || item.name;
-            if (key.startsWith("degustation_")) {
+            if (key === "business_lunch_price") {
+              newPrices.affaires.price = Number(item.price_dine_in);
+            } else if (key.startsWith("degustation_")) {
               const subKey = key.replace("degustation_", "");
               newPrices.degustation[subKey] = Number(item.price_dine_in);
             } else if (key === "signature_price") {
@@ -1311,6 +1403,20 @@ function SetMenuContent() {
                             <div>
                               {t.veganNotice}
                             </div>
+                          </div>
+                        </div>
+                      ) : menu.id === "affaires" ? (
+                        <div className="flex flex-col gap-1 mt-4">
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-3xl font-bold font-luxury text-gold-500">
+                              {formatCurrency(prices.affaires.price)}
+                            </span>
+                            <span className="text-[10px] text-stone-500 uppercase tracking-widest">
+                              {t.perGuest}
+                            </span>
+                          </div>
+                          <div className="text-[10px] text-stone-500 italic mt-1 font-sans border-t border-white/5 pt-2">
+                            {t.vatDisclaimer}
                           </div>
                         </div>
                       ) : (
