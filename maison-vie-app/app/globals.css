@@ -16,19 +16,19 @@
   --color-gold-900: #543E19;
   --color-gold-950: #38270E;
   
-  --color-dark-50: #2C2C2C;
-  --color-dark-100: #222222;
-  --color-dark-200: #1C1C1C;
-  --color-dark-300: #161616;
-  --color-dark-400: #111111;
-  --color-dark-500: #0B0B0B; /* Deep Black Background */
-  --color-dark-600: #080808;
-  --color-dark-700: #050505;
-  --color-dark-900: #020202;
+  --color-dark-50: #516268;
+  --color-dark-100: #26414b;
+  --color-dark-200: #1e353d;
+  --color-dark-300: #172a30;
+  --color-dark-400: #0f1d22;
+  --color-dark-500: #0b1315; /* Deep Moss Green Background */
+  --color-dark-600: #090f11;
+  --color-dark-700: #070b0c;
+  --color-dark-900: #050809;
 }
 
 :root {
-  --background: #0B0B0B;
+  --background: #0b1315;
   --foreground: #F5F5F4;
   --gold: #C5A55A;
   --gold-glow: rgba(197, 165, 90, 0.15);
@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
 }
 
 .glassmorphism {
-  background: rgba(17, 17, 17, 0.7);
+  background: rgba(15, 29, 34, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.03);

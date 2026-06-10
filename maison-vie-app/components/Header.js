@@ -177,7 +177,7 @@ export default function Header({ lang = "vi", setLang }) {
         </div>
 
         {/* DESKTOP NAVIGATION */}
-        <nav className="hidden md:flex items-center space-x-8 text-[12px] uppercase tracking-widest font-semibold text-stone-300">
+        <nav className="hidden md:flex items-center space-x-8 text-[14px] uppercase tracking-widest font-semibold text-stone-300">
           
           {/* Trang Chủ */}
           <button 
@@ -198,19 +198,19 @@ export default function Header({ lang = "vi", setLang }) {
             <div className="absolute left-1/2 -translate-x-1/2 mt-1 w-48 glassmorphism border border-white/10 rounded shadow-2xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
               <button
                 onClick={() => handleNavigation("/menu")}
-                className={`w-full text-left px-5 py-3 text-[11px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/menu" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
+                className={`w-full text-left px-5 py-3 text-[13px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/menu" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
               >
                 {t.alacarte}
               </button>
               <button
                 onClick={() => handleNavigation("/menu/set-menu")}
-                className={`w-full text-left px-5 py-3 text-[11px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/menu/set-menu" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
+                className={`w-full text-left px-5 py-3 text-[13px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/menu/set-menu" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
               >
                 {t.setmenu}
               </button>
               <button
                 onClick={() => handleNavigation("/menu/drinks")}
-                className={`w-full text-left px-5 py-3 text-[11px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/menu/drinks" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
+                className={`w-full text-left px-5 py-3 text-[13px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/menu/drinks" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
               >
                 {t.drinks}
               </button>
@@ -236,31 +236,31 @@ export default function Header({ lang = "vi", setLang }) {
             <div className="absolute left-1/2 -translate-x-1/2 mt-1 w-56 glassmorphism border border-white/10 rounded shadow-2xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
               <button
                 onClick={() => handleNavigation("/offers")}
-                className={`w-full text-left px-5 py-3 text-[11px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/offers" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
+                className={`w-full text-left px-5 py-3 text-[13px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/offers" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
               >
                 {t.offers}
               </button>
               <button
                 onClick={() => handleNavigation("/upcoming-events")}
-                className={`w-full text-left px-5 py-3 text-[11px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/upcoming-events" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
+                className={`w-full text-left px-5 py-3 text-[13px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/upcoming-events" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
               >
                 {t.events}
               </button>
               <button
                 onClick={() => handleNavigation("/partners")}
-                className={`w-full text-left px-5 py-3 text-[11px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/partners" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
+                className={`w-full text-left px-5 py-3 text-[13px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/partners" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
               >
                 {t.partners}
               </button>
               <button
                 onClick={() => handleNavigation("/membership")}
-                className={`w-full text-left px-5 py-3 text-[11px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/membership" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
+                className={`w-full text-left px-5 py-3 text-[13px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/membership" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
               >
                 {t.membership}
               </button>
               <button
                 onClick={() => handleNavigation("/gallery")}
-                className={`w-full text-left px-5 py-3 text-[11px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/gallery" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
+                className={`w-full text-left px-5 py-3 text-[13px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/gallery" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
               >
                 {t.gallery}
               </button>
@@ -291,7 +291,7 @@ export default function Header({ lang = "vi", setLang }) {
           <div className="relative">
             <button 
               onClick={() => setLangDropdownOpen(!langDropdownOpen)}
-              className="flex items-center space-x-2 text-[12px] font-semibold text-stone-300 uppercase tracking-widest px-3 py-2 rounded border border-white/10 hover:border-gold-500/30 transition-premium cursor-pointer"
+              className="flex items-center space-x-2 text-[14px] font-semibold text-stone-300 uppercase tracking-widest px-3 py-2 rounded border border-white/10 hover:border-gold-500/30 transition-premium cursor-pointer"
             >
               <span>🌐 {lang}</span>
               <span className="text-[8px] text-gold-500">▼</span>
@@ -303,7 +303,7 @@ export default function Header({ lang = "vi", setLang }) {
                   <button
                     key={l}
                     onClick={() => handleLangChange(l)}
-                    className={`w-full text-left px-4 py-2.5 text-[11px] uppercase tracking-wider transition-premium block cursor-pointer ${
+                    className={`w-full text-left px-4 py-2.5 text-[13px] uppercase tracking-wider transition-premium block cursor-pointer ${
                       lang === l ? "bg-gold-500/20 text-gold-500 font-bold" : "text-stone-300 hover:bg-white/5 hover:text-stone-100"
                     }`}
                   >
@@ -321,7 +321,7 @@ export default function Header({ lang = "vi", setLang }) {
           {/* Premium CTA Button */}
           <button 
             onClick={() => handleNavigation("#booking", true)}
-            className="text-[12px] uppercase tracking-widest font-semibold bg-gold-500 text-dark-500 px-6 py-3.5 hover:bg-gold-400 hover:scale-[1.02] shadow-[0_0_15px_rgba(197,165,90,0.2)] transition-premium cursor-pointer"
+            className="text-[14px] uppercase tracking-widest font-semibold bg-gold-500 text-dark-500 px-6 py-3.5 hover:bg-gold-400 hover:scale-[1.02] shadow-[0_0_15px_rgba(197,165,90,0.2)] transition-premium cursor-pointer"
           >
             {t.booking}
           </button>
@@ -355,7 +355,7 @@ export default function Header({ lang = "vi", setLang }) {
       {/* MOBILE MENU DRAWER */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-white/5 bg-dark-400/98 backdrop-blur-lg absolute top-24 left-0 w-full z-40 max-h-[85vh] overflow-y-auto animate-fade-in shadow-2xl">
-          <div className="px-6 py-8 flex flex-col space-y-6 text-stone-300 text-sm font-semibold uppercase tracking-widest">
+          <div className="px-6 py-8 flex flex-col space-y-6 text-stone-300 text-base font-semibold uppercase tracking-widest">
             
             {/* Trang Chủ */}
             <button 
@@ -376,7 +376,7 @@ export default function Header({ lang = "vi", setLang }) {
               </button>
               
               {mobileMenuExpanded && (
-                <div className="pl-4 pt-4 flex flex-col space-y-4 text-xs tracking-wider normal-case font-medium text-stone-400">
+                <div className="pl-4 pt-4 flex flex-col space-y-4 text-sm tracking-wider normal-case font-medium text-stone-400">
                   <button 
                     onClick={() => handleNavigation("/menu")} 
                     className={`text-left py-1 hover:text-gold-500 ${pathname === "/menu" ? "text-gold-500 font-bold" : ""}`}
@@ -418,7 +418,7 @@ export default function Header({ lang = "vi", setLang }) {
               </button>
               
               {mobilePrivExpanded && (
-                <div className="pl-4 pt-4 flex flex-col space-y-4 text-xs tracking-wider normal-case font-medium text-stone-400">
+                <div className="pl-4 pt-4 flex flex-col space-y-4 text-sm tracking-wider normal-case font-medium text-stone-400">
                   <button 
                     onClick={() => handleNavigation("/offers")} 
                     className={`text-left py-1 hover:text-gold-500 ${pathname === "/offers" ? "text-gold-500 font-bold" : ""}`}
@@ -494,7 +494,7 @@ export default function Header({ lang = "vi", setLang }) {
             {/* CTA Button */}
             <button 
               onClick={() => handleNavigation("#booking", true)}
-              className="w-full text-center text-[12px] uppercase tracking-widest font-semibold bg-gold-500 text-dark-500 py-4 hover:bg-gold-400 transition-premium shadow-[0_0_15px_rgba(197,165,90,0.2)]"
+              className="w-full text-center text-[14px] uppercase tracking-widest font-semibold bg-gold-500 text-dark-500 py-4 hover:bg-gold-400 transition-premium shadow-[0_0_15px_rgba(197,165,90,0.2)]"
             >
               {t.booking}
             </button>
