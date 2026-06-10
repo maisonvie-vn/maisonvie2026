@@ -28,12 +28,12 @@ const OFFERS = [
       hk: "精緻前菜 · 經典主菜 · 完美甜點"
     },
     price: {
-      vi: "890.000 đ / khách",
-      en: "890,000 VND / guest",
-      fr: "890 000 VND / personne",
-      ja: "890,000 VND / 名様",
-      ko: "890,000 VND / 인",
-      hk: "890,000 VND / 位"
+      vi: "Từ 395.000 đ / khách",
+      en: "From 395,000 VND / guest",
+      fr: "À partir de 395 000 VND / personne",
+      ja: "395,000 VND から / 名様",
+      ko: "395,000 VND 부터 / 인",
+      hk: "395,000 VND 起 / 位"
     },
     image: "https://i.postimg.cc/Pqq4VyHp/Scallop-Carpaccio-Caviar-Lime.webp",
     color: "from-amber-950/40",
@@ -491,9 +491,9 @@ function OffersContent() {
           .eq("category", "Set Menu Price");
 
         if (!error && data && data.length > 0) {
-          const dbBusinessLunch = data.find(item => {
+           const dbBusinessLunch = data.find(item => {
             const key = item.name?.en || item.name;
-            return key === "business_lunch_price";
+            return key === "business_lunch_services_2";
           });
 
           if (dbBusinessLunch) {
@@ -504,14 +504,14 @@ function OffersContent() {
                 const formatted = new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" })
                   .format(val)
                   .replace("₫", "đ");
-                return `${formatted} / khách`;
+                return `Từ ${formatted} / khách`;
               }
-              if (locale === "fr") return `${new Intl.NumberFormat("fr-FR").format(val)} VND / personne`;
-              if (locale === "en") return `${new Intl.NumberFormat("en-US").format(val)} VND / guest`;
-              if (locale === "ja") return `${new Intl.NumberFormat("ja-JP").format(val)} VND / 名様`;
-              if (locale === "ko") return `${new Intl.NumberFormat("ko-KR").format(val)} VND / 인`;
-              if (locale === "hk") return `${new Intl.NumberFormat("zh-HK").format(val)} VND / 位`;
-              return `${new Intl.NumberFormat("vi-VN").format(val)} đ`;
+              if (locale === "fr") return `À partir de ${new Intl.NumberFormat("fr-FR").format(val)} VND / personne`;
+              if (locale === "en") return `From ${new Intl.NumberFormat("en-US").format(val)} VND / guest`;
+              if (locale === "ja") return `${new Intl.NumberFormat("ja-JP").format(val)} VND から / 名様`;
+              if (locale === "ko") return `${new Intl.NumberFormat("ko-KR").format(val)} VND 부터 / 인`;
+              if (locale === "hk") return `${new Intl.NumberFormat("zh-HK").format(val)} VND 起 / 位`;
+              return `Từ ${new Intl.NumberFormat("vi-VN").format(val)} đ`;
             };
 
             setOffersList(prev => prev.map(off => {

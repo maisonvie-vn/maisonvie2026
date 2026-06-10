@@ -28,7 +28,13 @@ const PRICES_DATA = [
   { id: 'd0000001-e000-4000-b000-000000000013', name: { en: 'vegetarian_services_2', vi: 'Giá chay 2 món', fr: 'Prix végétarien 2 services' }, price: 1600000 },
   { id: 'd0000001-e000-4000-b000-000000000014', name: { en: 'vegetarian_services_3', vi: 'Giá chay 3 món', fr: 'Prix végétarien 3 services' }, price: 2200000 },
   { id: 'd0000001-e000-4000-b000-000000000015', name: { en: 'vegetarian_services_4', vi: 'Giá chay 4 món', fr: 'Prix végétarien 4 services' }, price: 2800000 },
-  { id: 'd0000001-e000-4000-b000-000000000016', name: { en: 'business_lunch_price', vi: 'Giá Menu d\'Affaires', fr: 'Prix Menu d\'Affaires' }, price: 890000 },
+  { id: 'd0000001-e000-4000-b000-000000000016', name: { en: 'business_lunch_services_2', vi: 'Menu d\'Affaires 2 món', fr: 'Menu d\'Affaires 2 services' }, price: 395000 },
+  { id: 'd0000001-e000-4000-b000-000000000017', name: { en: 'business_lunch_services_3', vi: 'Menu d\'Affaires 3 món', fr: 'Menu d\'Affaires 3 services' }, price: 485000 },
+  { id: 'd0000001-e000-4000-b000-000000000018', name: { en: 'business_lunch_services_4', vi: 'Menu d\'Affaires 4 món', fr: 'Menu d\'Affaires 4 services' }, price: 575000 },
+  { id: 'd0000001-e000-4000-b000-000000000019', name: { en: 'business_lunch_supp_premium', vi: 'Phụ thu Bò Bourguignon', fr: 'Supplément Boeuf Bourguignon' }, price: 100000 },
+  { id: 'd0000001-e000-4000-b000-000000000020', name: { en: 'business_lunch_tea_coffee', vi: 'Phụ thu Trà hoặc Cà phê', fr: 'Supplément Thé ou Café' }, price: 45000 },
+  { id: 'd0000001-e000-4000-b000-000000000021', name: { en: 'business_lunch_wine_glass', vi: 'Ly rượu vang của Chef', fr: 'Verre de vin du chef' }, price: 160000 },
+  { id: 'd0000001-e000-4000-b000-000000000022', name: { en: 'business_lunch_wine_pairing_2', vi: 'Ghép cặp 2 ly rượu', fr: 'Accord 2 verres' }, price: 310000 },
 ];
 
 async function seed() {

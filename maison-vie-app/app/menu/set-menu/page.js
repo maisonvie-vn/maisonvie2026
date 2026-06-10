@@ -306,6 +306,179 @@ const ALLERGEN_CODES = [
 ];
 
 const DISHES = {
+  salade_poulet: {
+    name: {
+      fr: "Salade de Poulet Grillé — Pommes & Vinaigrette au Citron",
+      vi: "Salade gà nướng than — táo giòn Đà Lạt, vinaigrette chanh vàng",
+      en: "Grilled chicken salad — apple, lemon vinaigrette",
+      ja: "グリルチキンサラダ — 大叻産シャキシャキりんご、レモンドレッシング",
+      ko: "그릴드 치킨 샐러드 — 아삭한 달랏 사과, 레몬 비네그레트",
+      hk: "烤雞肉沙律 — 伴大叻蘋果及檸檬油醋汁"
+    },
+    allergens: [],
+    note: {
+      vi: "Không chứa gluten",
+      en: "Gluten-free",
+      fr: "Sans gluten",
+      ja: "グルテンフリー",
+      ko: "글루텐 프리",
+      hk: "無麩質"
+    }
+  },
+  croquettes_crevettes: {
+    name: {
+      fr: "Croquettes de Crevettes — Huile de Citronnelle",
+      vi: "Croquette tôm giòn — dầu sả thơm",
+      en: "Shrimp croquettes — lemongrass oil",
+      ja: "エビのクロケット — レモングラスオイル",
+      ko: "새우 크로켓 — 레몬그라스 오일",
+      hk: "脆炸蝦餅 — 伴香茅油"
+    },
+    allergens: ["CRUSTACEANS", "GLUTEN", "MILK"]
+  },
+  veloute_champignons_affaires: {
+    name: {
+      fr: "Velouté de Champignons de Tam Đảo — Huile d'Échalotes",
+      vi: "Súp nấm rừng Tam Đảo — dầu hành khô",
+      en: "Tam Đảo wild mushroom velouté — shallot oil",
+      ja: "タムダオ産野生キノコのヴルーテ — エシャロットオイル",
+      ko: "탐다오 야생 버섯 벨루테 — 샬롯 오일",
+      hk: "三島野菌濃湯 — 伴香蔥油"
+    },
+    allergens: ["MILK"],
+    note: {
+      vi: "Món chay · Có thể chuẩn bị không gluten",
+      en: "Vegetarian · Gluten-free available",
+      fr: "Végétarien · Option sans gluten disponible",
+      ja: "ベジタリアン · グルテンフリー対応可",
+      ko: "채식 · 글루텐 프리 요청 가능",
+      hk: "素食 · 可提供無麩質選項"
+    }
+  },
+  bisque_crevettes_affaires: {
+    name: {
+      fr: "Bisque de Crevettes de Nha Trang — Beurre noisette",
+      vi: "Bisque tôm Nha Trang — bơ nâu hạt dẻ",
+      en: "Nha Trang shrimp bisque — brown butter",
+      ja: "芽荘産エビのビスク — 焦がしバター",
+      ko: "냐짱 새우 비스크 — 브라운 버터",
+      hk: "芽莊蝦濃湯 — 伴榛果褐黃油"
+    },
+    allergens: ["CRUSTACEANS", "MILK"]
+  },
+  soupe_oignon_affaires: {
+    name: {
+      fr: "Soupe à l'Oignon Gratinée — Fromage affiné, croûton",
+      vi: "Súp hành kiểu Pháp — phô mai ủ chín, bánh mì nướng",
+      en: "French onion soup gratinée — aged cheese, crouton",
+      ja: "オニオングラタンスープ — 熟成チーズ、クルトン",
+      ko: "프렌치 어니언 스프 — 숙성 치즈, 크루통",
+      hk: "法式洋蔥焗湯 — 伴熟成芝士及脆麵包丁"
+    },
+    allergens: ["GLUTEN", "MILK", "SULPHITES"]
+  },
+  poisson_basa: {
+    name: {
+      fr: "Filet de Poisson Basa Poêlé — Purée de Chayote, Huile de rau răm",
+      vi: "Phi lê cá basa áp chảo — purée su su, dầu rau răm",
+      en: "Pan-seared basa fillet — chayote purée, Vietnamese coriander oil",
+      ja: "バサ（キャットフィッシュ）のポワレ — ハヤトウリのピューレ、ラムザムオイル",
+      ko: "바사 필레 구이 — 차요테 퓨레, 베트남 고수 오일",
+      hk: "香煎巴沙魚柳 — 伴佛手瓜泥及越南香菜油"
+    },
+    allergens: ["FISH", "MILK"],
+    note: {
+      vi: "Không chứa gluten",
+      en: "Gluten-free",
+      fr: "Sans gluten",
+      ja: "グルテンフリー",
+      ko: "글루텐 프리",
+      hk: "無麩質"
+    }
+  },
+  poulet_miso: {
+    name: {
+      fr: "Roulés de Poulet Cuisson Lente, Sauce Miso",
+      vi: "Gà cuộn nấu chậm, sốt miso",
+      en: "Slow-cooked chicken rolls, miso sauce",
+      ja: "チキンロールの低温調理 — 味噌ソース",
+      ko: "저온 조리한 치킨 롤 — 미소 소스",
+      hk: "慢煮雞肉卷 — 伴味噌醬"
+    },
+    allergens: ["SOYA", "MILK", "SULPHITES"],
+    note: {
+      vi: "Có thể chuẩn bị không gluten",
+      en: "Gluten-free available",
+      fr: "Option sans gluten disponible",
+      ja: "グルテンフリー対応可",
+      ko: "글루텐 프리 요청 가능",
+      hk: "可提供無麩質選項"
+    }
+  },
+  porc_genevoise: {
+    name: {
+      fr: "Porc Braisé à la Genevoise, Légumes Racines, Jus au Vin Blanc",
+      vi: "Thịt heo hầm phong cách Geneva, rau củ gốc, nước sốt vang trắng",
+      en: "Geneva-style braised pork, root vegetables, white wine jus",
+      ja: "豚肉のジュネーブ風煮込み — 根菜、白ワイン of ジュ",
+      ko: "제네바풍 돼지고기 찜 — 뿌리채소, 화이트 와인 소스",
+      hk: "日內瓦式燉豬肉 — 伴根莖蔬菜及白葡萄酒汁"
+    },
+    allergens: ["MILK"]
+  },
+  couscous_legumes: {
+    name: {
+      fr: "Couscous aux Légumes du Marché de Đà Lạt",
+      vi: "Couscous rau củ chợ Đà Lạt",
+      en: "Couscous with Đà Lạt market vegetables",
+      ja: "クスクス — 大叻産マーケット野菜添え",
+      ko: "쿠스쿠스 — 달랏 시장 야채 곁들임",
+      hk: "北非小米 — 伴大叻時令蔬菜"
+    },
+    allergens: ["GLUTEN"],
+    note: {
+      vi: "Món chay · Có thể chuẩn bị thuần chay",
+      en: "Vegetarian · Vegan available",
+      fr: "Végétarien · Option végane disponible",
+      ja: "ベジタリアン · ヴィーガン対応可",
+      ko: "채식 · 비건 요청 가능",
+      hk: "素食 · 可提供純素食"
+    }
+  },
+  boeuf_bourguignon: {
+    name: {
+      fr: "Bœuf Bourguignon, Tagliatelles & Champignons",
+      vi: "Bò hầm vang đỏ Burgundy, mì tagliatelle, nấm rừng",
+      en: "Beef Bourguignon, tagliatelle, mushrooms",
+      ja: "牛肉のブルギニョン — タリアテッレとキノコ",
+      ko: "비프 부르기뇽 — 탈리아텔레와 버섯",
+      hk: "紅酒燉牛肉 — 伴寬麵及野菌"
+    },
+    allergens: ["GLUTEN", "MILK", "SULPHITES"],
+    supplement_key: "supp_premium"
+  },
+  tarte_banane: {
+    name: {
+      fr: "Tartelettes à la Banane — Caramel Salé, Glace à la Noix de Coco",
+      vi: "Bánh tart chuối — caramel muối biển, kem dừa tươi",
+      en: "Banana tartlet — salted caramel, coconut ice cream",
+      ja: "バナナのタルトレット — 塩キャラメル、ココナッツアイスクリーム",
+      ko: "바나나 타르트 — 솔티드 캐러멜, 코코넛 아이스크림",
+      hk: "香蕉撻 — 伴焦糖乳酪、椰子雪糕"
+    },
+    allergens: ["GLUTEN", "MILK", "EGGS"]
+  },
+  profiteroles: {
+    name: {
+      fr: "Profiteroles — Glace Vanille & Sauce Chocolat",
+      vi: "Bánh phồng nhân kem vani — sốt sô-cô-la",
+      en: "Profiteroles — vanilla ice cream, chocolate sauce",
+      ja: "プロフィトロール — バニラアイスクリームとチョコレートソース",
+      ko: "프로피테롤 — 바닐라 아이스크림과 초콜릿 소스",
+      hk: "泡芙 — 伴香草雪糕及朱古力醬"
+    },
+    allergens: ["GLUTEN", "MILK", "EGGS"]
+  },
   carpaccio_thon: {
     name: {
       fr: "Carpaccio de Thon de Nha Trang — Yuzu, Kumquat, Sel marin de Bà Rịa",
@@ -573,28 +746,28 @@ const SET_MENUS = [
       hk: "商務午市套餐"
     },
     subtitle: {
-      vi: "Thực đơn trưa từ Thứ 2 đến Thứ 6 · 11:30 – 14:30",
-      en: "Weekday business lunch · Monday to Friday · 11:30 – 14:30",
-      fr: "Déjeuner d'affaires du lundi au vendredi · 11h30 – 14h30",
-      ja: "平日限定ランチコース · 月曜〜金曜 · 11:30 – 14:30",
-      ko: "주중 비즈니스 점심 코스 · 월~금요일 · 11:30 – 14:30",
-      hk: "商務午市套餐 · 星期一至五 · 11:30 – 14:30"
+      vi: "Thực đơn trưa từ Thứ 2 đến Thứ 6 · 11:00 – 14:00",
+      en: "Weekday business lunch · Monday to Friday · 11:00 – 14:00",
+      fr: "Déjeuner d'affaires du lundi au vendredi · 11h30 – 14h00",
+      ja: "平日限定ランチコース · 月曜〜金曜 · 11:00 – 14:00",
+      ko: "주중 비즈니스 점심 코스 · 월~금요일 · 11:00 – 14:00",
+      hk: "商務午市套餐 · 星期一至五 · 11:00 – 14:00"
     },
     desc: {
-      vi: "Trải nghiệm bữa trưa fine dining với 3 món tự chọn theo mùa. Bao gồm nước khoáng và bánh mì thủ công của nhà hàng.",
-      en: "Experience a fine dining business lunch with 3 courses of your choice from our seasonal menu. Includes mineral water and house-baked bread.",
-      fr: "Savourez un déjeuner d'affaires gastronomique en 3 services au choix issus de notre carte de saison. Eau minérale et pain artisanal maison inclus.",
-      ja: "季節のフランス料理メニューから厳選された3品で、洗練されたビジネスランチをご堪能ください。ミネラルウォーターと自家製ブレッドが含まれています。",
-      ko: "계절별 프렌치 메뉴에서 엄선한 3코스로 품격 있는 비즈니스 점심 식사를 즐겨보세요. 미네랄 워터와 매장에서 직접 구운 수제 빵이 제공됩니다.",
-      hk: "品味由法式時令菜單中精選的 3 道菜商務午宴，套餐已包含礦泉水及自家烘焙的手工麵包。"
+      vi: "Hãy tự thiết kế hành trình ẩm thực của Quý khách từ 2 đến 4 món. Phục vụ Thứ Hai - Thứ Sáu, 11:00 - 14:00.",
+      en: "Compose your gastronomic journey from 2 to 4 services. Available Monday-Friday, 11:00-14:00.",
+      fr: "Composez votre voyage gastronomique de 2 à 4 services. Disponible lundi-vendredi, 11h00-14h00.",
+      ja: "お客様の好みに合わせて2〜4品をご自由に選べるビジネスランチコース。月曜〜金曜、11:00〜14:00にご提供いたします。",
+      ko: "고객님의 취향에 따라 2가지에서 4가지 요리로 구성하는 비즈니스 점심 코스. 월~금요일, 11:00~14:00 제공됩니다.",
+      hk: "可自選 2 至 4 道菜品的商務午宴。星期一至五，11:00 - 14:00 提供。"
     },
     price_info: {
-      vi: "890.000 đ",
-      en: "890,000 VND",
-      fr: "890 000 VND",
-      ja: "890,000 VND",
-      ko: "890,000 VND",
-      hk: "890,000 VND"
+      vi: "Từ 395.000 đ",
+      en: "From 395,000 VND",
+      fr: "À partir de 395 000 VND",
+      ja: "395,000 VND から",
+      ko: "395,000 VND 부터",
+      hk: "395,000 VND 起"
     },
     color: "from-blue-950/20 border-blue-500/15",
     is_choice_based: true,
@@ -602,21 +775,39 @@ const SET_MENUS = [
       {
         number: "I",
         type: {
-          vi: "Entrée (Khai vị - Chọn 1)",
-          en: "Starter (Choose 1)",
-          fr: "Entrée (1 au choix)",
-          ja: "前菜 (1品選択)",
-          ko: "전채 요리 (1가지 선택)",
-          hk: "精選前菜 (任選其一)"
+          vi: "Entrée ou Salade (Khai vị hoặc Xa lát - Chọn 1)",
+          en: "Starter or Salad (Choose 1)",
+          fr: "Entrée ou Salade (1 au choix)",
+          ja: "前菜またはサラダ (1品選択)",
+          ko: "전채 요리 또는 샐러드 (1가지 선택)",
+          hk: "精選前菜或沙律 (任選其一)"
         },
         has_options: true,
         options: [
-          { option_title: { vi: "Lựa chọn Biển", en: "Ocean Option", fr: "Option Mer", ja: "海の恵み", ko: "시푸드 선택", hk: "海鮮選擇" }, ...DISHES.carpaccio_thon },
-          { option_title: { vi: "Lựa chọn Thực vật", en: "Vegetable Option", fr: "Option Végétale", ja: "大地の恵み（野菜）", ko: "베지터블 선택", hk: "蔬食選擇" }, ...DISHES.expression_vegetale }
+          { option_title: { vi: "Salade gà nướng", en: "Grilled chicken salad", fr: "Salade de Poulet Grillé", ja: "チキンサラダ", ko: "닭고기 샐러드", hk: "烤雞沙律" }, ...DISHES.salade_poulet },
+          { option_title: { vi: "Carpaccio cá ngừ", en: "Tuna carpaccio", fr: "Carpaccio de Thon", ja: "マグロのカルパッチョ", ko: "참치 카르파초", hk: "金槍魚薄片" }, ...DISHES.carpaccio_thon },
+          { option_title: { vi: "Croquette tôm giòn", en: "Shrimp croquettes", fr: "Croquettes de Crevettes", ja: "エビのクロケット", ko: "새우 크로켓", hk: "脆炸蝦餅" }, ...DISHES.croquettes_crevettes }
         ]
       },
       {
         number: "II",
+        type: {
+          vi: "Soupe (Súp - Chọn 1)",
+          en: "Soup (Choose 1)",
+          fr: "Soupe (1 au choix)",
+          ja: "スープ (1品選択)",
+          ko: "수프 (1가지 선택)",
+          hk: "精選湯品 (任選其一)"
+        },
+        has_options: true,
+        options: [
+          { option_title: { vi: "Súp nấm rừng", en: "Wild mushroom velouté", fr: "Velouté de Champignons", ja: "キノコのスープ", ko: "버섯 수프", hk: "野菌濃湯" }, ...DISHES.veloute_champignons_affaires },
+          { option_title: { vi: "Bisque tôm Nha Trang", en: "Shrimp bisque", fr: "Bisque de Crevettes", ja: "エビのビスク", ko: "새우 비스크", hk: "蝦濃湯" }, ...DISHES.bisque_crevettes_affaires },
+          { option_title: { vi: "Súp hành kiểu Pháp", en: "French onion soup", fr: "Soupe à l'Oignon Gratinée", ja: "オニオングラタンスープ", ko: "어니언 스프", hk: "法式洋蔥湯" }, ...DISHES.soupe_oignon_affaires }
+        ]
+      },
+      {
+        number: "III",
         type: {
           vi: "Plat Principal (Món chính - Chọn 1)",
           en: "Main Course (Choose 1)",
@@ -627,12 +818,15 @@ const SET_MENUS = [
         },
         has_options: true,
         options: [
-          { option_title: { vi: "Cá vược áp chảo", en: "Pan-Seared Seabass", fr: "Bar Poêlé", ja: "スズキのポワレ", ko: "농어 구이", hk: "香煎海鱸魚" }, ...DISHES.bar_poele },
-          { option_title: { vi: "Lườn vịt áp chảo", en: "Duck Breast", fr: "Magret de Canard", ja: "鴨胸肉のロースト", ko: "오리 가슴살 구이", hk: "香煎鴨胸" }, ...DISHES.magret_canard }
+          { option_title: { vi: "Phi lê cá basa áp chảo", en: "Pan-seared basa fillet", fr: "Poisson Basa Poêlé", ja: "バサのポワレ", ko: "메기 필레 구이", hk: "香煎巴沙魚柳" }, ...DISHES.poisson_basa },
+          { option_title: { vi: "Gà cuộn nấu chậm", en: "Slow-cooked chicken rolls", fr: "Poulet Cuisson Lente", ja: "チキンロール", ko: "치킨 롤 요리", hk: "慢煮雞肉卷" }, ...DISHES.poulet_miso },
+          { option_title: { vi: "Thịt heo hầm Geneva", en: "Geneva-style braised pork", fr: "Porc Braisé", ja: "豚肉の煮込み", ko: "돼지고기 찜", hk: "燉豬肉" }, ...DISHES.porc_genevoise },
+          { option_title: { vi: "Couscous rau củ Đà Lạt", en: "Couscous with vegetables", fr: "Couscous aux Légumes", ja: "クスクス", ko: "쿠스쿠스 요리", hk: "北非小米" }, ...DISHES.couscous_legumes },
+          { option_title: { vi: "Bò hầm vang đỏ Burgundy (Premium)", en: "Beef Bourguignon (Premium)", fr: "Bœuf Bourguignon (Premium)", ja: "ブルギニョン", ko: "비프 부르기뇽 (프리미엄)", hk: "紅酒燉牛肉" }, ...DISHES.boeuf_bourguignon }
         ]
       },
       {
-        number: "III",
+        number: "IV",
         type: {
           vi: "Dessert (Tráng miệng - Chọn 1)",
           en: "Dessert (Choose 1)",
@@ -643,13 +837,15 @@ const SET_MENUS = [
         },
         has_options: true,
         options: [
-          { option_title: { vi: "Lựa chọn Vani", en: "Vanilla Option", fr: "Option Vanille", ja: "ヴァニラ", ko: "바닐라 선택", hk: "雲霓拿選擇" }, ...DISHES.creme_brulee },
-          { option_title: { vi: "Lựa chọn Sô-cô-la", en: "Chocolate Option", fr: "Option Chocolat", ja: "チョコレート", ko: "초콜릿 선택", hk: "朱古力選擇" }, ...DISHES.chocolat_vietnam }
+          { option_title: { vi: "Bánh tart chuối", en: "Banana tartlet", fr: "Tartelettes à la Banane", ja: "バナナタルト", ko: "바나나 타르트", hk: "香蕉撻" }, ...DISHES.tarte_banane },
+          { option_title: { vi: "Bánh phồng nhân kem vani", en: "Profiteroles", fr: "Profiteroles", ja: "プロフィトロール", ko: "프로피테롤", hk: "泡芙" }, ...DISHES.profiteroles },
+          { option_title: { vi: "Crème brûlée vani Phú Quốc", en: "Phú Quốc vanilla crème brûlée", fr: "Crème Brûlée", ja: "クレームブリュレ", ko: "크림 브륄레", hk: "法式焦糖燉蛋" }, ...DISHES.creme_brulee }
         ]
       }
     ]
   },
-  {
+  
+{
     id: "degustation",
     title: {
       vi: "Menu Dégustation",
@@ -998,7 +1194,13 @@ const SET_MENUS = [
 
 const DEFAULT_PRICES = {
   affaires: {
-    price: 890000
+    services_2: 395000,
+    services_3: 485000,
+    services_4: 575000,
+    supp_premium: 100000,
+    tea_coffee: 45000,
+    wine_glass: 160000,
+    wine_pairing_2: 310000
   },
   degustation: {
     services_3: 2400000,
@@ -1060,8 +1262,9 @@ function SetMenuContent() {
           const newPrices = JSON.parse(JSON.stringify(DEFAULT_PRICES));
           data.forEach(item => {
             const key = item.name?.en || item.name;
-            if (key === "business_lunch_price") {
-              newPrices.affaires.price = Number(item.price_dine_in);
+            if (key.startsWith("business_lunch_")) {
+              const subKey = key.replace("business_lunch_", "");
+              newPrices.affaires[subKey] = Number(item.price_dine_in);
             } else if (key.startsWith("degustation_")) {
               const subKey = key.replace("degustation_", "");
               newPrices.degustation[subKey] = Number(item.price_dine_in);
@@ -1406,16 +1609,76 @@ function SetMenuContent() {
                           </div>
                         </div>
                       ) : menu.id === "affaires" ? (
-                        <div className="flex flex-col gap-1 mt-4">
-                          <div className="flex items-baseline gap-2">
-                            <span className="text-3xl font-bold font-luxury text-gold-500">
-                              {formatCurrency(prices.affaires.price)}
-                            </span>
-                            <span className="text-[10px] text-stone-500 uppercase tracking-widest">
-                              {t.perGuest}
-                            </span>
+                        <div className="space-y-4 mt-4 text-left">
+                          <span className="text-[10px] text-stone-500 uppercase tracking-widest block border-b border-white/5 pb-2 font-semibold">
+                            {t.priceByServices}
+                          </span>
+                          <div className="grid grid-cols-1 gap-y-3 text-sm font-light">
+                            <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                              <div>
+                                <div className="text-stone-300 font-semibold">2 SERVICES</div>
+                                <div className="text-[10.5px] text-stone-400 font-serif italic mt-0.5">
+                                  {lang === "vi" ? "Món chính + Tráng miệng" : lang === "fr" ? "Plat Principal + Dessert" : lang === "en" ? "Main Course + Dessert" : lang === "ja" ? "メイン + デザート" : lang === "ko" ? "메인 코스 + 디저트" : "主菜 + 甜點"}
+                                </div>
+                                <div className="text-[9.5px] text-gold-500/80 mt-1 uppercase tracking-wider">
+                                  ⏱️ {lang === "vi" ? "Phục vụ dưới 45 phút" : lang === "fr" ? "Service en 45 min" : lang === "en" ? "45-min service guarantee" : lang === "ja" ? "45分サービス保証" : lang === "ko" ? "45분 서빙 보장" : "45分鐘送餐保證"}
+                                </div>
+                              </div>
+                              <div className="text-gold-500 font-bold text-right text-base">{formatCurrency(prices.affaires.services_2)}</div>
+                            </div>
+                            
+                            <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                              <div>
+                                <div className="text-stone-300 font-semibold">3 SERVICES</div>
+                                <div className="text-[10.5px] text-stone-400 font-serif italic mt-0.5">
+                                  {lang === "vi" ? "Khai vị/Súp + Món chính + Tráng miệng" : lang === "fr" ? "Entrée/Soupe + Plat + Dessert" : lang === "en" ? "Starter/Soup + Main + Dessert" : lang === "ja" ? "前菜/スープ + メイン + デザート" : lang === "ko" ? "전채/수프 + 메인 + 디저트" : "前菜/湯品 + 主菜 + 甜點"}
+                                </div>
+                                <div className="text-[9.5px] text-gold-500/80 mt-1 uppercase tracking-wider">
+                                  ⏱️ {lang === "vi" ? "Phục vụ dưới 60 phút" : lang === "fr" ? "Service en 60 min" : lang === "en" ? "60-min service guarantee" : lang === "ja" ? "60分サービス保証" : lang === "ko" ? "60분 서빙 보장" : "60分鐘送餐保證"}
+                                </div>
+                              </div>
+                              <div className="text-gold-500 font-bold text-right text-base">{formatCurrency(prices.affaires.services_3)}</div>
+                            </div>
+
+                            <div className="flex justify-between items-center border-b border-white/5 pb-2">
+                              <div>
+                                <div className="text-stone-300 font-semibold">4 SERVICES</div>
+                                <div className="text-[10.5px] text-stone-400 font-serif italic mt-0.5">
+                                  {lang === "vi" ? "Khai vị + Súp + Món chính + Tráng miệng" : lang === "fr" ? "Entrée + Soupe + Plat + Dessert" : lang === "en" ? "Starter + Soup + Main + Dessert" : lang === "ja" ? "前菜 + スープ + メイン + デザート" : lang === "ko" ? "전채 + 수프 + 메인 + 디저트" : "前菜 + 湯品 + 主菜 + 甜點"}
+                                </div>
+                                <div className="text-[9.5px] text-gold-500/80 mt-1 uppercase tracking-wider">
+                                  ⏱️ {lang === "vi" ? "Phục vụ dưới 75 phút" : lang === "fr" ? "Service en 75 min" : lang === "en" ? "75-min service guarantee" : lang === "ja" ? "75分サービス保証" : lang === "ko" ? "75분 서빙 보장" : "75分鐘送餐保證"}
+                                </div>
+                              </div>
+                              <div className="text-gold-500 font-bold text-right text-base">{formatCurrency(prices.affaires.services_4)}</div>
+                            </div>
                           </div>
-                          <div className="text-[10px] text-stone-500 italic mt-1 font-sans border-t border-white/5 pt-2">
+                          
+                          <span className="text-[10px] text-stone-500 uppercase tracking-widest block border-b border-white/5 pt-4 pb-2 font-semibold">
+                            {lang === "vi" ? "Tùy chọn bổ sung" : lang === "fr" ? "Suppléments & Options" : lang === "en" ? "Supplements & Add-ons" : lang === "ja" ? "追加オプション" : lang === "ko" ? "추가 옵션 및 보충" : "額外加配及選項"}
+                          </span>
+                          <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs font-light text-stone-400">
+                            <div>{lang === "vi" ? "Bò Bourguignon (plat premium)" : lang === "fr" ? "Bœuf Bourguignon (plat premium)" : lang === "en" ? "Beef Bourguignon (premium)" : lang === "ja" ? "ブルギニョン" : lang === "ko" ? "비프 부르기뇽 (프리미엄)" : "紅酒燉牛肉"}</div>
+                            <div className="text-stone-200 text-right">+{formatCurrency(prices.affaires.supp_premium)}</div>
+                            
+                            <div>{lang === "vi" ? "Trà hoặc Cà phê" : lang === "fr" ? "Thé ou Café" : lang === "en" ? "Tea or Coffee" : lang === "ja" ? "紅茶またはコーヒー" : lang === "ko" ? "홍차 또는 커피" : "特選茶或咖啡"}</div>
+                            <div className="text-stone-200 text-right">+{formatCurrency(prices.affaires.tea_coffee)}</div>
+                            
+                            <div>{lang === "vi" ? "Ly rượu vang của Chef" : lang === "fr" ? "Verre de vin du chef" : lang === "en" ? "Chef's glass of wine" : lang === "ja" ? "シェフの厳選ワイン" : lang === "ko" ? "셰프 추천 와인" : "主廚精選杯裝葡萄酒"}</div>
+                            <div className="text-stone-200 text-right">+{formatCurrency(prices.affaires.wine_glass)}</div>
+                            
+                            <div>{lang === "vi" ? "Ghép cặp 2 ly rượu" : lang === "fr" ? "Accord 2 verres" : lang === "en" ? "Wine pairing (2 glasses)" : lang === "ja" ? "ペアリングワイン（2杯）" : lang === "ko" ? "와인 페어링 (2잔)" : "雙杯配酒"}</div>
+                            <div className="text-stone-200 text-right">+{formatCurrency(prices.affaires.wine_pairing_2)}</div>
+                          </div>
+
+                          <span className="text-[10px] text-stone-500 uppercase tracking-widest block border-b border-white/5 pt-4 pb-2 font-semibold">
+                            {lang === "vi" ? "Bao gồm" : lang === "fr" ? "Inclus" : lang === "en" ? "Includes" : lang === "ja" ? "含まれるもの" : lang === "ko" ? "포함 사항" : "套餐包含"}
+                          </span>
+                          <div className="text-xs font-light text-stone-400 leading-relaxed italic">
+                            {lang === "vi" ? "Bánh mì thủ công & bơ muối 5%, tỏi và hương thảo" : lang === "fr" ? "Pain artisanal & beurre salé 5%, ail et romarin" : lang === "en" ? "Artisanal bread & 5% salted butter, garlic and rosemary" : lang === "ja" ? "自家製パン＆5％塩バター、ニンニク、ローズマリー" : lang === "ko" ? "식전 수제 빵 & 5% 가염 버터, 마늘과 로즈마리" : "手工麵包及 5% 鹹牛油、蒜蓉與迷迭香"}
+                          </div>
+                          
+                          <div className="text-[10px] text-stone-500 italic mt-3 font-sans border-t border-white/5 pt-2">
                             {t.vatDisclaimer}
                           </div>
                         </div>
@@ -1520,7 +1783,11 @@ function SetMenuContent() {
                             <div className="flex flex-col gap-4">
                               {course.options.map((opt, oIdx) => {
                                 const containsAllergen = checkCourseAllergen(opt.allergens);
-                                const supplementVal = opt.supplement_key ? prices.degustation[opt.supplement_key] : 0;
+                                const supplementVal = opt.supplement_key 
+                                  ? (prices[menu.id] && prices[menu.id][opt.supplement_key] !== undefined 
+                                      ? prices[menu.id][opt.supplement_key] 
+                                      : (prices.degustation[opt.supplement_key] || 0)) 
+                                  : 0;
                                 
                                 return (
                                   <React.Fragment key={oIdx}>
