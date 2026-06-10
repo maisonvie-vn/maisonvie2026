@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, Suspense } from "react";
+import React, { useState, useEffect, useRef, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Header from "@/components/Header";
 
@@ -9,14 +9,12 @@ const I18N = {
   vi: {
     title: "Danh Mục Đồ Uống",
     subtitle: "Sự kết hợp tinh tế giữa nghệ thuật pha chế Pháp và hương vị bản địa",
-    priceLabel: "Giá",
-    btnReserve: "Đặt bàn thưởng thức ngay",
-    btnBack: "Quay lại trang chủ",
+    next: "Tiếp theo",
+    back: "Quay lại",
     empty: "Không tìm thấy đồ uống nào trong danh mục này.",
     categories: {
-      all: "Tất Cả",
-      aperitifs: "Khai Vị",
-      mixed_aperitifs: "Khai Vị Pha Trộn",
+      aperitifs: "Apéritifs",
+      mixed_aperitifs: "Mixed Apéritifs",
       signature_cocktails: "Signature Cocktails",
       classic_cocktails: "Cocktails Cổ Điển",
       wine_by_glass: "Rượu Vang Ly",
@@ -26,19 +24,17 @@ const I18N = {
       waters_softs: "Nước Khoáng & Nước Ngọt",
       spirits: "Rượu Mạnh",
       cognacs: "Cognac & Armagnac",
-      liqueurs: "Rượu Mùi",
+      liqueurs: "Rượu Mùi & Tiêu Vị",
       coffee_tea: "Cà Phê & Trà"
     }
   },
   en: {
     title: "Beverage List",
     subtitle: "An exquisite blend of French mixology and local Vietnamese flavors",
-    priceLabel: "Price",
-    btnReserve: "Book a table now",
-    btnBack: "Back to Home",
+    next: "Next",
+    back: "Back",
     empty: "No beverages found in this category.",
     categories: {
-      all: "All",
       aperitifs: "Apéritifs",
       mixed_aperitifs: "Mixed Apéritifs",
       signature_cocktails: "Signature Cocktails",
@@ -57,12 +53,10 @@ const I18N = {
   fr: {
     title: "La Carte des Boissons",
     subtitle: "L'art de la mixologie française marié aux arômes vietnamiens",
-    priceLabel: "Tarif",
-    btnReserve: "Réserver une table",
-    btnBack: "Retour à l'accueil",
+    next: "Suivant",
+    back: "Précédent",
     empty: "Aucune boisson disponible dans cette catégorie.",
     categories: {
-      all: "Tout",
       aperitifs: "Apéritifs",
       mixed_aperitifs: "Apéritifs Mixtes",
       signature_cocktails: "Cocktails Signatures",
@@ -81,12 +75,10 @@ const I18N = {
   ja: {
     title: "ドリンクメニュー",
     subtitle: "フランスのミクソロジーとベトナム現地のフレーバーの調和",
-    priceLabel: "価格",
-    btnReserve: "今すぐご予約",
-    btnBack: "ホームに戻る",
+    next: "次へ",
+    back: "戻る",
     empty: "このカテゴリーのドリンクは現在ございません。",
     categories: {
-      all: "すべて",
       aperitifs: "アペリティフ",
       mixed_aperitifs: "ミックス・アペリティフ",
       signature_cocktails: "シグネチャー・カクテル",
@@ -105,12 +97,10 @@ const I18N = {
   ko: {
     title: "음료 메뉴",
     subtitle: "프랑스 믹솔로지 기법과 베트남 고유 향미의 정교한 조합",
-    priceLabel: "가격",
-    btnReserve: "예약하기",
-    btnBack: "홈으로 돌아가기",
+    next: "다음",
+    back: "이전",
     empty: "이 카테고리에 제공되는 음료가 없습니다.",
     categories: {
-      all: "전체",
       aperitifs: "아페리티프 (식전주)",
       mixed_aperitifs: "믹스 식전주",
       signature_cocktails: "시그니처 칵테일",
@@ -129,12 +119,10 @@ const I18N = {
   hk: {
     title: "飲品及酒水清單",
     subtitle: "法式調酒藝術與越南本土風味的優雅融合",
-    priceLabel: "價格",
-    btnReserve: "立即預訂席位",
-    btnBack: "返回主頁",
+    next: "下一頁",
+    back: "上一頁",
     empty: "此類別目前暫無飲品提供。",
     categories: {
-      all: "全部",
       aperitifs: "餐前開胃酒",
       mixed_aperitifs: "特調開胃酒",
       signature_cocktails: "招牌雞尾酒",
@@ -151,6 +139,22 @@ const I18N = {
     }
   }
 };
+
+const CATEGORIES_KEYS = [
+  "aperitifs",
+  "mixed_aperitifs",
+  "signature_cocktails",
+  "classic_cocktails",
+  "wine_by_glass",
+  "mocktails",
+  "fresh_juices",
+  "beers",
+  "waters_softs",
+  "spirits",
+  "cognacs",
+  "liqueurs",
+  "coffee_tea"
+];
 
 const DRINKS_DATA = [
   {
@@ -244,7 +248,7 @@ const DRINKS_DATA = [
           en: "Crème de cassis topped with sparkling wine",
           vi: "Rượu mùi lý chua đen Crème de cassis pha rượu vang sủi",
           fr: "Crème de cassis et vin mousseux",
-          ja: "キール・ロワイヤル — カシスリキュール、スパークリングワイン",
+          ja: "キール・ロワイヤル — カシスリキュール, スパークリングワイン",
           ko: "키르 로얄 — 크렘 드 카시스, 스파클링 와인",
           hk: "皇家基爾 — 黑加侖子利口酒伴氣泡酒"
         }
@@ -355,7 +359,7 @@ const DRINKS_DATA = [
           fr: "Mélange de cinq alcools (Gin, Vodka, Rhum, Tequila, Triple Sec), citron, cola",
           ja: "5種のスピリッツ（ジン、ウォッカ、ラム、テキーラ、トリプルセック）、レモン、コーラ",
           ko: "5가지 스피릿 블렌드 (진, 보드카, 럼, 데킬라, 트리플 섹), 레몬, 콜라",
-          hk: "長島冰茶 — 五款烈酒混合、檸檬、可樂"
+          hk: "長島冰茶 — 五款烈酒混合, 檸檬, 可樂"
         }
       },
       {
@@ -386,9 +390,9 @@ const DRINKS_DATA = [
           en: "Gin, fresh lemon, sugar, soda water",
           vi: "Gin, chanh tươi, đường, nước soda",
           fr: "Gin, citron frais, sucre, eau gazeuse",
-          ja: "ジン、レモン、シュガー、ソーダ",
+          ja: "ジントニック — プレミアムトニック、ライム",
           ko: "진, 레몬, 설탕, 탄산수",
-          hk: "湯姆科林斯 — 金酒、檸檬、糖、蘇打水"
+          hk: "湯姆科林斯 — 金酒, 檸檬, 糖, 蘇打水"
         }
       },
       {
@@ -719,7 +723,7 @@ const DRINKS_DATA = [
           en: "Choice of carbonated soft drinks (Vietnam · 0.33L)",
           vi: "Lựa chọn các loại nước ngọt có ga (Việt Nam · 0.33L)",
           fr: "Sélection de sodas et boissons gazeuses (Vietnam · 0.33L)",
-          ja: "各種ソフトドリンク (コカコーラ、ダイエットコーク、スプライト、ファンタ、トニック、ソーダ)",
+          ja: "各種ソフトドリンク (コカコーラ, ダイエットコーク, スプライト, ファンタ, トニック, ソーダ)",
           ko: "탄산음료 선택 (코카콜라, 다이어트 콜라, 스프라이트, 환타, 토닉워터, 탄산수)",
           hk: "汽水選擇 (可口可樂、健怡可樂、雪碧、芬達、湯力水、蘇打水)"
         }
@@ -888,7 +892,7 @@ const DRINKS_DATA = [
           en: "Irish cream and whiskey liqueur",
           vi: "Rượu mùi kem sữa và whiskey từ Ireland",
           fr: "Crème de liqueur irlandaise au whiskey",
-          ja: "ベイリーズ・オリジナル・アイリッシュクリーム",
+          ja: "ベイリーズ・original・アイリッシュクリーム",
           ko: "베일리스 오리지널 아이리시 크림",
           hk: "百利甜酒 — 愛爾蘭威士忌與鮮奶油利口酒"
         }
@@ -926,7 +930,7 @@ const DRINKS_DATA = [
           en: "Traditional drip coffee with condensed milk or fresh milk",
           vi: "Cà phê phin truyền thống dùng kèm sữa đặc hoặc sữa tươi",
           fr: "Café vietnamien traditionnel au lait concentré ou lait frais",
-          ja: "ベトナムコーヒー（練乳入り または 牛乳入り、温/冷）",
+          ja: "ベトナムコーヒー（練乳入り 或者 牛乳入り、温/冷）",
           ko: "베트남 정통 연유 커피 또는 블랙 커피 (온/냉)",
           hk: "傳統越南咖啡 (熱 / 冰，可選配煉奶或鮮奶)"
         }
@@ -983,23 +987,42 @@ function DrinksContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const lang = searchParams.get("lang") || "vi";
-  const [activeCategory, setActiveCategory] = useState("all");
+  
+  // Default to first category 'aperitifs' instead of 'all'
+  const [activeCategory, setActiveCategory] = useState("aperitifs");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const t = I18N[lang] || I18N.vi;
+
+  // Handle click outside to close dropdown
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const getTranslatedValue = (jsonbField, fallback = "") => {
     if (!jsonbField) return fallback;
     return jsonbField[lang] || jsonbField["vi"] || jsonbField["en"] || fallback;
   };
 
-  // Filter drinks by category
-  const filteredData = DRINKS_DATA.filter((group) => {
-    if (activeCategory === "all") return true;
-    return group.category === activeCategory;
-  });
+  // Find index of current category to handle pagination
+  const currentIndex = CATEGORIES_KEYS.indexOf(activeCategory);
+  const prevCategory = currentIndex > 0 ? CATEGORIES_KEYS[currentIndex - 1] : null;
+  const nextCategory = currentIndex < CATEGORIES_KEYS.length - 1 ? CATEGORIES_KEYS[currentIndex + 1] : null;
+
+  // Filter drinks for current active category
+  const activeGroup = DRINKS_DATA.find((group) => group.category === activeCategory);
 
   return (
-    <div className="flex flex-col min-h-screen bg-dark-500 font-sans">
+    <div className="flex flex-col min-h-screen bg-dark-500 font-sans text-stone-300">
       
       {/* HEADER / NAVIGATION */}
       <Header lang={lang} />
@@ -1008,89 +1031,128 @@ function DrinksContent() {
       <section className="relative py-20 text-center bg-gradient-to-b from-dark-400 to-dark-500 border-b border-white/5">
         <div className="max-w-4xl mx-auto px-6">
           <span className="text-[10px] uppercase tracking-[0.3em] text-gold-500 font-semibold mb-4 block">La Carte des Boissons</span>
-          <h1 className="text-5xl md:text-6xl font-light tracking-tight text-gold-500 gold-text-gradient font-luxury mb-6">
+          <h1 className="text-4xl md:text-5xl font-light tracking-tight text-gold-500 gold-text-gradient font-luxury mb-6">
             {t.title}
           </h1>
-          <p className="text-stone-300 font-light text-lg max-w-xl mx-auto leading-relaxed">
+          <p className="text-stone-300 font-light text-md max-w-xl mx-auto leading-relaxed">
             {t.subtitle}
           </p>
         </div>
       </section>
 
-      {/* FILTER TABS (Sticky & Scrollable for mobile) */}
-      <section className="py-6 sticky top-24 z-40 bg-dark-500/90 backdrop-blur-md border-b border-white/5 overflow-x-auto">
-        <div className="max-w-7xl mx-auto px-6 flex items-center gap-2 md:justify-center min-w-max">
-          <button
-            onClick={() => setActiveCategory("all")}
-            className={`text-[10px] uppercase tracking-widest px-4 py-2 border transition-premium rounded-full font-semibold ${
-              activeCategory === "all"
-                ? "bg-gold-500 border-gold-500 text-dark-500 shadow-[0_0_15px_rgba(197,165,90,0.2)]"
-                : "bg-black/20 border-white/5 text-stone-300 hover:border-gold-500/30"
-            }`}
-          >
-            {t.categories.all}
-          </button>
-          {DRINKS_DATA.map((group) => (
+      {/* STICKY FILTER DROPDOWN AREA */}
+      <section className="py-8 sticky top-24 z-40 bg-dark-500/95 backdrop-blur-md border-b border-white/5">
+        <div className="max-w-md mx-auto px-6" ref={dropdownRef}>
+          <div className="relative">
             <button
-              key={group.category}
-              onClick={() => setActiveCategory(group.category)}
-              className={`text-[10px] uppercase tracking-widest px-4 py-2 border transition-premium rounded-full font-semibold ${
-                activeCategory === group.category
-                  ? "bg-gold-500 border-gold-500 text-dark-500 shadow-[0_0_15px_rgba(197,165,90,0.2)]"
-                  : "bg-black/20 border-white/5 text-stone-300 hover:border-gold-500/30"
-              }`}
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              className="w-full flex items-center justify-between text-[12px] uppercase tracking-widest px-6 py-4 border border-gold-500/20 bg-dark-400 text-gold-500 font-semibold rounded-sm hover:border-gold-500/40 hover:bg-dark-300 transition-premium cursor-pointer"
             >
-              {t.categories[group.category]}
+              <span>{t.categories[activeCategory]}</span>
+              <span className={`text-[8px] text-gold-500/70 transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`}>▼</span>
             </button>
-          ))}
+            
+            {dropdownOpen && (
+              <div className="absolute left-0 right-0 mt-2 max-h-80 overflow-y-auto glassmorphism rounded-sm border border-white/10 shadow-[0_15px_30px_rgba(0,0,0,0.5)] z-50 animate-fade-in divide-y divide-white/5">
+                {CATEGORIES_KEYS.map((catKey) => (
+                  <button
+                    key={catKey}
+                    onClick={() => {
+                      setActiveCategory(catKey);
+                      setDropdownOpen(false);
+                    }}
+                    className={`w-full text-left px-5 py-3.5 text-[11px] uppercase tracking-wider transition-premium block cursor-pointer ${
+                      activeCategory === catKey 
+                        ? "bg-gold-500/10 text-gold-500 font-bold border-l-2 border-gold-500" 
+                        : "text-stone-300 hover:bg-white/5 hover:text-stone-100"
+                    }`}
+                  >
+                    {t.categories[catKey]}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
       {/* DRINKS LISTING */}
       <section className="py-16 flex-1">
-        <div className="max-w-5xl mx-auto px-6 space-y-16">
-          {filteredData.length === 0 ? (
+        <div className="max-w-4xl mx-auto px-6">
+          {!activeGroup ? (
             <div className="text-center py-20 text-stone-500 text-sm italic">
               {t.empty}
             </div>
           ) : (
-            filteredData.map((group) => (
-              <div key={group.category} className="space-y-6">
-                
-                {/* Category Header */}
-                <div className="flex items-center space-x-4 border-b border-gold-500/10 pb-4">
-                  <h2 className="text-xl uppercase tracking-widest font-luxury text-gold-500 gold-text-gradient">
-                    {t.categories[group.category]}
-                  </h2>
-                  <div className="h-[1px] bg-gradient-to-r from-gold-500/30 to-transparent flex-1"></div>
-                </div>
-
-                {/* Drinks Items Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
-                  {group.items.map((drink, index) => {
-                    const displayDesc = getTranslatedValue(drink.desc);
-                    return (
-                      <div 
-                        key={index} 
-                        className="group flex flex-col justify-center py-3 border-b border-white/[0.03] hover:border-gold-500/10 transition-colors"
-                      >
-                        <div className="flex items-baseline justify-between">
-                          <h3 className="text-[16px] font-medium text-stone-100 group-hover:text-gold-200 transition-colors">
-                            {drink.name}
-                          </h3>
-                        </div>
-                        {displayDesc && (
-                          <p className="text-[13px] text-stone-400 font-light mt-1 max-w-md">
-                            {displayDesc}
-                          </p>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-
+            <div className="space-y-10">
+              
+              {/* Category title in main content */}
+              <div className="text-center mb-12">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-gold-500/60 block mb-2">Category</span>
+                <h2 className="text-2xl md:text-3xl font-light tracking-widest font-luxury text-gold-500 gold-text-gradient uppercase">
+                  {t.categories[activeCategory]}
+                </h2>
+                <div className="w-16 h-[1px] bg-gold-500/30 mx-auto mt-4"></div>
               </div>
-            ))
+
+              {/* Drinks Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
+                {activeGroup.items.map((drink, index) => {
+                  const displayDesc = getTranslatedValue(drink.desc);
+                  return (
+                    <div 
+                      key={index} 
+                      className="group flex flex-col justify-center py-4 border-b border-white/[0.03] hover:border-gold-500/10 transition-colors duration-200"
+                    >
+                      <div className="flex items-baseline justify-between">
+                        <h3 className="text-[16px] font-medium text-stone-100 group-hover:text-gold-300 transition-colors duration-200">
+                          {drink.name}
+                        </h3>
+                      </div>
+                      {displayDesc && (
+                        <p className="text-[13.5px] text-stone-400 font-light mt-1.5 leading-relaxed">
+                          {displayDesc}
+                        </p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* BOTTOM NAVIGATION (PREV / NEXT) */}
+              <div className="flex items-center justify-between pt-12 border-t border-white/5 mt-16">
+                {prevCategory ? (
+                  <button
+                    onClick={() => {
+                      setActiveCategory(prevCategory);
+                      window.scrollTo({ top: 300, behavior: 'smooth' });
+                    }}
+                    className="flex items-center space-x-2 text-[11px] uppercase tracking-widest text-stone-400 hover:text-gold-500 border border-white/5 hover:border-gold-500/30 bg-black/10 px-5 py-3 transition-premium rounded-sm cursor-pointer"
+                  >
+                    <span>←</span>
+                    <span>{t.categories[prevCategory]}</span>
+                  </button>
+                ) : (
+                  <div className="w-20" /> // Spacer
+                )}
+
+                {nextCategory ? (
+                  <button
+                    onClick={() => {
+                      setActiveCategory(nextCategory);
+                      window.scrollTo({ top: 300, behavior: 'smooth' });
+                    }}
+                    className="flex items-center space-x-2 text-[11px] uppercase tracking-widest text-stone-400 hover:text-gold-500 border border-white/5 hover:border-gold-500/30 bg-black/10 px-5 py-3 transition-premium rounded-sm cursor-pointer"
+                  >
+                    <span>{t.categories[nextCategory]}</span>
+                    <span>→</span>
+                  </button>
+                ) : (
+                  <div className="w-20" /> // Spacer
+                )}
+              </div>
+
+            </div>
           )}
         </div>
       </section>
