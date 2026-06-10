@@ -620,9 +620,12 @@ const DISHES = {
   },
   carre_agneau: {
     name: {
-      fr: "Carré d'Agneau aux Herbes Vietnamiennes — Lentilles du Puy, Céleri-rave",
-      vi: "Sườn cừu nướng vỏ thảo mộc Việt — đậu Le Puy — củ cần tây",
-      en: "Herb-crusted lamb rack — Le Puy lentils — celeriac"
+      fr: "Carré d'agneau, Herbes vietnamiennes, Céleri-rave",
+      vi: "Sườn cừu nướng vỏ thảo mộc Việt, nước sốt đậm hương, củ cần tây",
+      en: "Herb-crusted lamb rack, aromatic reduction, celeriac",
+      ja: "香草風味の子羊の背肉 — 濃厚なジュ、セルリアック",
+      ko: "허브 크러스트 양갈비 구이 — 농축 소스, 셀러리악",
+      hk: "香草烤羊鞍 — 伴濃郁肉汁 및 芹菜根"
     },
     allergens: ["MILK", "SULPHITES"],
     note: {
@@ -647,11 +650,14 @@ const DISHES = {
   },
   boeuf_wagyu: {
     name: {
-      fr: "Bœuf Wagyu MBS 6–7 — Topinambour, Betterave Chioggia",
-      vi: "Bò Wagyu MBS 6–7 — atisô Jerusalem — củ dền Chioggia",
-      en: "Wagyu beef MBS 6–7 — Jerusalem artichoke — Chioggia beetroot"
+      fr: "Bœuf Wagyu MBS 6–7, Jus Maison Vie (100 g)",
+      vi: "Bò Wagyu MBS 6–7 áp chảo, sốt Maison Vie, rau củ theo mùa (100 g)",
+      en: "Seared Wagyu beef MBS 6–7, Maison Vie jus, seasonal garnish (100 g)",
+      ja: "和牛 MBS 6–7 のポワレ — メゾン・ヴィ特製ジュ、季節の温野菜 (100 g)",
+      ko: "와규 MBS 6–7 구이 — 메종 비 소스, 계절 채소 (100 g)",
+      hk: "香煎和牛 MBS 6–7 — 伴招牌肉汁及時令蔬菜 (100 g)"
     },
-    allergens: ["MILK", "SULPHITES"],
+    allergens: ["SULPHITES"],
     note: {
       vi: "Có thể chuẩn bị không gluten",
       en: "Gluten-free available",
@@ -662,6 +668,27 @@ const DISHES = {
     },
     supplement_key: "supp_wagyu",
     wine: "Mouton Cadet Réserve Pauillac · Pauillac"
+  },
+  cote_boeuf_black_angus: {
+    name: {
+      fr: "Côte de Bœuf Black Angus, Pommes grenaille, Échalote confite",
+      vi: "Bò Black Angus ribeye, khoai grenaille, hành tím confit",
+      en: "Black Angus ribeye, grenaille potatoes, shallot confit",
+      ja: "ブラックアンガス牛リブアイ — グルナイユポテト、エシャロットのコンフィ",
+      ko: "블랙 앵거스 꽃등심 구이 — 알감자, 샬롯 콘피",
+      hk: "安格斯肋眼牛排 — 伴小土豆及油封香蔥"
+    },
+    allergens: ["MILK", "SULPHITES"],
+    note: {
+      vi: "Có thể chuẩn bị không gluten",
+      en: "Gluten-free available",
+      fr: "Option sans gluten disponible",
+      ja: "グルテンフリー対応可",
+      ko: "글루텐 프리 요청 가능",
+      hk: "可提供無麩質選項"
+    },
+    supplement_key: "supp_black_angus",
+    wine: "Château Haut-Rocher Saint-Émilion Grand Cru · Bordeaux"
   },
   fromages_affinés: {
     name: {
@@ -872,12 +899,12 @@ const SET_MENUS = [
       hk: "根據您的喜好，自由組合 3 至 7 道菜品的專屬美饌體驗。"
     },
     price_info: {
-      vi: "Từ 2.400.000 đ",
-      en: "From 2,400,000 VND",
-      fr: "À partir de 2 400 000 VND",
-      ja: "2,400,000 VND から",
-      ko: "2,400,000 VND 부터",
-      hk: "2,400,000 VND 起"
+      vi: "Từ 955.000 đ",
+      en: "From 955,000 VND",
+      fr: "À partir de 955 000 VND",
+      ja: "955,000 VND から",
+      ko: "955,000 VND 부터",
+      hk: "955,000 VND 起"
     },
     color: "from-amber-900/30 border-amber-500/20",
     is_choice_based: true,
@@ -958,8 +985,9 @@ const SET_MENUS = [
         has_options: true,
         options: [
           { option_title: { vi: "Lựa chọn Gia cầm", en: "Poultry Option", fr: "Option Volaille", ja: "家禽（鴨）", ko: "가금류 선택", hk: "禽類選擇" }, ...DISHES.magret_canard },
-          { option_title: { vi: "Lựa chọn Thịt cừu", en: "Lamb Option", fr: "Option Agneau", ja: "ラム肉（羊）", ko: "양고기 선택", hk: "羊肉選擇" }, ...DISHES.carre_agneau },
           { option_title: { vi: "Lựa chọn Ký thác", en: "Signature Option", fr: "Option Signature", ja: "シグネチャー", ko: "시그니처 선택", hk: "招牌選擇" }, ...DISHES.wellington_buffle },
+          { option_title: { vi: "Lựa chọn Black Angus", en: "Black Angus Option", fr: "Option Black Angus", ja: "ブラックアンガス牛", ko: "블랙 앵거스 선택", hk: "安格斯牛選擇" }, ...DISHES.cote_boeuf_black_angus },
+          { option_title: { vi: "Lựa chọn Sườn cừu", en: "Lamb Option", fr: "Option Agneau", ja: "ラム肉（羊）", ko: "양고기 선택", hk: "羊肉選擇" }, ...DISHES.carre_agneau },
           { option_title: { vi: "Lựa chọn Wagyu", en: "Wagyu Option", fr: "Option Wagyu", ja: "和牛（Wagyu）", ko: "와규 선택", hk: "和牛選擇" }, ...DISHES.boeuf_wagyu }
         ]
       },
@@ -1022,12 +1050,12 @@ const SET_MENUS = [
       hk: "由行政總廚傾力打造的完整套餐——無需選擇，無額外附加費，呈獻最完美的味道搭配。"
     },
     price_info: {
-      vi: "4.200.000 đ",
-      en: "4,200,000 VND",
-      fr: "4 200 000 VND",
-      ja: "4,200,000 VND",
-      ko: "4,200,000 VND",
-      hk: "4,200,000 VND"
+      vi: "1.795.000 đ",
+      en: "1,795,000 VND",
+      fr: "1 795 000 VND",
+      ja: "1,795,000 VND",
+      ko: "1,795,000 VND",
+      hk: "1,795,000 VND"
     },
     color: "from-gold-900/30 border-gold-500/30",
     is_choice_based: false,
@@ -1126,12 +1154,12 @@ const SET_MENUS = [
       hk: "致敬大叻優質農產之作——可自選 2 至 4 道精緻素食品味體驗。"
     },
     price_info: {
-      vi: "Từ 1.600.000 đ",
-      en: "From 1,600,000 VND",
-      fr: "À partir de 1 600 000 VND",
-      ja: "1,600,000 VND から",
-      ko: "1,600,000 VND 부터",
-      hk: "1,600,000 VND 起"
+      vi: "Từ 455.000 đ",
+      en: "From 455,000 VND",
+      fr: "À partir de 455 000 VND",
+      ja: "455,000 VND から",
+      ko: "455,000 VND 부터",
+      hk: "455,000 VND 起"
     },
     color: "from-rose-950/30 border-rose-500/25",
     is_choice_based: false,
@@ -1203,25 +1231,26 @@ const DEFAULT_PRICES = {
     wine_pairing_2: 310000
   },
   degustation: {
-    services_3: 2400000,
-    services_4: 3000000,
-    services_5: 3600000,
-    services_6: 4200000,
-    services_7: 4800000,
+    services_3: 955000,
+    services_4: 1155000,
+    services_5: 1455000,
+    services_6: 1515000,
+    services_7: 1695000,
     pairing_3_4: 1400000,
     pairing_5: 2200000,
     pairing_6_7: 3000000,
     supp_premium: 250000,
     supp_agneau: 200000,
-    supp_wagyu: 650000
+    supp_wagyu: 450000,
+    supp_black_angus: 100000
   },
   signature: {
-    price: 4200000
+    price: 1795000
   },
   vegetarian: {
-    services_2: 1600000,
-    services_3: 2200000,
-    services_4: 2800000
+    services_2: 455000,
+    services_3: 565000,
+    services_4: 755000
   }
 };
 
@@ -1579,6 +1608,23 @@ function SetMenuContent() {
                             <div className="text-stone-200 text-right">{formatCurrency(prices.degustation.pairing_5)}</div>
                             <div>6-7 services</div>
                             <div className="text-stone-200 text-right">{formatCurrency(prices.degustation.pairing_6_7)}</div>
+                          </div>
+                          
+                          <span className="text-[10px] text-stone-500 uppercase tracking-widest block border-b border-white/5 pt-4 pb-2 font-semibold">
+                            {lang === "vi" ? "Tùy chọn bổ sung" : lang === "fr" ? "Suppléments & Options" : lang === "en" ? "Supplements & Add-ons" : lang === "ja" ? "追加オプション" : lang === "ko" ? "추가 옵션 및 보충" : "額外加配及選項"}
+                          </span>
+                          <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs font-light text-stone-400">
+                            <div>{lang === "vi" ? "Tôm hùm baby (plat premium)" : lang === "fr" ? "Langoustine rôtie (premium)" : lang === "en" ? "Roasted langoustine (premium)" : lang === "ja" ? "手長エビのポワレ" : lang === "ko" ? "랑구스틴 구이 (프리미엄)" : "烤小龍蝦"}</div>
+                            <div className="text-stone-200 text-right">+{formatCurrency(prices.degustation.supp_premium)}</div>
+                            
+                            <div>{lang === "vi" ? "Bò Black Angus ribeye" : lang === "fr" ? "Côte de Bœuf Black Angus" : lang === "en" ? "Black Angus ribeye" : lang === "ja" ? "ブラックアンガス牛リブアイ" : lang === "ko" ? "블랙 앵거스 꽃등심" : "安格斯肋眼牛排"}</div>
+                            <div className="text-stone-200 text-right">+{formatCurrency(prices.degustation.supp_black_angus)}</div>
+                            
+                            <div>{lang === "vi" ? "Sườn cừu nướng vỏ thảo mộc" : lang === "fr" ? "Carré d'agneau aux herbes" : lang === "en" ? "Herb-crusted lamb rack" : lang === "ja" ? "子羊の背肉の香草焼き" : lang === "ko" ? "허브 크러스트 양갈비" : "香草烤羊鞍"}</div>
+                            <div className="text-stone-200 text-right">+{formatCurrency(prices.degustation.supp_agneau)}</div>
+                            
+                            <div>{lang === "vi" ? "Bò Wagyu MBS 6-7 (100g)" : lang === "fr" ? "Bœuf Wagyu MBS 6-7 (100g)" : lang === "en" ? "Wagyu beef MBS 6-7 (100g)" : lang === "ja" ? "和牛 MBS 6-7 (100g)" : lang === "ko" ? "와규 MBS 6-7 (100g)" : "和牛 MBS 6-7 (100g)"}</div>
+                            <div className="text-stone-200 text-right">+{formatCurrency(prices.degustation.supp_wagyu)}</div>
                           </div>
                           
                           <div className="text-[10px] text-stone-500 italic mt-3 font-sans border-t border-white/5 pt-2">
