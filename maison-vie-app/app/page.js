@@ -5,6 +5,7 @@ import Image from "next/image";
 import { supabase } from "../lib/supabase";
 import { COUNTRY_CODES } from "../lib/countryCodes";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 // 🌐 MULTI-LANGUAGE DICTIONARY (VI, EN, FR, JA, KO, HK)
 const I18N = {
@@ -1024,48 +1025,7 @@ function HomeContent() {
       </section>
 
       {/* 🏛️ FOOTER */}
-      <footer className="bg-black border-t border-white/5 py-16 text-stone-400 text-sm">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
-          
-          {/* Logo & Slogan */}
-          <div className="flex flex-col">
-            <span className="text-xl font-semibold tracking-wider text-gold-500 font-luxury uppercase">Maison Vie</span>
-            <span className="text-[9px] uppercase tracking-[0.25em] text-stone-500 font-sans mt-0.5 mb-6">Haute Cuisine</span>
-            <p className="text-stone-500 text-xs font-light leading-relaxed max-w-xs">
-              \"Terroir Vietnamien bọc trong kỹ thuật Pháp cổ điển - Một điểm đến ẩm thực đẳng cấp thượng lưu.\"
-            </p>
-          </div>
-
-          {/* Opening Hours */}
-          <div className="flex flex-col">
-            <span className="text-xs uppercase tracking-widest text-stone-200 font-semibold mb-4">{t.footerHours}</span>
-            <div className="space-y-2 text-xs font-light">
-              <p>Mỗi ngày / Everyday: 11:00 – 14:00 & 17:30 – 22:00</p>
-              <p>Giờ cao điểm / Peak hours: 18:00 – 20:30 (Duyệt bàn thủ công)</p>
-            </div>
-          </div>
-
-          {/* Contact Details */}
-          <div className="flex flex-col">
-            <span className="text-xs uppercase tracking-widest text-stone-200 font-semibold mb-4">{t.footerContact}</span>
-            <div className="space-y-2 text-xs font-light">
-              <p>{t.footerAddress}</p>
-              <p>Hotline: 0989 091 383</p>
-              <p>Email: info@maisonvie.vn</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-600 font-light">
-          <p>© 2026 Maison Vie. All rights reserved.</p>
-          <div className="flex space-x-6 my-4 sm:my-0">
-            <a href={`/blog?lang=${lang}`} className="hover:text-gold-500 transition-premium">Journal (Blog)</a>
-            <a href={`/careers?lang=${lang}`} className="hover:text-gold-500 transition-premium">Careers (Tuyển Dụng)</a>
-          </div>
-          <p>French Culinary Excellence · Decree 13 Personal Data Privacy Secure</p>
-        </div>
-      </footer>
+      <Footer lang={lang} />
 
     </div>
   );

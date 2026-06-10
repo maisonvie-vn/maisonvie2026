@@ -3,6 +3,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 // 🌐 Multilingual content for Gallery page
 const I18N = {
@@ -481,9 +482,7 @@ function GalleryContent() {
       )}
 
       {/* FOOTER */}
-      <footer className="bg-black py-8 text-center text-xs text-stone-600 border-t border-white/5">
-        <p>© 2026 Maison Vie. All rights reserved. French Culinary Excellence.</p>
-      </footer>
+      <Footer lang={lang} />
 
     </div>
   );

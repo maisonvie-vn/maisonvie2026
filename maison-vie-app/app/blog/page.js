@@ -4,6 +4,7 @@
 export const dynamic = "force-dynamic";
 
 import React, { useState, useEffect, Suspense } from "react";
+import Footer from "@/components/Footer";
 import { useSearchParams, useRouter } from "next/navigation";
 import { supabase } from "../../lib/supabase";
 
@@ -187,9 +188,7 @@ function BlogContent() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-black py-8 text-center text-xs text-stone-600 border-t border-white/5">
-        <p>© 2026 Maison Vie. All rights reserved. French Culinary Excellence.</p>
-      </footer>
+      <Footer lang={lang} />
 
     </div>
   );

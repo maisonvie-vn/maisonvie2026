@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "../../lib/supabase";
 import { COUNTRY_CODES } from "../../lib/countryCodes";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const OFFERS = [
   {
@@ -1044,14 +1045,7 @@ function OffersContent() {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-black border-t border-white/5 py-10 text-center">
-        <div className="max-w-7xl mx-auto px-6">
-          <span className="text-lg font-semibold tracking-wider text-gold-500 font-luxury uppercase block mb-1">Maison Vie</span>
-          <span className="text-[9px] uppercase tracking-[0.25em] text-stone-500 block mb-6">Cuisine Française Classique · Terroir Vietnamien</span>
-          <p className="text-stone-500 text-xs">28 Tăng Bạt Hổ, Hai Bà Trưng, Hà Nội · +84 989 091 383 · info@maisonvie.vn</p>
-          <p className="text-stone-700 text-[10px] mt-4">© 2026 Maison Vie. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer lang={lang} />
 
     </div>
   );
