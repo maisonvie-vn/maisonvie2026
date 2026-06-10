@@ -10,6 +10,7 @@ const NAV_I18N = {
     menu: "Thực Đơn",
     alacarte: "À La Carte",
     setmenu: "Set Menu",
+    drinks: "Đồ Uống",
     wine: "Hầm Rượu",
     privileges: "Đặc Quyền & Sự Kiện",
     offers: "Ưu Đãi",
@@ -27,6 +28,7 @@ const NAV_I18N = {
     menu: "Menu",
     alacarte: "À La Carte",
     setmenu: "Set Menu",
+    drinks: "Beverage List",
     wine: "Wine List",
     privileges: "Privileges & Events",
     offers: "Offers",
@@ -44,6 +46,7 @@ const NAV_I18N = {
     menu: "Carte",
     alacarte: "À La Carte",
     setmenu: "Set Menu",
+    drinks: "Carte des Boissons",
     wine: "Carte des Vins",
     privileges: "Privilèges & Événements",
     offers: "Offres",
@@ -61,6 +64,7 @@ const NAV_I18N = {
     menu: "メニュー",
     alacarte: "アラカルト",
     setmenu: "セットメニュー",
+    drinks: "ドリンク",
     wine: "ワインリスト",
     privileges: "特別プラン＆イベント",
     offers: "特別プラン",
@@ -78,6 +82,7 @@ const NAV_I18N = {
     menu: "메뉴",
     alacarte: "단품 메뉴",
     setmenu: "코스 메뉴",
+    drinks: "음료",
     wine: "와인 목록",
     privileges: "특전 & 이벤트",
     offers: "특별 혜택",
@@ -95,6 +100,7 @@ const NAV_I18N = {
     menu: "精選菜單",
     alacarte: "單點菜單",
     setmenu: "宴 club 套餐",
+    drinks: "飲料",
     wine: "特藏酒窖",
     privileges: "尊貴禮遇 & 活動",
     offers: "餐飲優惠",
@@ -201,6 +207,12 @@ export default function Header({ lang = "vi", setLang }) {
                 className={`w-full text-left px-5 py-3 text-[11px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/menu/set-menu" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
               >
                 {t.setmenu}
+              </button>
+              <button
+                onClick={() => handleNavigation("/menu/drinks")}
+                className={`w-full text-left px-5 py-3 text-[11px] uppercase tracking-wider block hover:bg-white/5 hover:text-gold-500 hover:pl-6 transition-all duration-300 ${pathname === "/menu/drinks" ? "text-gold-500 font-bold bg-gold-500/10" : "text-stone-300"}`}
+              >
+                {t.drinks}
               </button>
             </div>
           </div>
@@ -376,6 +388,12 @@ export default function Header({ lang = "vi", setLang }) {
                     className={`text-left py-1 hover:text-gold-500 ${pathname === "/menu/set-menu" ? "text-gold-500 font-bold" : ""}`}
                   >
                     ✦ {t.setmenu}
+                  </button>
+                  <button 
+                    onClick={() => handleNavigation("/menu/drinks")} 
+                    className={`text-left py-1 hover:text-gold-500 ${pathname === "/menu/drinks" ? "text-gold-500 font-bold" : ""}`}
+                  >
+                    ✦ {t.drinks}
                   </button>
                 </div>
               )}
