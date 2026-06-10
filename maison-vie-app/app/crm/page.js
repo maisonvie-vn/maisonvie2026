@@ -137,7 +137,7 @@ export default function CrmDashboard() {
 
       setIsVipDecrypted(true);
       setDecryptedVipName("Mr. Vũ Vương Tuấn (Chủ tịch Tập đoàn V-Group)");
-      setDecryptedVipPhone("0989 091 383 (VIP Level 3)");
+      setDecryptedVipPhone("+84 904150383 (VIP Level 3)");
     } catch (err) {
       console.error("Error logging VIP decryption audit log:", err);
       alert("Lỗi bảo mật: Không thể giải mã và lưu vết nhật ký an ninh!");

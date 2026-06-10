@@ -28,7 +28,7 @@ const I18N = {
     successTitle: "Đã gửi tin nhắn!",
     successMsg: "Maison Vie đã tiếp nhận thông tin từ Quý khách. Chúng tôi sẽ phản hồi lại thông qua email hoặc số điện thoại trong thời gian ngắn nhất.",
     errorTitle: "Lỗi hệ thống",
-    errorMsg: "Không thể gửi tin nhắn tại thời điểm này. Vui lòng thử lại hoặc gọi Hotline hỗ trợ: 0989 091 383.",
+    errorMsg: "Không thể gửi tin nhắn tại thời điểm này. Vui lòng thử lại hoặc gọi Hotline hỗ trợ: +84 904150383.",
     mapTitle: "Bản Đồ Chỉ Đường Đến Biệt Thự Maison Vie",
   },
   en: {
@@ -52,7 +52,7 @@ const I18N = {
     successTitle: "Message Sent!",
     successMsg: "Maison Vie has received your message. Our hospitality team will get back to you via email or phone shortly.",
     errorTitle: "System Error",
-    errorMsg: "Failed to send message. Please try again or call our concierge line: 0989 091 383.",
+    errorMsg: "Failed to send message. Please try again or call our concierge line: +84 904150383.",
     mapTitle: "Find Us - Maison Vie Neoclassical Villa",
   },
   fr: {
@@ -76,7 +76,7 @@ const I18N = {
     successTitle: "Message Envoyé!",
     successMsg: "Maison Vie a bien reçu votre message. Notre équipe d'accueil vous répondra rapidement par e-mail ou téléphone.",
     errorTitle: "Erreur de Connexion",
-    errorMsg: "Impossible d'envoyer votre message. Veuillez réessayer ou composer le 0989 091 383.",
+    errorMsg: "Impossible d'envoyer votre message. Veuillez réessayer ou composer le +84 904150383.",
     mapTitle: "Plan d'Accès - Villa Maison Vie Hanoï",
   }
 };
@@ -185,7 +185,7 @@ function ContactContent() {
                 {t.cardPhoneTitle}
               </h3>
               <div className="space-y-1.5 text-stone-400 text-sm font-light">
-                <p>concierge: <span className="text-stone-300 font-medium font-luxury">0989 091 383</span></p>
+                <p>concierge: <span className="text-stone-300 font-medium font-luxury">+84 904150383</span></p>
                 <p>Office: <span className="text-stone-300 font-medium">024 3933 8888</span></p>
               </div>
             </div>

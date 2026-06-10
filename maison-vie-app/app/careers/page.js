@@ -21,7 +21,7 @@ const I18N = {
     successTitle: "Hồ Sơ Đã Nhận Thành Công",
     successMsg: "Cảm ơn bạn đã nộp hồ sơ vào Maison Vie. Bộ phận Nhân sự sẽ kiểm tra CV của bạn và liên hệ sắp xếp buổi phỏng vấn trực tiếp trong vòng 3-5 ngày làm việc.",
     errTitle: "Đã Có Lỗi Xảy Ra",
-    errMsg: "Không thể nộp hồ sơ. Vui lòng kiểm tra lại kích thước/định dạng tệp (<5MB, PDF/DOCX) hoặc liên hệ hotline nhân sự: 0989 091 383.",
+    errMsg: "Không thể nộp hồ sơ. Vui lòng kiểm tra lại kích thước/định dạng tệp (<5MB, PDF/DOCX) hoặc liên hệ hotline nhân sự: +84 904150383.",
     loading: "Đang tải các vị trí tuyển dụng...",
     empty: "Hiện tại chúng tôi đang tuyển đủ nhân sự. Hãy quay lại sau nhé!"
   },
@@ -40,7 +40,7 @@ const I18N = {
     successTitle: "Application Received Successfully",
     successMsg: "Thank you for applying to Maison Vie. Our HR department will review your CV and contact you within 3-5 business days.",
     errTitle: "An Error Occurred",
-    errMsg: "Failed to apply. Please verify file size/format (<5MB, PDF/DOCX) or contact our recruitment team: 0989 091 383.",
+    errMsg: "Failed to apply. Please verify file size/format (<5MB, PDF/DOCX) or contact our recruitment team: +84 904150383.",
     loading: "Loading vacant positions...",
     empty: "All positions are currently filled. Please check back later!"
   },
@@ -59,7 +59,7 @@ const I18N = {
     successTitle: "Candidature reçue avec succès",
     successMsg: "Merci pour votre intérêt. Notre service RH étudiera votre dossier et prendra contact sous 3 à 5 jours ouvrés.",
     errTitle: "Une erreur est survenue",
-    errMsg: "Impossible de postuler. Vérifiez la taille/format du fichier (<5Mo, PDF/DOCX) hoặc appelez au 0989 091 383.",
+    errMsg: "Impossible de postuler. Vérifiez la taille/format du fichier (<5Mo, PDF/DOCX) hoặc appelez au +84 904150383.",
     loading: "Chargement các vị trí...",
     empty: "Aucun poste vacant pour le moment. Veuillez repasser plus tard !"
   },

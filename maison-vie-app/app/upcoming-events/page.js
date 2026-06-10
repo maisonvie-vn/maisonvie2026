@@ -404,7 +404,7 @@ function UpcomingEventsContent() {
                 </div>
                 {regStatus === "error" && (
                   <div className="p-4 bg-red-950/30 border border-red-500/30 text-red-300 text-sm rounded text-center">
-                    Lỗi kết nối. Vui lòng thử lại hoặc gọi: 0989 091 383.
+                    Lỗi kết nối. Vui lòng thử lại hoặc gọi: +84 904150383.
                   </div>
                 )}
                 <button type="submit" disabled={regStatus === "loading"}

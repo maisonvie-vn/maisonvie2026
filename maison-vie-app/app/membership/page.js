@@ -43,7 +43,7 @@ const I18N = {
     successMsg: "Maison Vie xin chân thành cảm ơn quý khách. Hồ sơ hội viên VIP của quý khách đã được tạo thành công và gửi thông tin xác nhận qua email/SMS. Lễ tân sẽ sớm liên hệ trực tiếp.",
     successUpdateMsg: "Cảm ơn quý khách đã cập nhật hồ sơ hội viên VIP thành công. Thông tin thay đổi đã được ghi nhận trên cơ sở dữ liệu an toàn của chúng tôi.",
     errorTitle: "Đăng ký thất bại",
-    errorMsg: "Hệ thống gặp sự cố kết nối. Vui lòng liên hệ Hotline 0989 091 383 để được hỗ trợ trực tiếp.",
+    errorMsg: "Hệ thống gặp sự cố kết nối. Vui lòng liên hệ Hotline +84 904150383 để được hỗ trợ trực tiếp.",
     mustConsent: "Vui lòng đồng ý với các điều khoản bảo mật dữ liệu Nghị định 13 để tiếp tục.",
   },
   en: {
@@ -81,7 +81,7 @@ const I18N = {
     successMsg: "Thank you. Your VIP membership profile has been created successfully. A confirmation message has been sent. Our coordinator will contact you shortly.",
     successUpdateMsg: "Thank you. Your VIP membership profile has been updated successfully on our secure database.",
     errorTitle: "Registration Failed",
-    errorMsg: "Database connection failed. Please try again or call our hotline: 0989 091 383.",
+    errorMsg: "Database connection failed. Please try again or call our hotline: +84 904150383.",
     mustConsent: "You must accept the privacy terms under Decree 13 to proceed.",
     mustConsent: "Please check the Decree 13 consent box to continue.",
   }
