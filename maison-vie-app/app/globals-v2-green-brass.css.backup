@@ -16,19 +16,19 @@
   --color-gold-900: #49371B;
   --color-gold-950: #302410;
   
-  --color-dark-50: #042726;
-  --color-dark-100: #042726;
+  --color-dark-50: #102B2A;
+  --color-dark-100: #102B2A;
   --color-dark-200: #042726;
-  --color-dark-300: #111d22;
-  --color-dark-400: #111d22; /* Phụ: Your old dark moss green for panels/cards */
-  --color-dark-500: #042726; /* Nền: Darker background color */
+  --color-dark-300: #042726;
+  --color-dark-400: #042726; /* Phụ: Darker Moss Green for panels/cards */
+  --color-dark-500: #102B2A; /* Nền: Lighter Moss Green for main background */
   --color-dark-600: #042726;
   --color-dark-700: #042726;
   --color-dark-900: #042726;
 }
 
 :root {
-  --background: #042726;
+  --background: #102B2A;
   --foreground: #FFFFFF;
   --gold: #A8884E;
   --gold-glow: rgba(168, 136, 78, 0.15);
@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
 }
 
 .glassmorphism {
-  background: rgba(4, 39, 38, 0.7);
+  background: rgba(16, 43, 42, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.03);
