@@ -1168,7 +1168,7 @@ function WineCard({ wine, t, index }) {
 
   return (
     <div
-      className="group relative gold-border-glow bg-dark-400/95 backdrop-blur-md animate-fade-in"
+      className="group relative gold-border-glow glassmorphism animate-fade-in"
       style={{ animationDelay: `${index * 40}ms` }}
     >
       {/* VINO Club badge */}
