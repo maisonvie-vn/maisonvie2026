@@ -21,14 +21,14 @@
   --color-dark-200: #1e353d;
   --color-dark-300: #172a30;
   --color-dark-400: #0c1315; /* Darker Moss Green for panels/cards */
-  --color-dark-500: #102B2A; /* Lighter Moss Green for main background */
+  --color-dark-500: #081A19; /* Lighter Moss Green for main background */
   --color-dark-600: #0e181c;
   --color-dark-700: #0b1317;
   --color-dark-900: #060b0c;
 }
 
 :root {
-  --background: #102B2A;
+  --background: #081A19;
   --foreground: #F5F5F4;
   --gold: #C5A55A;
   --gold-glow: rgba(197, 165, 90, 0.15);
@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
 }
 
 .glassmorphism {
-  background: rgba(16, 43, 42, 0.7);
+  background: rgba(8, 26, 25, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.03);
