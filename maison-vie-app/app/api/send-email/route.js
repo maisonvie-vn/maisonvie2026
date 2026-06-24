@@ -171,7 +171,7 @@ const getEmailHtml = ({ type, lang = "vi", data }) => {
           font-family: 'Cormorant Garamond', 'Georgia', serif;
           text-transform: uppercase;
           letter-spacing: 0.15em;
-          color: #C5A55A;
+          color: #A8884E;
           font-weight: 300;
           margin: 0;
         }
@@ -188,12 +188,12 @@ const getEmailHtml = ({ type, lang = "vi", data }) => {
         .title {
           font-size: 20px;
           font-family: 'Cormorant Garamond', 'Georgia', serif;
-          color: #C5A55A;
+          color: #A8884E;
           letter-spacing: 0.05em;
           text-transform: uppercase;
           margin-top: 0;
           margin-bottom: 25px;
-          border-bottom: 1px solid rgba(197, 165, 90, 0.2);
+          border-bottom: 1px solid rgba(168, 136, 78, 0.2);
           padding-bottom: 10px;
         }
         .salutation {
@@ -263,16 +263,16 @@ const getEmailHtml = ({ type, lang = "vi", data }) => {
           margin-bottom: 30px;
         }
         .chef-box {
-          border-left: 2px solid #C5A55A;
+          border-left: 2px solid #A8884E;
           padding: 15px;
           margin-bottom: 30px;
-          background-color: rgba(197, 165, 90, 0.03);
+          background-color: rgba(168, 136, 78, 0.03);
         }
         .chef-quote {
           font-size: 12px;
           font-style: italic;
           line-height: 1.6;
-          color: #C5A55A;
+          color: #A8884E;
           margin: 0;
         }
         .signature-box {
@@ -290,13 +290,13 @@ const getEmailHtml = ({ type, lang = "vi", data }) => {
           line-height: 1.8;
         }
         .footer a {
-          color: #C5A55A;
+          color: #A8884E;
           text-decoration: none;
         }
         .button {
           display: inline-block;
           padding: 12px 24px;
-          background-color: #C5A55A;
+          background-color: #A8884E;
           color: #0B0B0B !important;
           text-transform: uppercase;
           letter-spacing: 0.1em;

@@ -5,34 +5,34 @@
   --font-sans: var(--font-montserrat), sans-serif;
   
   --color-gold-50: #FAF8F2;
-  --color-gold-100: #F6F0DF;
-  --color-gold-200: #EBDEBD;
-  --color-gold-300: #DEC797;
-  --color-gold-400: #CBAF73;
-  --color-gold-500: #A8884E; /* Base Luxury Gold / Accent brass */
-  --color-gold-600: #93743E;
-  --color-gold-700: #7A5F31;
-  --color-gold-800: #614B25;
-  --color-gold-900: #49371B;
-  --color-gold-950: #302410;
+  --color-gold-100: #F4ECCF;
+  --color-gold-200: #E6D69D;
+  --color-gold-300: #D8BF6B;
+  --color-gold-400: #CBA942;
+  --color-gold-500: #C5A55A; /* Base Luxury Gold */
+  --color-gold-600: #AB883F;
+  --color-gold-700: #8E6E32;
+  --color-gold-800: #715525;
+  --color-gold-900: #543E19;
+  --color-gold-950: #38270E;
   
-  --color-dark-50: #102B2A;
-  --color-dark-100: #102B2A;
-  --color-dark-200: #042726;
-  --color-dark-300: #042726;
-  --color-dark-400: #042726; /* Phụ: Darker Moss Green for panels/cards */
-  --color-dark-500: #102B2A; /* Nền: Lighter Moss Green for main background */
-  --color-dark-600: #042726;
-  --color-dark-700: #042726;
-  --color-dark-900: #042726;
+  --color-dark-50: #516268;
+  --color-dark-100: #26414b;
+  --color-dark-200: #1e353d;
+  --color-dark-300: #172a30;
+  --color-dark-400: #0c1315; /* Darker Moss Green for panels/cards */
+  --color-dark-500: #111d22; /* Lighter Moss Green for main background */
+  --color-dark-600: #0e181c;
+  --color-dark-700: #0b1317;
+  --color-dark-900: #060b0c;
 }
 
 :root {
-  --background: #102B2A;
-  --foreground: #FFFFFF;
-  --gold: #A8884E;
-  --gold-glow: rgba(168, 136, 78, 0.15);
-  --border-gold: rgba(168, 136, 78, 0.2);
+  --background: #111d22;
+  --foreground: #F5F5F4;
+  --gold: #C5A55A;
+  --gold-glow: rgba(197, 165, 90, 0.15);
+  --border-gold: rgba(197, 165, 90, 0.2);
 }
 
 html {
@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
 
 /* Base custom visual tokens */
 .gold-text-gradient {
-  background: linear-gradient(135deg, #FFFFFF 0%, #DEC797 50%, #A8884E 100%);
+  background: linear-gradient(135deg, #FAF8F2 0%, #D8BF6B 50%, #C5A55A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -61,17 +61,17 @@ h1, h2, h3, h4, h5, h6, .font-luxury {
 
 .gold-border-glow {
   border: 1px solid var(--border-gold);
-  box-shadow: 0 0 15px rgba(168, 136, 78, 0.05);
+  box-shadow: 0 0 15px rgba(197, 165, 90, 0.05);
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gold-border-glow:hover {
-  border-color: rgba(168, 136, 78, 0.5);
-  box-shadow: 0 0 25px rgba(168, 136, 78, 0.15);
+  border-color: rgba(197, 165, 90, 0.5);
+  box-shadow: 0 0 25px rgba(197, 165, 90, 0.15);
 }
 
 .glassmorphism {
-  background: rgba(16, 43, 42, 0.7);
+  background: rgba(17, 29, 34, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.03);
