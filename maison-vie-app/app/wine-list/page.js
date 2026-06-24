@@ -1527,7 +1527,7 @@ function WineListContent() {
           {/* Au Verre list — elegant table-like layout */}
           <div className="space-y-0">
             {AU_VERRE_LIST.map((wine, i) => {
-              const styleColor = STYLE_GLASS_COLOR[wine.style] || "#A8884E";
+              const styleColor = STYLE_GLASS_COLOR[wine.style] || "#C5A55A";
               return (
                 <div
                   key={wine.id}
